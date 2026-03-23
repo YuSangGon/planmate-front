@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "eyebrow": "New request",
+    "title": "Create a new trip request",
+    "description": "Share what kind of trip you want, and planners can send proposals that fit your request."
+  },
+  "form": {
+    "title": "Trip brief",
+    "description": "Describe your trip clearly so planners can match you."
+  },
+  "fields": {
+    "destination": "Destination",
+    "duration": "Duration",
+    "budget": "Budget",
+    "offerCost": "Offer cost",
+    "travelStyle": "Travel style",
+    "interests": "Interests",
+    "notes": "Extra notes"
+  },
+  "placeholders": {
+    "destination": "e.g. Edinburgh, Scotland",
+    "travelStyle": "Type and press Enter",
+    "interests": "Type and press Enter",
+    "notes": "Describe your trip preferences..."
+  },
+  "actions": {
+    "submit": "Submit request",
+    "submitting": "Submitting...",
+    "saveDraft": "Save draft"
+  },
+  "validation": {
+    "destination": "Please enter a destination.",
+    "budgetRequired": "Please enter your budget.",
+    "budgetNegative": "Budget cannot be negative.",
+    "travelStyle": "Please add at least one travel style.",
+    "interests": "Please add at least one interest.",
+    "offerCostRequired": "Please enter an offer cost.",
+    "offerCostNegative": "Offer cost cannot be negative.",
+    "loginRequired": "You need to be logged in."
+  },
+  "toast": {
+    "success": "Request submitted successfully.",
+    "fail": "Failed to submit request."
+  },
+  "preview": {
+    "eyebrow": "Preview",
+    "title": "What planners will see",
+    "description": "This helps planners understand your request."
+  },
+  "common": {
+    "day": "day",
+    "days": "days"
+  }
+}

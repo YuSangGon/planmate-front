@@ -1,0 +1,30 @@
+{
+  "hero": {
+    "eyebrow": "Planner workspace",
+    "title": "Browse traveller requests",
+    "description": "See what travellers are looking for and find requests that match your planning style."
+  },
+  "filters": {
+    "all": "All",
+    "budget": "Budget",
+    "luxury": "Luxury",
+    "foodFocused": "Food-focused",
+    "slowTravel": "Slow travel"
+  },
+  "count": "{{count}} browse requests",
+  "states": {
+    "loading": "Loading requests...",
+    "loadError": "Failed to load browse requests.",
+    "empty": "No open requests found right now."
+  },
+  "sections": {
+    "travelStyle": "Travel style",
+    "interests": "Interests",
+    "notes": "Notes",
+    "noNotes": "No extra notes provided."
+  },
+  "actions": {
+    "viewDetails": "View details",
+    "sendProposal": "Send proposal"
+  }
+}

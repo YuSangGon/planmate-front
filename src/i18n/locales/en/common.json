@@ -1,0 +1,27 @@
+{
+  "language": "Language",
+  "english": "English",
+  "korean": "korean",
+  "home": "Home",
+  "requests": "Requests",
+  "proposals": "Proposals",
+  "browse": "Browse",
+  "plans": "Plans",
+  "request": "Request",
+  "planners": "Planners",
+  "messages": "Messages",
+  "myPage": "My Page",
+  "dashboard": "Dashboard",
+  "login": "Log in",
+  "logout": "Log out",
+  "signup": "Sign up",
+  "requestPlan": "Request a plan",
+  "traveller": "Traveller",
+  "planner": "Planner",
+  "notFound": {
+    "eyebrow": "404",
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist.",
+    "action": "Go back home"
+  }
+}

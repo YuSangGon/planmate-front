@@ -1,0 +1,119 @@
+.preview-plan-card,
+.preview-plan-state-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+  padding: 24px;
+}
+
+.preview-plan-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.preview-plan-meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: var(--color-primary);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.preview-plan-section + .preview-plan-section {
+  margin-top: 20px;
+}
+
+.preview-plan-section h3 {
+  margin: 0 0 10px;
+  color: var(--color-primary);
+  font-size: 0.98rem;
+}
+
+.preview-plan-section p {
+  margin: 0;
+  color: var(--color-text-soft);
+  line-height: 1.75;
+}
+
+.preview-plan-days {
+  display: grid;
+  gap: 18px;
+}
+
+.preview-plan-day-card {
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.preview-plan-day-card h4 {
+  margin: 0 0 14px;
+  color: var(--color-primary-strong);
+}
+
+.preview-plan-items {
+  display: grid;
+  gap: 12px;
+}
+
+.preview-plan-item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.preview-plan-item__time {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.preview-plan-item__content strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-primary-strong);
+}
+
+.preview-plan-item__content p {
+  margin: 0;
+  color: var(--color-text-soft);
+  line-height: 1.65;
+}
+
+.preview-plan-actions {
+  margin-top: 24px;
+}
+
+.preview-plan-approved-note {
+  margin-top: 24px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #ecfdf3;
+  color: #027a48;
+}
+
+.preview-plan-error {
+  margin-top: 18px;
+  color: #b42318;
+}
+
+.preview-plan-toast {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #157347, #198754);
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .preview-plan-item {
+    grid-template-columns: 1fr;
+  }
+}

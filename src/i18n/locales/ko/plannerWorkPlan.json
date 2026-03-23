@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "eyebrow": "플랜 빌더",
+    "title": "여행자 플랜 작성하기",
+    "description": "플랫폼 안에서 플랜을 작성하세요. 제출하기 전까지는 여행자에게 공개되지 않습니다."
+  },
+  "states": {
+    "loading": "작업 중인 플랜을 불러오는 중...",
+    "loadError": "작업 플랜을 불러오지 못했습니다.",
+    "draftSaved": "초안이 저장되었습니다.",
+    "saveError": "초안을 저장하지 못했습니다.",
+    "submitError": "플랜을 제출하지 못했습니다."
+  },
+  "form": {
+    "title": "제목",
+    "duration": "기간",
+    "tags": "태그",
+    "tagsPlaceholder": "태그를 입력하고 Enter를 누르세요",
+    "summary": "요약",
+    "dayTitle": "일차 제목",
+    "time": "시간",
+    "itemTitle": "제목",
+    "note": "메모"
+  },
+  "actions": {
+    "addItem": "일정 추가",
+    "addDay": "일차 추가",
+    "saveDraft": "초안 저장",
+    "saving": "저장 중...",
+    "submit": "여행자에게 제출",
+    "submitting": "제출 중..."
+  },
+  "defaults": {
+    "dayTitle": "{{number}}일차"
+  }
+}

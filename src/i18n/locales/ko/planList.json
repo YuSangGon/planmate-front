@@ -1,0 +1,20 @@
+{
+  "hero": {
+    "eyebrow": "여행 플랜",
+    "title": "미리 만들어진 여행 플랜 둘러보기",
+    "description": "도시, 여행 스타일, 예산에 맞게 만들어진 기존 일정 템플릿으로 시작해보세요."
+  },
+  "states": {
+    "loading": "플랜을 불러오는 중...",
+    "loadError": "플랜 목록을 불러오지 못했습니다.",
+    "empty": "플랜이 없습니다."
+  },
+  "actions": {
+    "onlyMyPlans": "내 플랜만 보기",
+    "createPlan": "나만의 플랜 만들기",
+    "viewPlan": "플랜 보기"
+  },
+  "card": {
+    "priceFrom": "£{{price}}부터"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "eyebrow": "My page",
+  "dashboardEyebrow": "Planner dashboard",
+  "welcome": "Welcome",
+  "descriptionTraveller": "This is your personal dashboard area for requests, saved plans, and future messages.",
+  "descriptionPlanner": "Manage your planner profile, incoming requests, and future client conversations.",
+  "accountOverview": "Account overview",
+  "quickSummary": "Quick summary",
+  "plannerSummary": "Planner summary",
+  "name": "Name",
+  "email": "Email",
+  "role": "Role",
+  "savedPlans": "Saved plans",
+  "openRequest": "Open request",
+  "unreadMessages": "Unread messages",
+  "incomingRequests": "Incoming requests",
+  "plansDelivered": "Plans delivered",
+  "averageRating": "Average rating"
+}

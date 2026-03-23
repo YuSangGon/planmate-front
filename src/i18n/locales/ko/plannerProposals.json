@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "eyebrow": "플래너 작업 공간",
+    "title": "제안 관리",
+    "description": "여행자에게 보낸 제안과 직접 받은 제안을 한곳에서 관리하세요."
+  },
+  "tabs": {
+    "sent": "보낸 제안",
+    "received": "받은 제안"
+  },
+  "states": {
+    "loading": "제안을 불러오는 중...",
+    "loadError": "제안 목록을 불러오지 못했습니다.",
+    "empty": "표시할 제안이 없습니다."
+  },
+  "labels": {
+    "traveller": "여행자",
+    "priceValue": "가격: {{price}}"
+  },
+  "statuses": {
+    "pending": "대기중",
+    "accepted": "수락됨",
+    "rejected": "거절됨",
+    "withdrawn": "철회됨",
+    "cancelled": "취소됨"
+  }
+}

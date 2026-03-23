@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "eyebrow": "내 요청",
+    "title": "여행 요청 관리",
+    "description": "내가 올린 요청을 확인하고, 제안 현황을 추적하며, 새로운 플랜이 필요할 때 새 요청을 만들어보세요."
+  },
+  "actions": {
+    "newRequest": "새 요청"
+  },
+  "states": {
+    "loading": "요청을 불러오는 중...",
+    "loadError": "요청 목록을 불러오지 못했습니다.",
+    "empty": "아직 생성한 요청이 없습니다."
+  },
+  "card": {
+    "noNotes": "추가 메모가 없습니다."
+  },
+  "statuses": {
+    "open": "열림",
+    "matched": "매칭됨",
+    "in_progress": "진행 중",
+    "submitted": "제출됨",
+    "completed": "완료됨",
+    "cancelled": "취소됨"
+  }
+}

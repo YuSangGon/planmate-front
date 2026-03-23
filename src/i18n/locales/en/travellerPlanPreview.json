@@ -1,0 +1,30 @@
+{
+  "hero": {
+    "eyebrow": "Plan preview",
+    "description": "This plan was submitted by your matched planner and is waiting for your approval."
+  },
+  "states": {
+    "loading": "Loading preview...",
+    "loadError": "Failed to load preview plan",
+    "notFound": "Preview plan not found.",
+    "approveSuccess": "Plan approved. The request is now completed and coins were transferred to the planner.",
+    "approveError": "Failed to approve plan",
+    "alreadyApproved": "This plan has already been approved."
+  },
+  "sections": {
+    "planner": "Planner",
+    "noPlannerBio": "No planner bio provided.",
+    "summary": "Summary",
+    "plan": "Plan",
+    "anyTime": "Any time"
+  },
+  "actions": {
+    "approve": "Approve plan",
+    "approving": "Approving..."
+  },
+  "statuses": {
+    "draft": "Draft",
+    "submitted": "Submitted",
+    "approved": "Approved"
+  }
+}

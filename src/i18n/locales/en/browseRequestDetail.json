@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "eyebrow": "Request detail",
+    "description": "Review the traveller brief and send your proposal if you would like to work on this request."
+  },
+  "states": {
+    "loading": "Loading...",
+    "notFound": "Request not found.",
+    "loadError": "Failed to load request",
+    "proposalSent": "Proposal sent successfully.",
+    "sendError": "Failed to send proposal"
+  },
+  "validation": {
+    "messageMin": "Please write at least 10 characters."
+  },
+  "meta": {
+    "proposalsCount": "{{count}} proposals"
+  },
+  "sections": {
+    "traveller": "Traveller",
+    "travelStyle": "Travel style",
+    "interests": "Interests",
+    "notes": "Notes",
+    "noNotes": "No extra notes provided."
+  },
+  "form": {
+    "title": "Send a proposal",
+    "description": "Introduce yourself briefly and explain why you are a good match for this trip.",
+    "introduction": "Introduction",
+    "introductionPlaceholder": "Tell the traveller about your planning style, relevant experience, and how you would approach this trip.",
+    "proposedPrice": "Proposed price",
+    "proposedPricePlaceholder": "e.g. 25",
+    "estimatedDays": "Estimated days",
+    "estimatedDaysPlaceholder": "e.g. 2",
+    "sending": "Sending...",
+    "submit": "Send proposal"
+  },
+  "myProposal": {
+    "title": "Your proposal",
+    "description": "You have already sent a proposal for this request.",
+    "statusLabel": "Status",
+    "introduction": "Introduction",
+    "proposedPrice": "Proposed price",
+    "estimatedDays": "Estimated days",
+    "notSpecified": "Not specified",
+    "daysValue": "{{count}} days",
+    "sentOn": "Sent on {{date}}"
+  },
+  "statuses": {
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "withdrawn": "Withdrawn"
+  }
+}

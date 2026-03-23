@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "eyebrow": "새 요청",
+    "title": "새 여행 요청 만들기",
+    "description": "어떤 여행을 원하는지 공유하면, 플래너들이 그에 맞는 제안을 보낼 수 있어요."
+  },
+  "form": {
+    "title": "여행 개요",
+    "description": "플래너가 이해할 수 있도록 여행 내용을 간단하게 작성해주세요."
+  },
+  "fields": {
+    "destination": "목적지",
+    "duration": "기간",
+    "budget": "예산",
+    "offerCost": "제안 비용",
+    "travelStyle": "여행 스타일",
+    "interests": "관심사",
+    "notes": "추가 메모"
+  },
+  "placeholders": {
+    "destination": "예: 에든버러, 스코틀랜드",
+    "travelStyle": "입력 후 Enter를 눌러 추가",
+    "interests": "입력 후 Enter를 눌러 추가",
+    "notes": "원하는 여행 스타일, 속도, 피하고 싶은 것 등을 자유롭게 적어주세요."
+  },
+  "actions": {
+    "submit": "요청 제출",
+    "submitting": "제출 중...",
+    "saveDraft": "임시 저장"
+  },
+  "validation": {
+    "destination": "목적지를 입력해주세요.",
+    "budgetRequired": "예산을 입력해주세요.",
+    "budgetNegative": "예산은 음수일 수 없습니다.",
+    "travelStyle": "여행 스타일을 하나 이상 추가해주세요.",
+    "interests": "관심사를 하나 이상 추가해주세요.",
+    "offerCostRequired": "제안 비용을 입력해주세요.",
+    "offerCostNegative": "제안 비용은 음수일 수 없습니다.",
+    "loginRequired": "요청을 제출하려면 로그인이 필요합니다."
+  },
+  "toast": {
+    "success": "요청이 성공적으로 제출되었습니다.",
+    "fail": "요청 제출에 실패했습니다."
+  },
+  "preview": {
+    "eyebrow": "미리보기",
+    "title": "플래너에게 보이는 화면",
+    "description": "이 정보로 플래너가 여행을 이해하게 됩니다."
+  },
+  "common": {
+    "day": "일",
+    "days": "일"
+  }
+}

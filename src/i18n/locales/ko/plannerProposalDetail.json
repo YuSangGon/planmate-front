@@ -1,0 +1,71 @@
+{
+  "states": {
+    "loading": "제안을 불러오는 중...",
+    "loadError": "제안을 불러오지 못했습니다.",
+    "notFound": "제안을 찾을 수 없습니다.",
+    "acceptError": "제안을 수락하지 못했습니다.",
+    "rejectError": "제안을 거절하지 못했습니다.",
+    "updateError": "제안을 수정하지 못했습니다.",
+    "deleteError": "제안을 삭제하지 못했습니다.",
+    "withdrawError": "제안을 철회하지 못했습니다.",
+    "updated": "제안이 수정되었습니다."
+  },
+  "labels": {
+    "traveller": "여행자",
+    "priceValue": "가격: {{price}}",
+    "daysValue": "{{count}}일",
+    "offerCostValue": "오퍼 비용: {{cost}}"
+  },
+  "statuses": {
+    "pending": "대기중",
+    "accepted": "수락됨",
+    "rejected": "거절됨",
+    "withdrawn": "철회됨",
+    "cancelled": "취소됨"
+  },
+  "visibility": {
+    "public": "공개",
+    "private": "비공개"
+  },
+  "actions": {
+    "accept": "수락",
+    "accepting": "수락 중...",
+    "reject": "거절",
+    "rejecting": "거절 중...",
+    "saveChanges": "변경사항 저장",
+    "saving": "저장 중...",
+    "delete": "삭제",
+    "withdraw": "포기",
+    "goToPlanBuilder": "플랜 작성하러 가기"
+  },
+  "dialogs": {
+    "deleteConfirm": "이 제안을 삭제할까요?",
+    "withdrawConfirm": "이 수락된 요청에서 포기할까요?"
+  },
+  "sent": {
+    "hero": {
+      "eyebrow": "보낸 제안",
+      "description": "이 여행자에게 보낸 제안을 확인하고 관리하세요."
+    },
+    "sections": {
+      "message": "메시지",
+      "proposedPrice": "제안 가격",
+      "estimatedDays": "예상 소요일",
+      "notSpecified": "미정"
+    }
+  },
+  "received": {
+    "hero": {
+      "eyebrow": "받은 제안",
+      "description": "여행자가 보낸 직접 제안을 검토하고 수락 여부를 결정하세요."
+    },
+    "sections": {
+      "message": "메시지",
+      "extraNotes": "추가 메모",
+      "noExtraNotes": "추가 메모가 없습니다.",
+      "travelStyle": "여행 스타일",
+      "interests": "관심사"
+    },
+    "alreadyHandled": "이 제안은 이미 {{status}} 상태입니다."
+  }
+}

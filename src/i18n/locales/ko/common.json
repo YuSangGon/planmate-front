@@ -1,0 +1,27 @@
+{
+  "language": "언어",
+  "english": "영어",
+  "korean": "한국어",
+  "home": "홈",
+  "requests": "요청",
+  "proposals": "제안",
+  "browse": "검색",
+  "plans": "플랜",
+  "request": "요청",
+  "planners": "플래너",
+  "messages": "메시지",
+  "myPage": "마이페이지",
+  "dashboard": "대시보드",
+  "login": "로그인",
+  "logout": "로그아웃",
+  "signup": "회원가입",
+  "requestPlan": "플랜 요청하기",
+  "traveller": "여행자",
+  "planner": "플래너",
+  "notFound": {
+    "eyebrow": "404",
+    "title": "페이지를 찾을 수 없습니다",
+    "description": "찾으시는 페이지가 존재하지 않습니다.",
+    "action": "홈으로 돌아가기"
+  }
+}

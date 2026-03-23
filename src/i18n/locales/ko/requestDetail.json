@@ -1,0 +1,77 @@
+{
+  "hero": {
+    "eyebrow": "요청 상세",
+    "description": "내 요청 정보를 확인하고 플래너 제안들을 한곳에서 비교해보세요."
+  },
+  "states": {
+    "loading": "요청을 불러오는 중...",
+    "loadError": "요청 상세를 불러오지 못했습니다.",
+    "notFound": "요청을 찾을 수 없습니다.",
+    "acceptError": "제안을 수락하지 못했습니다.",
+    "rejectError": "제안을 거절하지 못했습니다.",
+    "completeError": "요청을 완료하지 못했습니다."
+  },
+  "dialogs": {
+    "rejectConfirm": "이 제안을 거절할까요?"
+  },
+  "toasts": {
+    "accepted": "플래너를 선택했습니다. 다른 대기 중인 제안은 자동으로 거절 처리되었습니다.",
+    "rejected": "제안을 거절했습니다.",
+    "completed": "요청이 완료되었고, 코인이 플래너에게 지급되었습니다."
+  },
+  "statuses": {
+    "open": "열림",
+    "matched": "매칭됨",
+    "in_progress": "진행 중",
+    "submitted": "제출됨",
+    "completed": "완료됨",
+    "cancelled": "취소됨",
+    "pending": "대기중",
+    "accepted": "수락됨",
+    "rejected": "거절됨",
+    "withdrawn": "철회됨"
+  },
+  "summary": {
+    "eyebrow": "요청 요약",
+    "travelStyle": "여행 스타일",
+    "interests": "관심사",
+    "extraNotes": "추가 메모",
+    "noNotes": "추가 메모가 없습니다.",
+    "showLess": "간단히 보기",
+    "showFull": "전체 상세 보기",
+    "moreCount": "+{{count}}개 더보기"
+  },
+  "proposals": {
+    "title": "플래너 제안",
+    "empty": "이 필터에 해당하는 제안이 없습니다."
+  },
+  "filters": {
+    "all": "전체",
+    "pending": "대기중",
+    "accepted": "수락됨",
+    "rejected": "거절됨"
+  },
+  "acceptedPlanner": {
+    "eyebrow": "선택된 플래너",
+    "note": "이 요청은 이제 매칭되었으며, 다른 대기 중인 제안은 자동으로 종료되었습니다.",
+    "previewPlan": "제출된 플랜 미리보기"
+  },
+  "proposalCard": {
+    "proposedPrice": "제안 가격",
+    "estimatedTime": "예상 기간",
+    "notSpecified": "미정",
+    "daysValue": "{{count}}일",
+    "priceValue": "가격: {{price}}",
+    "noBio": "플래너 소개가 없습니다."
+  },
+  "actions": {
+    "accept": "수락",
+    "reject": "거절",
+    "processing": "처리 중..."
+  },
+  "helpers": {
+    "selectedPlanner": "이 플래너를 선택했습니다",
+    "rejectedProposal": "이 제안을 거절했습니다",
+    "inactiveProposal": "이 제안은 더 이상 활성 상태가 아닙니다"
+  }
+}

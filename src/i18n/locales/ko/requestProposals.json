@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "eyebrow": "여행자 작업 공간",
+    "title": "플래너 제안 확인",
+    "description": "이 요청에 대해 함께 일하고 싶은 플래너를 선택하세요."
+  },
+  "states": {
+    "loadError": "제안을 불러오지 못했습니다.",
+    "acceptError": "제안 수락에 실패했습니다."
+  },
+  "sections": {
+    "proposal": "제안 내용",
+    "plannerBio": "플래너 소개",
+    "noBio": "소개가 없습니다."
+  },
+  "actions": {
+    "accept": "수락",
+    "accepting": "수락 중..."
+  },
+  "meta": {
+    "price": "가격"
+  },
+  "status": {
+    "pending": "대기 중",
+    "accepted": "수락됨",
+    "rejected": "거절됨",
+    "withdrawn": "철회됨"
+  },
+  "common": {
+    "days": "일"
+  }
+}

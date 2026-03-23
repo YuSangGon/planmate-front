@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "eyebrow": "요청 상세",
+    "description": "여행자의 요청 내용을 확인하고, 이 요청을 진행하고 싶다면 제안을 보내보세요."
+  },
+  "states": {
+    "loading": "불러오는 중...",
+    "notFound": "요청을 찾을 수 없습니다.",
+    "loadError": "요청을 불러오지 못했습니다.",
+    "proposalSent": "제안을 성공적으로 보냈습니다.",
+    "sendError": "제안을 보내지 못했습니다."
+  },
+  "validation": {
+    "messageMin": "최소 10자 이상 작성해주세요."
+  },
+  "meta": {
+    "proposalsCount": "제안 {{count}}개"
+  },
+  "sections": {
+    "traveller": "여행자",
+    "travelStyle": "여행 스타일",
+    "interests": "관심사",
+    "notes": "메모",
+    "noNotes": "추가 메모가 없습니다."
+  },
+  "form": {
+    "title": "제안 보내기",
+    "description": "간단한 자기소개와 함께, 왜 이 여행에 잘 맞는 플래너인지 설명해보세요.",
+    "introduction": "자기소개",
+    "introductionPlaceholder": "당신의 플래닝 스타일, 관련 경험, 그리고 이 여행을 어떻게 구성할지 설명해보세요.",
+    "proposedPrice": "제안 가격",
+    "proposedPricePlaceholder": "예: 25",
+    "estimatedDays": "예상 소요일",
+    "estimatedDaysPlaceholder": "예: 2",
+    "sending": "보내는 중...",
+    "submit": "제안 보내기"
+  },
+  "myProposal": {
+    "title": "내 제안",
+    "description": "이미 이 요청에 대한 제안을 보냈습니다.",
+    "statusLabel": "상태",
+    "introduction": "자기소개",
+    "proposedPrice": "제안 가격",
+    "estimatedDays": "예상 소요일",
+    "notSpecified": "미정",
+    "daysValue": "{{count}}일",
+    "sentOn": "{{date}}에 전송됨"
+  },
+  "statuses": {
+    "pending": "대기중",
+    "accepted": "수락됨",
+    "rejected": "거절됨",
+    "withdrawn": "철회됨"
+  }
+}

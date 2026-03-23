@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "eyebrow": "Planners",
+    "title": "Meet people who genuinely enjoy planning trips",
+    "description": "Browse travel planners by specialty, style, and experience to find someone who fits the journey you want."
+  },
+  "filters": {
+    "allPlanners": "All planners",
+    "budgetTrips": "Budget trips",
+    "cityBreaks": "City breaks",
+    "foodRoutes": "Food routes",
+    "slowTravel": "Slow travel"
+  },
+  "states": {
+    "loading": "Loading planners...",
+    "loadError": "Failed to load planners",
+    "empty": "No planners found at the moment."
+  },
+  "actions": {
+    "viewProfile": "View profile"
+  },
+  "card": {
+    "completedPlans": "{{count}} completed plans"
+  }
+}

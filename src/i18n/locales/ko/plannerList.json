@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "eyebrow": "플래너",
+    "title": "여행 계획을 진심으로 즐기는 사람들을 만나보세요",
+    "description": "전문 분야, 스타일, 경험을 기준으로 여행 플래너를 둘러보고, 당신의 여행에 맞는 사람을 찾아보세요."
+  },
+  "filters": {
+    "allPlanners": "전체 플래너",
+    "budgetTrips": "저예산 여행",
+    "cityBreaks": "도시 여행",
+    "foodRoutes": "맛집 중심 여행",
+    "slowTravel": "느린 여행"
+  },
+  "states": {
+    "loading": "플래너를 불러오는 중...",
+    "loadError": "플래너 목록을 불러오지 못했습니다.",
+    "empty": "현재 표시할 플래너가 없습니다."
+  },
+  "actions": {
+    "viewProfile": "프로필 보기"
+  },
+  "card": {
+    "completedPlans": "완료한 플랜 {{count}}개"
+  }
+}

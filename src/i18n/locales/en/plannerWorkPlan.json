@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "eyebrow": "Plan builder",
+    "title": "Build the traveller's plan",
+    "description": "Write the plan inside the platform. The traveller will only see it after you submit it."
+  },
+  "states": {
+    "loading": "Loading work plan...",
+    "loadError": "Failed to load work plan",
+    "draftSaved": "Draft saved.",
+    "saveError": "Failed to save draft",
+    "submitError": "Failed to submit plan"
+  },
+  "form": {
+    "title": "Title",
+    "duration": "Duration",
+    "tags": "Tags",
+    "tagsPlaceholder": "Type a tag and press Enter",
+    "summary": "Summary",
+    "dayTitle": "Day title",
+    "time": "Time",
+    "itemTitle": "Title",
+    "note": "Note"
+  },
+  "actions": {
+    "addItem": "Add item",
+    "addDay": "Add day",
+    "saveDraft": "Save draft",
+    "saving": "Saving...",
+    "submit": "Submit to traveller",
+    "submitting": "Submitting..."
+  },
+  "defaults": {
+    "dayTitle": "Day {{number}}"
+  }
+}

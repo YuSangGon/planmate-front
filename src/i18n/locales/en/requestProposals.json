@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "eyebrow": "Traveller workspace",
+    "title": "Review planner proposals",
+    "description": "Choose the planner you would like to work with for this request."
+  },
+  "states": {
+    "loadError": "Failed to load proposals",
+    "acceptError": "Failed to accept proposal"
+  },
+  "sections": {
+    "proposal": "Proposal",
+    "plannerBio": "Planner bio",
+    "noBio": "No bio provided."
+  },
+  "actions": {
+    "accept": "Accept",
+    "accepting": "Accepting..."
+  },
+  "meta": {
+    "price": "Price"
+  },
+  "status": {
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "withdrawn": "Withdrawn"
+  },
+  "common": {
+    "days": "days"
+  }
+}

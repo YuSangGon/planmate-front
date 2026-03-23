@@ -1,0 +1,19 @@
+{
+  "eyebrow": "마이페이지",
+  "dashboardEyebrow": "플래너 대시보드",
+  "welcome": "환영합니다",
+  "descriptionTraveller": "여행 요청, 저장한 플랜, 앞으로의 메시지를 관리하는 개인 대시보드입니다.",
+  "descriptionPlanner": "플래너 프로필, 들어온 요청, 앞으로의 고객 대화를 관리하는 공간입니다.",
+  "accountOverview": "계정 정보",
+  "quickSummary": "요약",
+  "plannerSummary": "플래너 요약",
+  "name": "이름",
+  "email": "이메일",
+  "role": "역할",
+  "savedPlans": "저장한 플랜",
+  "openRequest": "진행 중 요청",
+  "unreadMessages": "읽지 않은 메시지",
+  "incomingRequests": "들어온 요청",
+  "plansDelivered": "완료한 플랜",
+  "averageRating": "평균 평점"
+}

@@ -1,0 +1,77 @@
+{
+  "hero": {
+    "eyebrow": "J dashboard",
+    "title": "Welcome{{name, string}}",
+    "description": "Track your planner workflow, manage requests and proposals, and keep an eye on your current activity in one place."
+  },
+  "states": {
+    "loading": "Loading dashboard...",
+    "loadError": "Failed to load planner dashboard."
+  },
+  "summary": {
+    "myCoins": {
+      "label": "My coins",
+      "description": "Placeholder wallet UI for now.",
+      "action": "Withdraw"
+    },
+    "sentProposals": {
+      "label": "Sent proposals",
+      "description": "Proposal requests you sent to travellers."
+    },
+    "receivedDirectProposals": {
+      "label": "Direct proposals received",
+      "description": "Travellers who directly contacted you."
+    },
+    "averageRating": {
+      "label": "Average rating",
+      "description": "Based on real reviews connected from the backend."
+    }
+  },
+  "sections": {
+    "sentProposalList": {
+      "title": "Sent proposal list",
+      "empty": "You have not sent any proposals yet."
+    },
+    "directProposalsReceived": {
+      "title": "Direct proposals received",
+      "empty": "No direct proposals received yet."
+    },
+    "myPlans": {
+      "title": "My plans",
+      "empty": "You have not created any plans yet."
+    },
+    "reviewsAboutMe": {
+      "title": "Reviews about me",
+      "empty": "No reviews yet."
+    },
+    "reviewsIGave": {
+      "title": "Reviews I gave to travellers",
+      "badge": "UI only",
+      "description": "This section is reserved for the future traveller feedback flow.",
+      "placeholder1Title": "Traveller review placeholder",
+      "placeholder1Description": "Future feedback history for planners",
+      "placeholder2Title": "Rating record placeholder",
+      "placeholder2Description": "Future scoring and notes UI"
+    }
+  },
+  "labels": {
+    "traveller": "Traveller",
+    "from": "From",
+    "style": "Style",
+    "request": "Request",
+    "priceValue": "Price: {{price}}",
+    "daysValue": "{{count}} days",
+    "gbpValue": "GBP {{price}}"
+  },
+  "statuses": {
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "withdrawn": "Withdrawn",
+    "cancelled": "Cancelled"
+  },
+  "visibility": {
+    "public": "Public",
+    "private": "Private"
+  }
+}

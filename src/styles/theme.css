@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap");
+
+:root {
+  --font-body: "Inter", Arial, sans-serif;
+  --font-heading: "Poppins", Arial, sans-serif;
+
+  --color-primary: #12304a;
+  --color-primary-strong: #0d2234;
+  --color-accent: #4f9da6;
+  --color-accent-soft: #dff3f2;
+  --color-accent-soft-2: #edf8fb;
+  --color-warm: #f6efe6;
+
+  --color-text: #0f172a;
+  --color-text-soft: #5b6b7f;
+  --color-white: #ffffff;
+  --color-border: #dbe5ec;
+  --color-surface: rgba(255, 255, 255, 0.92);
+  --color-surface-soft: #f8fbfc;
+
+  --shadow-soft: 0 12px 36px rgba(18, 48, 74, 0.06);
+  --shadow-medium: 0 18px 46px rgba(18, 48, 74, 0.1);
+  --shadow-strong: 0 26px 60px rgba(18, 48, 74, 0.18);
+}

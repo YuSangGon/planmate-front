@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "eyebrow": "Planner profile"
+  },
+  "states": {
+    "loading": "Loading planner...",
+    "loadError": "Failed to load planner",
+    "notFoundTitle": "Planner not found",
+    "notFoundDescription": "The planner profile you are looking for does not exist."
+  },
+  "actions": {
+    "backToPlanners": "Back to planners"
+  },
+  "meta": {
+    "completedPlans": "{{count}} completed plans",
+    "planCount": "{{count}} plans",
+    "reviewsShown": "{{count}} shown"
+  },
+  "sections": {
+    "aboutPlanner": "About this planner",
+    "strengths": "Strengths",
+    "noStrengths": "No strengths added yet.",
+    "plansCreatedTitle": "Plans created by {{name}}",
+    "noPublicPlans": "No public plans available yet.",
+    "reviews": "Reviews",
+    "noReviews": "No reviews yet."
+  },
+  "proposalForm": {
+    "title": "Send a direct proposal",
+    "description": "Tell {{name}} what kind of trip you want and why you think they are the right planner for it.",
+    "proposalTitle": "Proposal title",
+    "proposalTitlePlaceholder": "e.g. Calm 4-day Edinburgh trip",
+    "destination": "Destination",
+    "destinationPlaceholder": "e.g. Edinburgh",
+    "duration": "Duration",
+    "durationPlaceholder": "e.g. 4 days",
+    "budget": "Budget",
+    "budgetPlaceholder": "e.g. GBP 350",
+    "travelStyle": "Travel style",
+    "travelStylePlaceholder": "e.g. Scenic, slow-paced",
+    "interests": "Interests",
+    "interestsPlaceholder": "Type an interest and press Enter",
+    "extraNotes": "Extra notes",
+    "extraNotesPlaceholder": "Anything specific you want this planner to know.",
+    "sending": "Sending...",
+    "submit": "Send proposal"
+  },
+  "messages": {
+    "loginRequired": "You need to be logged in as a traveller.",
+    "onlyTravellers": "Only travellers can send direct proposals.",
+    "requiredFields": "Please fill in all required fields.",
+    "proposalSent": "Direct proposal sent successfully.",
+    "sendFailed": "Failed to send direct proposal"
+  }
+}

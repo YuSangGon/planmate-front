@@ -1,0 +1,71 @@
+{
+  "states": {
+    "loading": "Loading proposal...",
+    "loadError": "Failed to load proposal",
+    "notFound": "Proposal not found.",
+    "acceptError": "Failed to accept proposal",
+    "rejectError": "Failed to reject proposal",
+    "updateError": "Failed to update proposal",
+    "deleteError": "Failed to delete proposal",
+    "withdrawError": "Failed to withdraw proposal",
+    "updated": "Proposal updated."
+  },
+  "labels": {
+    "traveller": "Traveller",
+    "priceValue": "Price: {{price}}",
+    "daysValue": "{{count}} days",
+    "offerCostValue": "Offer cost: {{cost}}"
+  },
+  "statuses": {
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "withdrawn": "Withdrawn",
+    "cancelled": "Cancelled"
+  },
+  "visibility": {
+    "public": "Public",
+    "private": "Private"
+  },
+  "actions": {
+    "accept": "Accept",
+    "accepting": "Accepting...",
+    "reject": "Reject",
+    "rejecting": "Rejecting...",
+    "saveChanges": "Save changes",
+    "saving": "Saving...",
+    "delete": "Delete",
+    "withdraw": "Withdraw",
+    "goToPlanBuilder": "Go to plan builder"
+  },
+  "dialogs": {
+    "deleteConfirm": "Delete this proposal?",
+    "withdrawConfirm": "Withdraw from this accepted request?"
+  },
+  "sent": {
+    "hero": {
+      "eyebrow": "Sent proposal",
+      "description": "Review and manage the proposal you sent to this traveller."
+    },
+    "sections": {
+      "message": "Message",
+      "proposedPrice": "Proposed price",
+      "estimatedDays": "Estimated days",
+      "notSpecified": "Not specified"
+    }
+  },
+  "received": {
+    "hero": {
+      "eyebrow": "Received proposal",
+      "description": "Review the traveller’s direct proposal and decide whether to accept it."
+    },
+    "sections": {
+      "message": "Message",
+      "extraNotes": "Extra notes",
+      "noExtraNotes": "No extra notes provided.",
+      "travelStyle": "Travel style",
+      "interests": "Interests"
+    },
+    "alreadyHandled": "This proposal is already {{status}}."
+  }
+}

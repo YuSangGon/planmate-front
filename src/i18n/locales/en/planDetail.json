@@ -1,0 +1,52 @@
+{
+  "hero": {
+    "eyebrow": "Plan detail"
+  },
+  "states": {
+    "loading": "Loading plan...",
+    "notFound": "Plan not found.",
+    "loadError": "Failed to load plan",
+    "updated": "Plan updated successfully."
+  },
+  "errors": {
+    "loginRequired": "You need to be logged in.",
+    "requiredFields": "Please fill in all required fields.",
+    "updateFailed": "Failed to update plan",
+    "deleteFailed": "Failed to delete plan"
+  },
+  "dialogs": {
+    "deleteConfirm": "Delete this plan?"
+  },
+  "meta": {
+    "priceValue": "GBP {{price}}"
+  },
+  "sections": {
+    "planner": "Planner",
+    "noPlannerBio": "No planner bio available.",
+    "summary": "Summary",
+    "tags": "Tags",
+    "linkedRequest": "Linked request"
+  },
+  "form": {
+    "title": "Title",
+    "destination": "Destination",
+    "duration": "Duration",
+    "price": "Price",
+    "visibility": "Visibility",
+    "summary": "Summary",
+    "tags": "Tags",
+    "tagsPlaceholder": "Type a tag and press Enter"
+  },
+  "visibility": {
+    "public": "Public",
+    "private": "Private"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "saveChanges": "Save changes",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "backToPlans": "Back to plans"
+  }
+}

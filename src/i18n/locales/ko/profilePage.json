@@ -1,0 +1,175 @@
+{
+  "hero": {
+    "eyebrow": "내 작업 공간"
+  },
+  "titleFallback": "내 프로필",
+  "descriptions": {
+    "account": "개인 정보와 프로필 정보를 관리하세요.",
+    "payment": "카드, 결제 수단, 결제 내역을 관리하세요.",
+    "dashboardPlanner": "제안, 직접 문의, 플랜, 리뷰를 한곳에서 관리하세요.",
+    "dashboardTraveller": "요청, 제안, 예약, 여행 진행 상황을 한곳에서 확인하세요."
+  },
+  "dashboard": {
+    "title": "대시보드",
+    "description": "제안, 플랜, 리뷰 등 전체 플래닝 프로세스를 관리하세요.",
+
+    "states": {
+      "loading": "대시보드를 불러오는 중..."
+    },
+
+    "summary": {
+      "coins": "내 코인",
+      "coinsDesc": "현재는 임시 지갑 UI입니다.",
+      "withdraw": "출금",
+
+      "sentProposals": "보낸 제안",
+      "sentProposalsDesc": "여행자에게 보낸 제안입니다.",
+
+      "receivedDirect": "받은 직접 요청",
+      "receivedDirectDesc": "여행자가 직접 보낸 요청입니다.",
+
+      "avgRating": "평균 평점",
+      "avgRatingDesc": "백엔드 리뷰 기반 평점입니다."
+    },
+
+    "sections": {
+      "sentList": "보낸 제안 목록",
+      "receivedDirect": "받은 직접 요청",
+      "myPlans": "내 플랜",
+      "reviews": "내가 받은 리뷰",
+      "futureReviews": "내가 남긴 리뷰"
+    },
+
+    "empty": {
+      "sent": "아직 보낸 제안이 없습니다.",
+      "receivedDirect": "받은 직접 요청이 없습니다.",
+      "plans": "아직 생성한 플랜이 없습니다.",
+      "reviews": "아직 리뷰가 없습니다."
+    },
+
+    "common": {
+      "traveller": "여행자",
+      "from": "보낸 사람",
+      "style": "스타일",
+      "price": "가격",
+      "days": "일",
+      "request": "요청",
+      "uiOnly": "UI 전용"
+    },
+
+    "placeholder": {
+      "desc": "추후 여행자 리뷰 기능을 위한 영역입니다.",
+      "item1Title": "여행자 리뷰 placeholder",
+      "item1Desc": "플래너의 리뷰 기록 UI",
+      "item2Title": "평점 기록 placeholder",
+      "item2Desc": "평점 및 메모 UI"
+    }
+  },
+  "travellerDashboard": {
+    "title": "대시보드",
+    "description": "내 요청, 플래너 직접 연락, 진행 중인 플랜, 여행 진행 상황을 관리하세요.",
+    "summary": {
+      "openRequests": "열린 요청",
+      "openRequestsDesc": "현재 플래너 매칭을 기다리고 있는 요청입니다.",
+      "activeTrips": "진행 중 여행",
+      "activeTripsDesc": "현재 플래너와 매칭된 여행입니다.",
+      "directProposalsSent": "보낸 직접 제안",
+      "directProposalsSentDesc": "내가 직접 플래너에게 보낸 제안입니다.",
+      "completedTrips": "완료된 여행",
+      "completedTripsDesc": "완료된 여행 플래닝 프로세스입니다."
+    },
+    "sections": {
+      "myRequests": "내 요청",
+      "directProposalsSent": "내가 보낸 직접 제안",
+      "currentPlans": "현재 플랜",
+      "myReviews": "내 리뷰"
+    },
+    "common": {
+      "uiOnly": "UI 전용"
+    },
+    "placeholders": {
+      "request1Title": "에든버러 요청",
+      "request1Status": "제안 대기 중",
+      "request2Title": "도쿄 음식 여행",
+      "request2Status": "플래너와 매칭됨",
+      "proposal1Title": "Emma에게 보낸 제안",
+      "proposal1Status": "응답 대기 중",
+      "proposal2Title": "Sophie에게 보낸 제안",
+      "proposal2Status": "수락됨",
+      "plan1Title": "교토 봄 여행",
+      "plan1Status": "진행 중",
+      "plan2Title": "파리 음식 주말 여행",
+      "plan2Status": "전달 완료",
+      "review1Title": "Emma에 대한 리뷰",
+      "review1Status": "여행 완료 후 작성됨",
+      "review2Title": "Sophie에 대한 리뷰",
+      "review2Status": "작성 대기 중"
+    }
+  },
+  "account": {
+    "title": "계정",
+    "description": "개인 정보와 계정 정보를 확인하고 관리하세요.",
+    "basicInfo": {
+      "title": "기본 정보",
+      "name": "이름",
+      "email": "이메일",
+      "role": "역할"
+    },
+    "roles": {
+      "planner": "플래너",
+      "traveller": "여행자"
+    },
+    "settings": {
+      "title": "프로필 설정",
+      "description": "다음 단계에서 프로필 편집 UI를 여기에 추가할 수 있습니다. 아바타 업로드, 소개글 수정, 선호 설정 등을 넣기 좋은 영역입니다.",
+      "avatar": "아바타",
+      "bio": "소개글",
+      "preferences": "선호 설정",
+      "notConnected": "아직 연결되지 않음"
+    }
+  },
+  "sidebar": {
+    "workspacePlanner": "J 작업 공간",
+    "workspaceTraveller": "P 작업 공간",
+    "account": {
+      "title": "계정",
+      "description": "개인 정보"
+    },
+    "dashboard": {
+      "title": "대시보드",
+      "description": "요청, 플랜, 진행 과정"
+    },
+    "payment": {
+      "title": "결제",
+      "description": "카드 및 결제 내역"
+    }
+  },
+  "payment": {
+    "title": "결제",
+    "description": "카드, 결제 정보 및 결제 내역을 관리하세요.",
+    "common": {
+      "mock": "UI 예시"
+    },
+    "cards": {
+      "title": "저장된 카드",
+      "card1": "Visa (끝자리 4821)",
+      "card2": "Mastercard (끝자리 1904)",
+      "add": "카드 추가"
+    },
+    "billing": {
+      "title": "결제 내역",
+      "item1": {
+        "amount": "GBP 25",
+        "desc": "여행 플래닝 주문"
+      },
+      "item2": {
+        "amount": "EUR 18",
+        "desc": "템플릿 플랜 구매"
+      },
+      "item3": {
+        "amount": "GBP 40",
+        "desc": "맞춤 제안 결제"
+      }
+    }
+  }
+}

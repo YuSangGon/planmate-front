@@ -1,0 +1,20 @@
+{
+  "hero": {
+    "eyebrow": "Travel plans",
+    "title": "Browse ready-made travel plan templates",
+    "description": "Start with existing itinerary templates created for different cities, travel styles, and budgets."
+  },
+  "states": {
+    "loading": "Loading plans...",
+    "loadError": "Failed to load plans",
+    "empty": "No plans found."
+  },
+  "actions": {
+    "onlyMyPlans": "Only my plans",
+    "createPlan": "Create your own plan",
+    "viewPlan": "View plan"
+  },
+  "card": {
+    "priceFrom": "From £{{price}}"
+  }
+}

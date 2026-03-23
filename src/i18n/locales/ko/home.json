@@ -1,0 +1,22 @@
+{
+  "heroBadge": "여행 계획 마켓플레이스",
+  "heroBadge2": "P × J 성향을 위한 서비스",
+  "heroTitle1": "계획 짜기 싫은 사람들을 위한",
+  "heroTitle2": "여행 플래닝 서비스",
+  "heroTitle3": "",
+  "heroDescription": "PlanMate는 여행은 가고 싶지만 일정 짜는 스트레스는 싫은 사람과, 여행 계획 짜는 것을 진심으로 좋아하는 사람을 연결합니다.",
+  "heroPrimary": "여행 플랜 요청하기",
+  "heroSecondary": "샘플 플랜 보기",
+  "easy": "쉽게 시작",
+  "easyDesc": "원하는 여행만 간단히 설명하세요",
+  "personal": "개인 맞춤",
+  "personalDesc": "예산과 여행 스타일에 맞춰집니다",
+  "stressFree": "덜 스트레스",
+  "stressFreeDesc": "계획은 줄이고 여행은 더 즐기세요",
+  "trustSimple": "간단한 요청서",
+  "trustSimpleDesc": "어디로, 언제, 어떤 여행을 원하는지만 적으면 됩니다",
+  "trustHuman": "사람이 직접 만드는 플랜",
+  "trustHumanDesc": "실제로 계획 짜는 걸 좋아하는 사람들이 만듭니다",
+  "trustFocused": "여행 특화 MVP",
+  "trustFocusedDesc": "현재는 여행 일정 외주에만 집중합니다"
+}

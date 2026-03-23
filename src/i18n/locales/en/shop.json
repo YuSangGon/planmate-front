@@ -1,0 +1,89 @@
+{
+  "hero": {
+    "eyebrow": "Coin shop",
+    "title": "Top up your travel planning balance",
+    "description": "Buy coins to post requests and work with planners. Coins are only released to the planner when your request is completed."
+  },
+  "balance": {
+    "eyebrow": "Current balance",
+    "titleFallback": "Your coins",
+    "description": "Use coins to publish requests and pay planners only after the planning process is completed.",
+    "coinsUnit": "coins"
+  },
+  "actions": {
+    "buyCoins": "Buy coins",
+    "buying": "Buying..."
+  },
+  "toast": {
+    "buySuccess": "Coins added successfully."
+  },
+  "packages": {
+    "coinsValue": "{{count}} coins",
+    "starter": {
+      "name": "Starter Pack",
+      "badge": "Good for first request",
+      "description": "A light top-up for smaller trip requests."
+    },
+    "standard": {
+      "name": "Standard Pack",
+      "badge": "Most popular",
+      "description": "A balanced option for regular custom planning."
+    },
+    "plus": {
+      "name": "Plus Pack",
+      "badge": "Best value",
+      "description": "A better value option for multiple requests."
+    },
+    "pro": {
+      "name": "Pro Pack",
+      "badge": "For frequent users",
+      "description": "For travellers who expect to use the platform often."
+    }
+  },
+  "howItWorks": {
+    "title": "How coins work",
+    "step1": {
+      "title": "1. Top up coins",
+      "description": "Travellers buy coins through the shop."
+    },
+    "step2": {
+      "title": "2. Post a request",
+      "description": "When you create a request, you set an offer cost and that amount is reserved from your balance."
+    },
+    "step3": {
+      "title": "3. Match with a planner",
+      "description": "A planner sends a proposal, and once you accept it, the request moves into the planning process."
+    },
+    "step4": {
+      "title": "4. Complete the request",
+      "description": "When the request is completed, the reserved coins are released to the planner."
+    }
+  },
+  "history": {
+    "title": "Purchase history",
+    "description": "Billing connection can be added next. For now this is a UI placeholder.",
+    "item1": {
+      "coins": "250 coins",
+      "meta": "£19.99 · 12 Mar 2026"
+    },
+    "item2": {
+      "coins": "100 coins",
+      "meta": "£9.99 · 28 Feb 2026"
+    }
+  },
+  "usageGuide": {
+    "title": "Usage guide",
+    "item1": {
+      "title": "Request offer cost",
+      "description": "Set the amount you want to reserve for that request."
+    },
+    "item2": {
+      "title": "Safe release",
+      "description": "Coins move to the planner only after completion."
+    },
+    "item3": {
+      "title": "Traveller visibility",
+      "description": "The shop is shown only to travellers."
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "hero": {
+    "eyebrow": "플랜 상세"
+  },
+  "states": {
+    "loading": "플랜을 불러오는 중...",
+    "notFound": "플랜을 찾을 수 없습니다.",
+    "loadError": "플랜을 불러오지 못했습니다.",
+    "updated": "플랜이 성공적으로 수정되었습니다."
+  },
+  "errors": {
+    "loginRequired": "로그인이 필요합니다.",
+    "requiredFields": "필수 항목을 모두 입력해주세요.",
+    "updateFailed": "플랜을 수정하지 못했습니다.",
+    "deleteFailed": "플랜을 삭제하지 못했습니다."
+  },
+  "dialogs": {
+    "deleteConfirm": "이 플랜을 삭제할까요?"
+  },
+  "meta": {
+    "priceValue": "GBP {{price}}"
+  },
+  "sections": {
+    "planner": "플래너",
+    "noPlannerBio": "플래너 소개가 없습니다.",
+    "summary": "요약",
+    "tags": "태그",
+    "linkedRequest": "연결된 요청"
+  },
+  "form": {
+    "title": "제목",
+    "destination": "여행지",
+    "duration": "기간",
+    "price": "가격",
+    "visibility": "공개 여부",
+    "summary": "요약",
+    "tags": "태그",
+    "tagsPlaceholder": "태그를 입력하고 Enter를 누르세요"
+  },
+  "visibility": {
+    "public": "공개",
+    "private": "비공개"
+  },
+  "actions": {
+    "edit": "수정",
+    "delete": "삭제",
+    "saveChanges": "변경사항 저장",
+    "saving": "저장 중...",
+    "cancel": "취소",
+    "backToPlans": "플랜 목록으로"
+  }
+}

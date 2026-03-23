@@ -1,0 +1,77 @@
+{
+  "hero": {
+    "eyebrow": "Request detail",
+    "description": "Review your request details and compare planner proposals in one place."
+  },
+  "states": {
+    "loading": "Loading request...",
+    "loadError": "Failed to load request detail",
+    "notFound": "Request not found.",
+    "acceptError": "Failed to accept proposal",
+    "rejectError": "Failed to reject proposal",
+    "completeError": "Failed to complete request"
+  },
+  "dialogs": {
+    "rejectConfirm": "Reject this proposal?"
+  },
+  "toasts": {
+    "accepted": "Planner accepted. All other pending proposals were automatically rejected.",
+    "rejected": "Proposal rejected.",
+    "completed": "Request completed. Coins were transferred to the planner."
+  },
+  "statuses": {
+    "open": "Open",
+    "matched": "Matched",
+    "in_progress": "In progress",
+    "submitted": "Submitted",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "withdrawn": "Withdrawn"
+  },
+  "summary": {
+    "eyebrow": "Request summary",
+    "travelStyle": "Travel style",
+    "interests": "Interests",
+    "extraNotes": "Extra notes",
+    "noNotes": "No extra notes provided.",
+    "showLess": "Show less",
+    "showFull": "View full details",
+    "moreCount": "+{{count}} more"
+  },
+  "proposals": {
+    "title": "Planner proposals",
+    "empty": "No proposals found for this filter."
+  },
+  "filters": {
+    "all": "All",
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "rejected": "Rejected"
+  },
+  "acceptedPlanner": {
+    "eyebrow": "Accepted planner",
+    "note": "This request is now matched, and all other pending proposals have been closed automatically.",
+    "previewPlan": "Preview submitted plan"
+  },
+  "proposalCard": {
+    "proposedPrice": "Proposed price",
+    "estimatedTime": "Estimated time",
+    "notSpecified": "Not specified",
+    "daysValue": "{{count}} days",
+    "priceValue": "Price: {{price}}",
+    "noBio": "No planner bio provided."
+  },
+  "actions": {
+    "accept": "Accept",
+    "reject": "Reject",
+    "processing": "Processing..."
+  },
+  "helpers": {
+    "selectedPlanner": "You selected this planner",
+    "rejectedProposal": "You rejected this proposal",
+    "inactiveProposal": "This proposal is no longer active"
+  }
+}

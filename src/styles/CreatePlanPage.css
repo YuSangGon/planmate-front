@@ -1,0 +1,122 @@
+.create-plan-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.create-plan-card,
+.create-plan-side-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.create-plan-card {
+  padding: 30px;
+}
+
+.create-plan-side-card {
+  padding: 24px;
+  position: sticky;
+  top: 100px;
+}
+
+.create-plan-form {
+  display: grid;
+  gap: 20px;
+}
+
+.create-plan-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.create-plan-error {
+  margin: 0;
+  color: #b42318;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.create-plan-toast {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #157347, #198754);
+  color: #ffffff;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.create-plan-preview {
+  margin-top: 14px;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, var(--color-accent-soft-2), #ffffff);
+  border: 1px solid var(--color-border);
+}
+
+.create-plan-preview strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1.1rem;
+  color: var(--color-primary-strong);
+}
+
+.create-plan-preview p {
+  margin: 0;
+  color: var(--color-text-soft);
+  line-height: 1.7;
+}
+
+.create-plan-preview__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.create-plan-preview__meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--color-primary);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.create-plan-preview__summary {
+  margin-top: 12px;
+}
+
+.create-plan-preview__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.create-plan-preview__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: #eef6f8;
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .create-plan-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .create-plan-side-card {
+    position: static;
+  }
+}

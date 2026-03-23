@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "eyebrow": "My requests",
+    "title": "Manage your trip requests",
+    "description": "See the requests you have posted, track proposal activity, and create a new request when you need a fresh plan."
+  },
+  "actions": {
+    "newRequest": "New request"
+  },
+  "states": {
+    "loading": "Loading your requests...",
+    "loadError": "Failed to load requests",
+    "empty": "You have not created any requests yet."
+  },
+  "card": {
+    "noNotes": "No extra notes provided."
+  },
+  "statuses": {
+    "open": "Open",
+    "matched": "Matched",
+    "in_progress": "In progress",
+    "submitted": "Submitted",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  }
+}

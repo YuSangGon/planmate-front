@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "eyebrow": "Planner workspace",
+    "title": "Manage proposals",
+    "description": "Track the proposals you sent to travellers and the direct proposals you received."
+  },
+  "tabs": {
+    "sent": "Sent proposals",
+    "received": "Received proposals"
+  },
+  "states": {
+    "loading": "Loading proposals...",
+    "loadError": "Failed to load proposals",
+    "empty": "No proposals found."
+  },
+  "labels": {
+    "traveller": "Traveller",
+    "priceValue": "Price: {{price}}"
+  },
+  "statuses": {
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "withdrawn": "Withdrawn",
+    "cancelled": "Cancelled"
+  }
+}

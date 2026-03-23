@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "eyebrow": "Create plan",
+    "title": "Create your own plan",
+    "description": "Build a reusable travel plan that can be shown in your planner profile and the plans list."
+  },
+  "content": {
+    "title": "Plan details",
+    "description": "Create a clean, reusable plan that reflects your planning style."
+  },
+  "form": {
+    "title": "Title",
+    "titlePlaceholder": "e.g. 4 Days in Edinburgh",
+    "destination": "Destination",
+    "destinationPlaceholder": "e.g. Edinburgh",
+    "duration": "Duration",
+    "durationPlaceholder": "e.g. 4 days",
+    "price": "Price",
+    "pricePlaceholder": "e.g. 25",
+    "visibility": "Visibility",
+    "summary": "Summary",
+    "summaryPlaceholder": "Describe what makes this plan useful, how it flows, and what kind of traveller it suits.",
+    "tags": "Tags",
+    "tagsPlaceholder": "Type a tag and press Enter"
+  },
+  "visibility": {
+    "public": "Public",
+    "private": "Private"
+  },
+  "actions": {
+    "create": "Create plan",
+    "creating": "Creating...",
+    "cancel": "Cancel"
+  },
+  "states": {
+    "created": "Plan created successfully."
+  },
+  "errors": {
+    "loginRequired": "You need to be logged in.",
+    "onlyPlanners": "Only planners can create plans.",
+    "requiredFields": "Please fill in all required fields.",
+    "negativePrice": "Price cannot be negative.",
+    "createFailed": "Failed to create plan."
+  },
+  "preview": {
+    "eyebrow": "Preview",
+    "title": "How it will look",
+    "fallbackTitle": "Your plan title",
+    "fallbackDestination": "Destination",
+    "fallbackDuration": "Duration",
+    "fallbackPrice": "Price",
+    "priceValue": "GBP {{price}}",
+    "fallbackSummary": "A short summary of the plan will appear here as you write it."
+  }
+}

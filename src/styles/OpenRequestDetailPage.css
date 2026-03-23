@@ -1,0 +1,174 @@
+.request-detail-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.request-detail-card,
+.proposal-form-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+  padding: 28px;
+}
+
+.request-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.request-detail-section + .request-detail-section {
+  margin-top: 18px;
+}
+
+.request-detail-section h3 {
+  margin: 0 0 10px;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+
+.request-detail-section p {
+  margin: 0;
+  color: var(--color-text-soft);
+  line-height: 1.75;
+}
+
+.request-detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.request-detail-tag {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eef6f8;
+  color: var(--color-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.proposal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.proposal-form-error {
+  margin: 0;
+  color: #b42318;
+}
+
+.proposal-form-success {
+  margin: 0;
+  color: #157347;
+}
+
+@media (max-width: 960px) {
+  .request-detail-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.proposal-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.proposal-detail__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.proposal-detail__label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.proposal-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.proposal-status--pending {
+  background: #fff4e5;
+  color: #b54708;
+}
+
+.proposal-status--accepted {
+  background: #ecfdf3;
+  color: #027a48;
+}
+
+.proposal-status--rejected {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.proposal-status--withdrawn {
+  background: #f2f4f7;
+  color: #475467;
+}
+
+.proposal-detail__section h3 {
+  margin: 0 0 10px;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+
+.proposal-detail__section p {
+  margin: 0;
+  color: var(--color-text-soft);
+  line-height: 1.75;
+}
+
+.proposal-detail__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.proposal-detail__meta-card {
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: linear-gradient(180deg, var(--color-accent-soft-2), #ffffff);
+}
+
+.proposal-detail__meta-card span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-text-soft);
+  font-size: 0.88rem;
+}
+
+.proposal-detail__meta-card strong {
+  color: var(--color-primary-strong);
+  font-size: 1rem;
+}
+
+.proposal-detail__footer {
+  color: var(--color-text-soft);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .proposal-detail__meta {
+    grid-template-columns: 1fr;
+  }
+}

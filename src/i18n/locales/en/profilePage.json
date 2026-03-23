@@ -1,0 +1,175 @@
+{
+  "hero": {
+    "eyebrow": "My workspace"
+  },
+  "titleFallback": "Your profile",
+  "descriptions": {
+    "account": "Manage your personal details and profile information.",
+    "payment": "Manage cards, payment methods, and billing history.",
+    "dashboardPlanner": "Track proposals, direct enquiries, plans, and reviews in one place.",
+    "dashboardTraveller": "Track your requests, proposals, bookings, and trip progress in one place."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Manage your planning process, proposals, plans, and reputation.",
+
+    "states": {
+      "loading": "Loading dashboard..."
+    },
+
+    "summary": {
+      "coins": "My coins",
+      "coinsDesc": "Placeholder wallet UI for now.",
+      "withdraw": "Withdraw",
+
+      "sentProposals": "Sent proposals",
+      "sentProposalsDesc": "Proposal requests you sent to travellers.",
+
+      "receivedDirect": "Direct proposals received",
+      "receivedDirectDesc": "Travellers who directly contacted you.",
+
+      "avgRating": "Average rating",
+      "avgRatingDesc": "Based on real reviews connected from the backend."
+    },
+
+    "sections": {
+      "sentList": "Sent proposal list",
+      "receivedDirect": "Direct proposals received",
+      "myPlans": "My plans",
+      "reviews": "Reviews about me",
+      "futureReviews": "Reviews I gave to travellers"
+    },
+
+    "empty": {
+      "sent": "You have not sent any proposals yet.",
+      "receivedDirect": "No direct proposals received yet.",
+      "plans": "You have not created any plans yet.",
+      "reviews": "No reviews yet."
+    },
+
+    "common": {
+      "traveller": "Traveller",
+      "from": "From",
+      "style": "Style",
+      "price": "Price",
+      "days": "days",
+      "request": "Request",
+      "uiOnly": "UI only"
+    },
+
+    "placeholder": {
+      "desc": "This section is reserved for the future traveller feedback flow.",
+      "item1Title": "Traveller review placeholder",
+      "item1Desc": "Future feedback history for planners",
+      "item2Title": "Rating record placeholder",
+      "item2Desc": "Future scoring and notes UI"
+    }
+  },
+  "travellerDashboard": {
+    "title": "Dashboard",
+    "description": "Manage your requests, direct planner contacts, active plans, and trip progress.",
+    "summary": {
+      "openRequests": "Open requests",
+      "openRequestsDesc": "Requests currently waiting for planner matches.",
+      "activeTrips": "Active trips",
+      "activeTripsDesc": "Trips currently matched with planners.",
+      "directProposalsSent": "Direct proposals sent",
+      "directProposalsSentDesc": "Direct planner contacts from your side.",
+      "completedTrips": "Completed trips",
+      "completedTripsDesc": "Finished travel planning processes."
+    },
+    "sections": {
+      "myRequests": "My requests",
+      "directProposalsSent": "Direct proposals I sent",
+      "currentPlans": "Current plans",
+      "myReviews": "My reviews"
+    },
+    "common": {
+      "uiOnly": "UI only"
+    },
+    "placeholders": {
+      "request1Title": "Edinburgh request",
+      "request1Status": "Waiting for proposals",
+      "request2Title": "Tokyo food trip",
+      "request2Status": "Matched with planner",
+      "proposal1Title": "Proposal to Emma",
+      "proposal1Status": "Pending response",
+      "proposal2Title": "Proposal to Sophie",
+      "proposal2Status": "Accepted",
+      "plan1Title": "Kyoto spring trip",
+      "plan1Status": "In progress",
+      "plan2Title": "Paris food weekend",
+      "plan2Status": "Delivered",
+      "review1Title": "Review for Emma",
+      "review1Status": "Left after completed trip",
+      "review2Title": "Review for Sophie",
+      "review2Status": "Pending write-up"
+    }
+  },
+  "account": {
+    "title": "Account",
+    "description": "Review and manage your personal information.",
+    "basicInfo": {
+      "title": "Basic information",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role"
+    },
+    "roles": {
+      "planner": "Planner",
+      "traveller": "Traveller"
+    },
+    "settings": {
+      "title": "Profile settings",
+      "description": "Profile editing UI can be added here next. This area is ready for avatar upload, bio editing, and preference settings.",
+      "avatar": "Avatar",
+      "bio": "Bio",
+      "preferences": "Preferences",
+      "notConnected": "Not connected yet"
+    }
+  },
+  "sidebar": {
+    "workspacePlanner": "J workspace",
+    "workspaceTraveller": "P workspace",
+    "account": {
+      "title": "Account",
+      "description": "Personal information"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Requests, plans, process"
+    },
+    "payment": {
+      "title": "Payment",
+      "description": "Cards and billing"
+    }
+  },
+  "payment": {
+    "title": "Payment",
+    "description": "Manage cards, billing details, and payment history.",
+    "common": {
+      "mock": "Mock UI only"
+    },
+    "cards": {
+      "title": "Saved cards",
+      "card1": "Visa ending 4821",
+      "card2": "Mastercard ending 1904",
+      "add": "Add card"
+    },
+    "billing": {
+      "title": "Billing history",
+      "item1": {
+        "amount": "GBP 25",
+        "desc": "Trip planning order"
+      },
+      "item2": {
+        "amount": "EUR 18",
+        "desc": "Template plan purchase"
+      },
+      "item3": {
+        "amount": "GBP 40",
+        "desc": "Custom proposal payment"
+      }
+    }
+  }
+}
