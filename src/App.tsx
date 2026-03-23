@@ -85,8 +85,22 @@ function App() {
         }
       />
 
-      <Route path="/planners/:plannerId" element={<PlannerProfilePage />} />
-      <Route path="/planners" element={<PlannerListPage />} />
+      <Route
+        path="/planners/:plannerId"
+        element={
+          <ProtectedRoute allowedRoles={["traveller", "planner"]}>
+            <PlannerProfilePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/planners"
+        element={
+          <ProtectedRoute allowedRoles={["traveller", "planner"]}>
+            <PlannerListPage />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route

@@ -97,7 +97,7 @@ export default function Header() {
                 isActive ? "nav__link nav__link--active" : "nav__link"
               }
             >
-              {t("proposals")}
+              {t("requests")}
             </NavLink>
           )}
 
