@@ -17,7 +17,7 @@ export type RequestItem = {
     | "open"
     | "matched"
     | "in_progress"
-    | "delivered"
+    | "submitted"
     | "completed"
     | "cancelled"
     | "submitted"
