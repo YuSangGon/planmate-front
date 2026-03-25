@@ -52,3 +52,230 @@
   background: linear-gradient(135deg, #157347, #198754);
   color: #ffffff;
 }
+
+.work-plan-section {
+  margin-top: 32px;
+  padding-top: 8px;
+}
+
+.work-plan-section__header {
+  margin-bottom: 18px;
+}
+
+.work-plan-section__header h3 {
+  margin: 0 0 6px;
+  color: var(--color-primary-strong);
+}
+
+.work-plan-section__header p {
+  margin: 0;
+  color: var(--color-text-soft);
+  line-height: 1.6;
+}
+
+.work-plan-hotel-list,
+.work-plan-days,
+.work-plan-items {
+  display: grid;
+  gap: 18px;
+}
+
+.work-plan-hotel-card,
+.work-plan-day-card,
+.work-plan-item-card {
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.work-plan-hotel-card__top,
+.work-plan-day-card__top,
+.work-plan-item-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.work-plan-hotel-card__top h4,
+.work-plan-day-card__top h4 {
+  margin: 0 0 4px;
+}
+
+.work-plan-hotel-card__top p,
+.work-plan-day-card__top p {
+  margin: 0;
+  color: var(--color-text-soft);
+}
+
+.work-plan-hotel-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.work-plan-actions-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.work-plan-actions-row--final {
+  justify-content: flex-end;
+  margin-top: 28px;
+}
+
+@media (max-width: 768px) {
+  .work-plan-hotel-card__top,
+  .work-plan-day-card__top,
+  .work-plan-item-card__top {
+    flex-direction: column;
+  }
+
+  .work-plan-actions-row--final {
+    justify-content: stretch;
+  }
+}
+
+.work-plan-days-board {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(420px, 1fr);
+  gap: 20px;
+  overflow-x: auto;
+  align-items: start;
+  padding-bottom: 8px;
+}
+
+.work-plan-day-column {
+  min-height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.work-plan-day-column--add {
+  justify-content: center;
+  align-items: center;
+  min-height: 280px;
+}
+
+.work-plan-day-column__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.work-plan-day-column__header h4 {
+  margin: 0;
+}
+
+.work-plan-day-column__header p {
+  margin: 6px 0 0;
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+.work-plan-quick-add {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.work-plan-quick-add__title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.work-plan-day-timetable {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.work-plan-day-timetable__head {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  gap: 12px;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
+.work-plan-timetable-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.work-plan-timetable-row:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.work-plan-timetable-row__main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+
+.work-plan-timetable-row__main span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.work-plan-timetable-row__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.work-plan-advanced-editor {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+  margin-top: 4px;
+}
+
+.work-plan-advanced-editor__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.work-plan-advanced-editor__header h5 {
+  margin: 0;
+}
+
+.work-plan-empty-state {
+  padding: 18px 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  opacity: 0.7;
+  text-align: center;
+}

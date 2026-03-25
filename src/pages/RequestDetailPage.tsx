@@ -31,6 +31,10 @@ export default function RequestDetailPage() {
   const [proposalFilter, setProposalFilter] = useState<ProposalFilter>("all");
   const [showFullDetails, setShowFullDetails] = useState(false);
 
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewContent, setReviewContent] = useState("");
+
   useEffect(() => {
     const fetchData = async () => {
       if (!token || !requestId) {
@@ -163,6 +167,7 @@ export default function RequestDetailPage() {
       const response = await completeRequest(token, requestItem.id);
 
       setRequestItem(response.data);
+      setShowReviewForm(true);
       setToastMessage(t("toasts.completed"));
       window.setTimeout(() => setToastMessage(""), 2600);
     } catch (error) {
@@ -170,6 +175,17 @@ export default function RequestDetailPage() {
         error instanceof Error ? error.message : t("states.completeError"),
       );
     }
+  };
+
+  const handleReviewSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // 아직 실제 API 연결 전 임시 처리
+    setToastMessage("Review submitted.");
+    setShowReviewForm(false);
+    setReviewRating(5);
+    setReviewContent("");
+    window.setTimeout(() => setToastMessage(""), 2600);
   };
 
   if (isLoading) {
@@ -389,7 +405,69 @@ export default function RequestDetailPage() {
                   >
                     {t("acceptedPlanner.previewPlan")}
                   </Link>
+
+                  {requestItem.status !== "completed" ? (
+                    <button
+                      type="button"
+                      className="btn btn--secondary"
+                      onClick={handleCompleteRequest}
+                    >
+                      Complete
+                    </button>
+                  ) : null}
                 </div>
+              ) : null}
+
+              {showReviewForm && requestItem.status === "completed" ? (
+                <form
+                  className="request-review-form"
+                  onSubmit={handleReviewSubmit}
+                >
+                  <div className="request-review-form__header">
+                    <h4>Leave a review</h4>
+                    <p>Share your experience with this planner.</p>
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="review-rating">Rating</label>
+                    <select
+                      id="review-rating"
+                      value={reviewRating}
+                      onChange={(e) => setReviewRating(Number(e.target.value))}
+                    >
+                      <option value={5}>5</option>
+                      <option value={4}>4</option>
+                      <option value={3}>3</option>
+                      <option value={2}>2</option>
+                      <option value={1}>1</option>
+                    </select>
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="review-content">Review</label>
+                    <textarea
+                      id="review-content"
+                      rows={4}
+                      value={reviewContent}
+                      onChange={(e) => setReviewContent(e.target.value)}
+                      placeholder="Write your review here."
+                    />
+                  </div>
+
+                  <div className="request-review-form__actions">
+                    <button type="submit" className="btn btn--primary">
+                      Submit review
+                    </button>
+
+                    <button
+                      type="button"
+                      className="btn btn--ghost"
+                      onClick={() => setShowReviewForm(false)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
               ) : null}
             </div>
           ) : null}

@@ -611,3 +611,33 @@
 .request-detail-highlight-actions {
   margin-top: 14px;
 }
+
+.request-review-form {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+}
+
+.request-review-form__header {
+  margin-bottom: 14px;
+}
+
+.request-review-form__header h4 {
+  margin: 0 0 4px;
+  color: var(--color-primary-strong);
+}
+
+.request-review-form__header p {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 0.92rem;
+}
+
+.request-review-form__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
