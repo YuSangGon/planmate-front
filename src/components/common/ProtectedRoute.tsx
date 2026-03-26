@@ -8,11 +8,8 @@ type ProtectedRouteProps = {
   allowedRoles?: UserRole[];
 };
 
-export default function ProtectedRoute({
-  children,
-  allowedRoles,
-}: ProtectedRouteProps) {
-  const { isLoggedIn, isAuthLoading, user } = useAuth();
+export default function ProtectedRoute({ children }: ProtectedRouteProps) {
+  const { isLoggedIn, isAuthLoading } = useAuth();
   const location = useLocation();
 
   if (isAuthLoading) {
@@ -23,9 +20,9 @@ export default function ProtectedRoute({
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
-  if (allowedRoles && user && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/profile" replace />;
-  }
+  // if (allowedRoles && user && !allowedRoles.includes(user.role)) {
+  //   return <Navigate to="/profile" replace />;
+  // }
 
   return <>{children}</>;
 }

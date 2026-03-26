@@ -75,11 +75,6 @@ export default function PlannerProfilePage() {
       return;
     }
 
-    if (user?.role !== "traveller") {
-      setToastMessage(t("messages.onlyTravellers"));
-      return;
-    }
-
     if (
       !proposalTitle.trim() ||
       !tripDestination.trim() ||
@@ -193,23 +188,6 @@ export default function PlannerProfilePage() {
                 <h3>{t("sections.aboutPlanner")}</h3>
                 <p>{planner.intro}</p>
               </div>
-
-              <div className="planner-profile-section">
-                <h3>{t("sections.strengths")}</h3>
-                <div className="planner-profile-tags">
-                  {planner.strengths.length > 0 ? (
-                    planner.strengths.map((strength) => (
-                      <span key={strength} className="planner-profile-tag">
-                        {strength}
-                      </span>
-                    ))
-                  ) : (
-                    <p className="planner-profile-empty-text">
-                      {t("sections.noStrengths")}
-                    </p>
-                  )}
-                </div>
-              </div>
             </article>
 
             <article className="planner-profile-card">
@@ -266,7 +244,7 @@ export default function PlannerProfilePage() {
               </div>
             </article>
 
-            <article className="planner-profile-card">
+            {/* <article className="planner-profile-card">
               <div className="planner-profile-section-header">
                 <h3>{t("sections.reviews")}</h3>
                 <span>
@@ -305,7 +283,7 @@ export default function PlannerProfilePage() {
                   </p>
                 )}
               </div>
-            </article>
+            </article> */}
           </div>
 
           <aside className="planner-profile-side">

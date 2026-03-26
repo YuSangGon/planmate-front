@@ -42,6 +42,11 @@ export type RequestProposalItem = {
   };
 };
 
+export type RequestProposalResponse = {
+  canView: boolean;
+  items: RequestProposalItem[];
+};
+
 type CreateRequestPayload = {
   destination: string;
   duration: string;
@@ -65,11 +70,28 @@ type AcceptProposalResponse = {
   };
 };
 
-export async function getMyRequests(token: string) {
+export async function getRequests(token: string) {
   return apiRequest<{ success: true; data: RequestItem[] }>("/requests", {
     method: "GET",
     token,
   });
+}
+
+export async function getMyRequests(token: string) {
+  return apiRequest<{ success: true; data: RequestItem[] }>("/requests/mine", {
+    method: "GET",
+    token,
+  });
+}
+
+export async function getRequestDetail(token: string, requestId: string) {
+  return apiRequest<{ success: true; data: RequestItem }>(
+    `/requests/${requestId}`,
+    {
+      method: "GET",
+      token,
+    },
+  );
 }
 
 export async function createRequest(
@@ -84,7 +106,7 @@ export async function createRequest(
 }
 
 export async function getRequestProposals(token: string, requestId: string) {
-  return apiRequest<{ success: true; data: RequestProposalItem[] }>(
+  return apiRequest<{ success: true; data: RequestProposalResponse }>(
     `/requests/${requestId}/proposals`,
     {
       method: "GET",

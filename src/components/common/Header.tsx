@@ -8,8 +8,6 @@ export default function Header() {
   const { isLoggedIn, user, logout } = useAuth();
   const { t, i18n } = useAppTranslation("common");
 
-  const isPlanner = user?.role === "planner";
-
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -68,18 +66,16 @@ export default function Header() {
             {t("home")}
           </NavLink>
 
-          {!isPlanner && isLoggedIn && (
-            <NavLink
-              to="/requests"
-              className={({ isActive }) =>
-                isActive ? "nav__link nav__link--active" : "nav__link"
-              }
-            >
-              {t("requests")}
-            </NavLink>
-          )}
+          <NavLink
+            to="/requests"
+            className={({ isActive }) =>
+              isActive ? "nav__link nav__link--active" : "nav__link"
+            }
+          >
+            {t("requests")}
+          </NavLink>
 
-          {isLoggedIn && isPlanner && (
+          {/* {isLoggedIn && isPlanner && (
             <NavLink
               to="/browse-requests"
               className={({ isActive }) =>
@@ -88,16 +84,16 @@ export default function Header() {
             >
               {t("browse")}
             </NavLink>
-          )}
+          )} */}
 
-          {isLoggedIn && isPlanner && (
+          {isLoggedIn && (
             <NavLink
               to="/planner-proposals?tab=sent"
               className={({ isActive }) =>
                 isActive ? "nav__link nav__link--active" : "nav__link"
               }
             >
-              {t("requests")}
+              Recieved {t("requests")}
             </NavLink>
           )}
 
@@ -132,7 +128,7 @@ export default function Header() {
             </>
           )} */}
 
-          {isLoggedIn && !isPlanner && (
+          {isLoggedIn && (
             <NavLink
               to="/shop"
               className={({ isActive }) =>
@@ -196,16 +192,9 @@ export default function Header() {
                 className="header__user-pill"
                 onClick={() => setIsOpen((prev) => !prev)}
               >
-                <span className="header__user-avatar">
-                  {!isPlanner ? "P" : "J"}
-                </span>
+                <span className="header__user-avatar">A</span>
 
-                <span className="header__user-name">
-                  {user?.name}
-                  <span className="header__user-role">
-                    {isPlanner ? t("planner") : t("traveller")}
-                  </span>
-                </span>
+                <span className="header__user-name">{user?.name}</span>
               </button>
 
               {isOpen && (

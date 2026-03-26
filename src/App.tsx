@@ -34,7 +34,7 @@ function App() {
       <Route
         path="/plans/create"
         element={
-          <ProtectedRoute allowedRoles={["planner"]}>
+          <ProtectedRoute>
             <CreatePlanPage />
           </ProtectedRoute>
         }
@@ -43,7 +43,7 @@ function App() {
       <Route
         path="/requests"
         element={
-          <ProtectedRoute allowedRoles={["traveller"]}>
+          <ProtectedRoute>
             <RequestListPage />
           </ProtectedRoute>
         }
@@ -52,7 +52,7 @@ function App() {
       <Route
         path="/requests/new"
         element={
-          <ProtectedRoute allowedRoles={["traveller"]}>
+          <ProtectedRoute>
             <RequestPage />
           </ProtectedRoute>
         }
@@ -70,7 +70,7 @@ function App() {
       <Route
         path="/requests/:requestId/preview-plan"
         element={
-          <ProtectedRoute allowedRoles={["traveller"]}>
+          <ProtectedRoute>
             <TravellerPlanPreviewPage />
           </ProtectedRoute>
         }
@@ -79,7 +79,7 @@ function App() {
       <Route
         path="/requests/:requestId"
         element={
-          <ProtectedRoute allowedRoles={["traveller"]}>
+          <ProtectedRoute>
             <RequestDetailPage />
           </ProtectedRoute>
         }
@@ -88,7 +88,7 @@ function App() {
       <Route
         path="/planners/:plannerId"
         element={
-          <ProtectedRoute allowedRoles={["traveller", "planner"]}>
+          <ProtectedRoute>
             <PlannerProfilePage />
           </ProtectedRoute>
         }
@@ -96,7 +96,7 @@ function App() {
       <Route
         path="/planners"
         element={
-          <ProtectedRoute allowedRoles={["traveller", "planner"]}>
+          <ProtectedRoute>
             <PlannerListPage />
           </ProtectedRoute>
         }
@@ -106,7 +106,7 @@ function App() {
       <Route
         path="/browse-requests"
         element={
-          <ProtectedRoute allowedRoles={["planner"]}>
+          <ProtectedRoute>
             <BrowseRequestsPage />
           </ProtectedRoute>
         }
@@ -115,7 +115,7 @@ function App() {
       <Route
         path="/profile"
         element={
-          <ProtectedRoute allowedRoles={["traveller", "planner"]}>
+          <ProtectedRoute>
             <ProfilePage />
           </ProtectedRoute>
         }
@@ -124,7 +124,7 @@ function App() {
       <Route
         path="/planner-dashboard"
         element={
-          <ProtectedRoute allowedRoles={["planner"]}>
+          <ProtectedRoute>
             <PlannerDashboardPage />
           </ProtectedRoute>
         }
@@ -133,7 +133,7 @@ function App() {
       <Route
         path="/browse-requests/:requestId"
         element={
-          <ProtectedRoute allowedRoles={["planner"]}>
+          <ProtectedRoute>
             <BrowseRequestDetailPage />
           </ProtectedRoute>
         }
@@ -142,7 +142,7 @@ function App() {
       <Route
         path="/my-requests/:requestId/proposals"
         element={
-          <ProtectedRoute allowedRoles={["traveller"]}>
+          <ProtectedRoute>
             <RequestProposalsPage />
           </ProtectedRoute>
         }
@@ -151,7 +151,7 @@ function App() {
       <Route
         path="/shop"
         element={
-          <ProtectedRoute allowedRoles={["traveller"]}>
+          <ProtectedRoute>
             <ShopPage />
           </ProtectedRoute>
         }
@@ -160,7 +160,7 @@ function App() {
       <Route
         path="/planner-proposals"
         element={
-          <ProtectedRoute allowedRoles={["planner"]}>
+          <ProtectedRoute>
             <PlannerProposalListPage />
           </ProtectedRoute>
         }
@@ -169,7 +169,7 @@ function App() {
       <Route
         path="/planner-proposals/sent/:proposalId"
         element={
-          <ProtectedRoute allowedRoles={["planner"]}>
+          <ProtectedRoute>
             <PlannerSentProposalDetailPage />
           </ProtectedRoute>
         }
@@ -178,7 +178,7 @@ function App() {
       <Route
         path="/planner-proposals/received/:proposalId"
         element={
-          <ProtectedRoute allowedRoles={["planner"]}>
+          <ProtectedRoute>
             <PlannerReceivedProposalDetailPage />
           </ProtectedRoute>
         }

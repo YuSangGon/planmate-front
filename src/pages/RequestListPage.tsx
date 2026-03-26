@@ -4,16 +4,23 @@ import { useTranslation } from "react-i18next";
 import MainLayout from "../layouts/MainLayout";
 import PageHero from "../components/common/PageHero";
 import { useAuth } from "../context/AuthContext";
-import { getMyRequests, type RequestItem } from "../services/requestApi";
+import {
+  getRequests,
+  getMyRequests,
+  type RequestItem,
+} from "../services/requestApi";
 import "../styles/RequestListPage.css";
 
 export default function RequestListPage() {
   const { token } = useAuth();
   const { t, i18n } = useTranslation("requestList");
 
-  const [items, setItems] = useState<RequestItem[]>([]);
+  const [allRequests, setAllRequests] = useState<RequestItem[]>([]);
+  const [myRequests, setMyRequests] = useState<RequestItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const [showOnlyMine, setShowOnlyMine] = useState(false);
 
   useEffect(() => {
     const fetchRequests = async () => {
@@ -23,8 +30,11 @@ export default function RequestListPage() {
       }
 
       try {
-        const response = await getMyRequests(token);
-        setItems(response.data);
+        const response = await getRequests(token);
+        setAllRequests(response.data);
+
+        const myResponse = await getMyRequests(token);
+        setMyRequests(myResponse.data);
       } catch (error) {
         setErrorMessage(
           error instanceof Error ? error.message : t("states.loadError"),
@@ -37,6 +47,8 @@ export default function RequestListPage() {
     void fetchRequests();
   }, [token, t]);
 
+  const sourceRequests = showOnlyMine ? myRequests : allRequests;
+
   return (
     <MainLayout>
       <PageHero
@@ -47,6 +59,20 @@ export default function RequestListPage() {
 
       <section className="section section--compact">
         <div className="request-list-toolbar">
+          <>
+            <label className="plans-switch">
+              <input
+                type="checkbox"
+                checked={showOnlyMine}
+                onChange={(e) => setShowOnlyMine(e.target.checked)}
+              />
+              <span className="plans-switch__slider" />
+              <span className="plans-switch__label">
+                {t("actions.onlyMyRequests")}
+              </span>
+            </label>
+          </>
+
           <div />
           <Link to="/requests/new" className="btn btn--primary">
             {t("actions.newRequest")}
@@ -65,48 +91,48 @@ export default function RequestListPage() {
           </div>
         ) : null}
 
-        {!isLoading && !errorMessage && items.length === 0 ? (
+        {!isLoading && !errorMessage && sourceRequests.length === 0 ? (
           <div className="request-list-state-card">
             <p>{t("states.empty")}</p>
           </div>
         ) : null}
 
-        {!isLoading && !errorMessage && items.length > 0 ? (
+        {!isLoading && !errorMessage && sourceRequests.length > 0 ? (
           <div className="request-list-grid">
-            {items.map((item) => (
+            {sourceRequests.map((request) => (
               <Link
-                to={`/requests/${item.id}`}
+                to={`/requests/${request.id}`}
                 className="request-list-card"
-                key={item.id}
+                key={request.id}
               >
                 <div className="request-list-card__top">
                   <div>
                     <span className="request-list-card__meta">
-                      {new Date(item.createdAt).toLocaleDateString(
+                      {new Date(request.createdAt).toLocaleDateString(
                         i18n.resolvedLanguage === "ko" ? "ko-KR" : "en-GB",
                       )}
                     </span>
-                    <h2>{item.destination}</h2>
+                    <h2>{request.destination}</h2>
                   </div>
 
                   <span
-                    className={`request-status-badge request-status-badge--${item.status}`}
+                    className={`request-status-badge request-status-badge--${request.status}`}
                   >
-                    {t(`statuses.${item.status}`)}
+                    {t(`statuses.${request.status}`)}
                   </span>
                 </div>
 
                 <div className="request-list-card__meta-row">
-                  <span>{item.duration}</span>
-                  <span>{item.budget}</span>
+                  <span>{request.duration}</span>
+                  <span>{request.budget}</span>
                 </div>
 
                 <p className="request-list-card__summary">
-                  {item.extraNotes || t("card.noNotes")}
+                  {request.extraNotes || t("card.noNotes")}
                 </p>
 
                 <div className="request-list-card__tags">
-                  {item.interests.slice(0, 3).map((interest) => (
+                  {request.interests.slice(0, 3).map((interest) => (
                     <span key={interest} className="request-list-card__tag">
                       {interest}
                     </span>
