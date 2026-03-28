@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import {
   approveTravellerPreviewPlan,
   getTravellerPreviewPlan,
-  type WorkPlan,
+  type WorkPlanPreview,
 } from "../services/workPlanApi";
 import "../styles/TravellerPlanPreviewPage.css";
 
@@ -16,7 +16,7 @@ export default function TravellerPlanPreviewPage() {
   const { token } = useAuth();
   const { t } = useTranslation("travellerPlanPreview");
 
-  const [plan, setPlan] = useState<WorkPlan | null>(null);
+  const [plan, setPlan] = useState<WorkPlanPreview | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isApproving, setIsApproving] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -31,6 +31,7 @@ export default function TravellerPlanPreviewPage() {
 
       try {
         const response = await getTravellerPreviewPlan(token, requestId);
+        console.log(response.data);
         setPlan(response.data);
       } catch (error) {
         setErrorMessage(
@@ -87,24 +88,16 @@ export default function TravellerPlanPreviewPage() {
     );
   }
 
-  const content = plan.content ?? { days: [] };
-
   return (
     <MainLayout>
       <PageHero
         eyebrow={t("hero.eyebrow")}
-        title={plan.title}
+        title={"plan preview"}
         description={t("hero.description")}
       />
 
       <section className="section section--compact">
         <article className="preview-plan-card">
-          <div className="preview-plan-meta">
-            <span>{plan.duration}</span>
-            <span>{plan.destination}</span>
-            <span>{t(`statuses.${plan.status}`)}</span>
-          </div>
-
           <div className="preview-plan-section">
             <h3>{t("sections.planner")}</h3>
             <p>
@@ -114,31 +107,24 @@ export default function TravellerPlanPreviewPage() {
           </div>
 
           <div className="preview-plan-section">
-            <h3>{t("sections.summary")}</h3>
-            <p>{plan.summary}</p>
-          </div>
-
-          <div className="preview-plan-section">
             <h3>{t("sections.plan")}</h3>
 
             <div className="preview-plan-days">
-              {content.days.map((day, dayIndex) => (
+              {plan.previewContent.randomSamples.map((day, dayIndex) => (
                 <div key={dayIndex} className="preview-plan-day-card">
-                  <h4>{day.title}</h4>
+                  <h4>{day.dayTitle}</h4>
 
                   <div className="preview-plan-items">
-                    {day.items.map((item, itemIndex) => (
-                      <div key={itemIndex} className="preview-plan-item">
-                        <span className="preview-plan-item__time">
-                          {item.time || t("sections.anyTime")}
-                        </span>
+                    <div key={`item-${dayIndex}`} className="preview-plan-item">
+                      <span className="preview-plan-item__time">
+                        {day.startTime || t("sections.anyTime")} -{" "}
+                        {day.endTime || t("sections.anyTime")}
+                      </span>
 
-                        <div className="preview-plan-item__content">
-                          <strong>{item.title}</strong>
-                          {item.note ? <p>{item.note}</p> : null}
-                        </div>
+                      <div className="preview-plan-item__content">
+                        {day.place ? <p>{day.place}</p> : null}
                       </div>
-                    ))}
+                    </div>
                   </div>
                 </div>
               ))}

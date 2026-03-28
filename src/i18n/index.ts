@@ -5,12 +5,9 @@ import enCommon from "./locales/en/common.json";
 import enAuth from "./locales/en/auth.json";
 import enHome from "./locales/en/home.json";
 import enProfile from "./locales/en/profile.json";
-import enBrowseRequests from "./locales/en/browseRequests.json";
-import enBrowseRequestDetail from "./locales/en/browseRequestDetail.json";
 import enCreatePlan from "./locales/en/createPlan.json";
 import enPlanDetail from "./locales/en/planDetail.json";
 import enPlanList from "./locales/en/planList.json";
-import enPlannerDashboard from "./locales/en/plannerDashboard.json";
 import enPlannerList from "./locales/en/plannerList.json";
 import enPlannerProfile from "./locales/en/plannerProfile.json";
 import enPlannerProposals from "./locales/en/plannerProposals.json";
@@ -28,12 +25,9 @@ import koCommon from "./locales/ko/common.json";
 import koAuth from "./locales/ko/auth.json";
 import koHome from "./locales/ko/home.json";
 import koProfile from "./locales/ko/profile.json";
-import koBrowseRequests from "./locales/ko/browseRequests.json";
-import koBrowseRequestDetail from "./locales/ko/browseRequestDetail.json";
 import koCreatePlan from "./locales/ko/createPlan.json";
 import koPlanDetail from "./locales/ko/planDetail.json";
 import koPlanList from "./locales/ko/planList.json";
-import koPlannerDashboard from "./locales/ko/plannerDashboard.json";
 import koPlannerList from "./locales/ko/plannerList.json";
 import koPlannerProfile from "./locales/ko/plannerProfile.json";
 import koPlannerProposals from "./locales/ko/plannerProposals.json";
@@ -53,12 +47,9 @@ const resources = {
     auth: enAuth,
     home: enHome,
     profile: enProfile,
-    browseRequests: enBrowseRequests,
-    browseRequestDetail: enBrowseRequestDetail,
     createPlan: enCreatePlan,
     planDetail: enPlanDetail,
     planList: enPlanList,
-    plannerDashboard: enPlannerDashboard,
     plannerList: enPlannerList,
     plannerProfile: enPlannerProfile,
     plannerProposals: enPlannerProposals,
@@ -77,12 +68,9 @@ const resources = {
     auth: koAuth,
     home: koHome,
     profile: koProfile,
-    browseRequests: koBrowseRequests,
-    browseRequestDetail: koBrowseRequestDetail,
     createPlan: koCreatePlan,
     planDetail: koPlanDetail,
     planList: koPlanList,
-    plannerDashboard: koPlannerDashboard,
     plannerList: koPlannerList,
     plannerProfile: koPlannerProfile,
     plannerProposals: koPlannerProposals,
@@ -108,12 +96,9 @@ i18n.use(initReactI18next).init({
     "auth",
     "home",
     "profile",
-    "browseRequests",
-    "browseRequestDetail",
     "createPlan",
     "planDetail",
     "planList",
-    "plannerDashboard",
     "plannerList",
     "plannerProfile",
     "plannerProposals",

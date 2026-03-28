@@ -1,4 +1,5 @@
 import { apiRequest } from "./api";
+import { type PlannerReviewPayload } from "./reviewApi";
 
 export type RequestItem = {
   id: string;
@@ -24,6 +25,7 @@ export type RequestItem = {
     | "completed";
   createdAt: string;
   updatedAt: string;
+  plannerReview: PlannerReviewPayload;
 };
 
 export type RequestProposalItem = {

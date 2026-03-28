@@ -1,6 +1,6 @@
 import { apiRequest } from "./api";
 
-export type CreateReviewPayload = {
+export type PlannerReviewPayload = {
   requestId: string;
   overallRating: number;
   planQuality: number;
@@ -12,12 +12,36 @@ export type CreateReviewPayload = {
   content: string;
 };
 
-export async function createReview(
+export async function getPlannerReviewForRequest(
   token: string,
-  payload: CreateReviewPayload,
+  requestId: string,
 ) {
-  return apiRequest(`/reviews`, {
+  return apiRequest<{ success: true; data: PlannerReviewPayload }>(
+    `/review/${requestId}`,
+    {
+      method: "GET",
+      token,
+    },
+  );
+}
+
+export async function createPlannerReview(
+  token: string,
+  payload: PlannerReviewPayload,
+) {
+  return apiRequest(`/review/planner`, {
     method: "POST",
+    token,
+    body: payload,
+  });
+}
+
+export async function editPlannerReview(
+  token: string,
+  payload: PlannerReviewPayload,
+) {
+  return apiRequest(`/review/planner`, {
+    method: "PATCH",
     token,
     body: payload,
   });

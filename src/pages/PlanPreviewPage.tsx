@@ -29,6 +29,7 @@ export default function PlanPreviewPage() {
 
       try {
         const response = await getTravellerPreviewPlan(token, requestId);
+        console.log(response.data);
         setPlan(response.data);
       } catch (error) {
         setErrorMessage(
@@ -102,18 +103,12 @@ export default function PlanPreviewPage() {
     <MainLayout>
       <PageHero
         eyebrow="Plan preview"
-        title={plan.title}
+        title="preview title"
         description="Only a few fixed preview parts are shown before approval."
       />
 
       <section className="section section--compact">
         <article className="preview-plan-card">
-          <div className="preview-plan-meta">
-            <span>{plan.duration}</span>
-            <span>{plan.destination}</span>
-            <span>{plan.status}</span>
-          </div>
-
           <div className="preview-plan-section">
             <h3>Planner</h3>
             <p>
@@ -121,18 +116,6 @@ export default function PlanPreviewPage() {
             </p>
             <p>{plan.planner?.bio || "No planner bio provided."}</p>
           </div>
-
-          <div className="preview-plan-section">
-            <h3>Plan summary</h3>
-            <p>{plan.summary}</p>
-          </div>
-
-          {preview?.overview ? (
-            <div className="preview-plan-section">
-              <h3>Overview</h3>
-              <p>{preview.overview.destinationSummary}</p>
-            </div>
-          ) : null}
 
           {preview?.recommendedHotel ? (
             <div className="preview-plan-section">

@@ -1,17 +1,15 @@
 import { useTranslation } from "react-i18next";
 
-type ProfileTab = "account" | "dashboard" | "payment";
+type ProfileTab = "account" | "payment";
 
 type ProfileSidebarProps = {
   activeTab: ProfileTab;
   onChangeTab: (tab: ProfileTab) => void;
-  isPlanner: boolean;
 };
 
 export default function ProfileSidebar({
   activeTab,
   onChangeTab,
-  isPlanner,
 }: ProfileSidebarProps) {
   const { t } = useTranslation("profilePage");
 
@@ -19,9 +17,7 @@ export default function ProfileSidebar({
     <aside className="profile-sidebar">
       <div className="profile-sidebar__section">
         <span className="profile-sidebar__eyebrow">
-          {isPlanner
-            ? t("sidebar.workspacePlanner")
-            : t("sidebar.workspaceTraveller")}
+          {t("sidebar.workspacePlanner")}
         </span>
 
         <button
@@ -35,19 +31,6 @@ export default function ProfileSidebar({
         >
           <span>{t("sidebar.account.title")}</span>
           <small>{t("sidebar.account.description")}</small>
-        </button>
-
-        <button
-          type="button"
-          className={
-            activeTab === "dashboard"
-              ? "profile-sidebar__item profile-sidebar__item--active"
-              : "profile-sidebar__item"
-          }
-          onClick={() => onChangeTab("dashboard")}
-        >
-          <span>{t("sidebar.dashboard.title")}</span>
-          <small>{t("sidebar.dashboard.description")}</small>
         </button>
 
         <button

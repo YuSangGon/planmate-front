@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import MainLayout from "../layouts/MainLayout";
@@ -10,11 +10,14 @@ import {
   getPlannerDetail,
   type PlannerProfile,
 } from "../services/plannerApi";
+import ReviewStarsDisplay from "../components/review/ReviewStarsDisplay";
 import "../styles/PlannerProfilePage.css";
+
+const REVIEWS_PER_PAGE = 10;
 
 export default function PlannerProfilePage() {
   const { plannerId } = useParams();
-  const { token, user } = useAuth();
+  const { token } = useAuth();
   const { t, i18n } = useTranslation("plannerProfile");
 
   const [planner, setPlanner] = useState<PlannerProfile | null>(null);
@@ -32,6 +35,8 @@ export default function PlannerProfilePage() {
 
   const [toastMessage, setToastMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [reviewPage, setReviewPage] = useState(1);
 
   useEffect(() => {
     const fetchPlanner = async () => {
@@ -64,6 +69,23 @@ export default function PlannerProfilePage() {
 
     return () => window.clearTimeout(timer);
   }, [toastMessage]);
+
+  const plannerReviews = planner?.plannerReviews ?? [];
+  const totalReviewPages = Math.max(
+    1,
+    Math.ceil(plannerReviews.length / REVIEWS_PER_PAGE),
+  );
+
+  const paginatedReviews = useMemo(() => {
+    const startIndex = (reviewPage - 1) * REVIEWS_PER_PAGE;
+    return plannerReviews.slice(startIndex, startIndex + REVIEWS_PER_PAGE);
+  }, [plannerReviews, reviewPage]);
+
+  useEffect(() => {
+    if (reviewPage > totalReviewPages) {
+      setReviewPage(totalReviewPages);
+    }
+  }, [reviewPage, totalReviewPages]);
 
   const handleSubmitProposal = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -167,26 +189,24 @@ export default function PlannerProfilePage() {
                 <div className="planner-profile-hero__content">
                   <h2>{planner.name}</h2>
                   <p className="planner-profile-specialty">
-                    {planner.specialty}
+                    {planner.strengths}
                   </p>
 
                   <div className="planner-profile-meta">
-                    <span>⭐ {planner.rating}</span>
-                    <span>{planner.reviews}</span>
+                    <span>⭐ {planner.plannerReviewSummary.rating}</span>
+                    <span>{planner.plannerReviewSummary.reviewCount}</span>
                     <span>
                       {t("meta.completedPlans", {
                         count: planner.completedPlans,
                       })}
                     </span>
-                    <span>{planner.responseRate}</span>
-                    <span>{planner.location}</span>
                   </div>
                 </div>
               </div>
 
               <div className="planner-profile-section">
                 <h3>{t("sections.aboutPlanner")}</h3>
-                <p>{planner.intro}</p>
+                <p>{planner.description}</p>
               </div>
             </article>
 
@@ -244,46 +264,116 @@ export default function PlannerProfilePage() {
               </div>
             </article>
 
-            {/* <article className="planner-profile-card">
+            <article className="planner-profile-card">
               <div className="planner-profile-section-header">
                 <h3>{t("sections.reviews")}</h3>
                 <span>
                   {t("meta.reviewsShown", {
-                    count: planner.plannerReviews.length,
+                    count: plannerReviews.length,
                   })}
                 </span>
               </div>
 
               <div className="planner-review-list">
-                {planner.plannerReviews.length > 0 ? (
-                  planner.plannerReviews.map((review) => (
-                    <div key={review.id} className="planner-review-card">
-                      <div className="planner-review-card__top">
-                        <div>
-                          <strong>{review.author}</strong>
-                          <span>
-                            {new Date(review.createdAt).toLocaleDateString(
-                              i18n.resolvedLanguage === "ko"
-                                ? "ko-KR"
-                                : "en-GB",
-                            )}
+                {plannerReviews.length > 0 ? (
+                  <>
+                    {paginatedReviews.map((review) => (
+                      <div key={review.id} className="planner-review-card">
+                        <div className="planner-review-card__top">
+                          <div>
+                            <strong>
+                              {review.traveller
+                                ? review.traveller.name
+                                : "anonymouse"}
+                            </strong>
+                            <span>
+                              {new Date(review.createdAt).toLocaleDateString(
+                                i18n.resolvedLanguage === "ko"
+                                  ? "ko-KR"
+                                  : "en-GB",
+                              )}
+                            </span>
+                          </div>
+
+                          <span className="planner-review-card__rating">
+                            ⭐ {Number(review.overallRating).toFixed(1)}
                           </span>
                         </div>
-                        <span className="planner-review-card__rating">
-                          ⭐ {review.rating.toFixed(1)}
-                        </span>
-                      </div>
 
-                      <p>{review.content}</p>
-                    </div>
-                  ))
+                        <div className="planner-review-card__scores">
+                          <ReviewStarsDisplay
+                            label="Plan quality"
+                            value={Number(review.planQuality)}
+                          />
+                          <ReviewStarsDisplay
+                            label="Communication"
+                            value={Number(review.communication)}
+                          />
+                          <ReviewStarsDisplay
+                            label="Timeliness"
+                            value={Number(review.timeliness)}
+                          />
+                          <ReviewStarsDisplay
+                            label="Personalisation"
+                            value={Number(review.personalisation)}
+                          />
+                          <ReviewStarsDisplay
+                            label="Practicality"
+                            value={Number(review.practicality)}
+                          />
+                          <ReviewStarsDisplay
+                            label="Detail level"
+                            value={Number(review.detailLevel)}
+                          />
+                        </div>
+
+                        {review.content ? (
+                          <div className="planner-review-card__message">
+                            <p>{review.content}</p>
+                          </div>
+                        ) : null}
+                      </div>
+                    ))}
+
+                    {plannerReviews.length > REVIEWS_PER_PAGE ? (
+                      <div className="planner-review-pagination">
+                        <button
+                          type="button"
+                          className="btn btn--secondary"
+                          onClick={() =>
+                            setReviewPage((prev) => Math.max(1, prev - 1))
+                          }
+                          disabled={reviewPage === 1}
+                        >
+                          Previous
+                        </button>
+
+                        <span className="planner-review-pagination__info">
+                          {reviewPage} / {totalReviewPages}
+                        </span>
+
+                        <button
+                          type="button"
+                          className="btn btn--secondary"
+                          onClick={() =>
+                            setReviewPage((prev) =>
+                              Math.min(totalReviewPages, prev + 1),
+                            )
+                          }
+                          disabled={reviewPage === totalReviewPages}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    ) : null}
+                  </>
                 ) : (
                   <p className="planner-profile-empty-text">
                     {t("sections.noReviews")}
                   </p>
                 )}
               </div>
-            </article> */}
+            </article>
           </div>
 
           <aside className="planner-profile-side">

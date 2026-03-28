@@ -3,71 +3,65 @@ import { useTranslation } from "react-i18next";
 import MainLayout from "../layouts/MainLayout";
 import PageHero from "../components/common/PageHero";
 import { useAuth } from "../context/AuthContext";
-import { buyCoinPackage, getWalletBalance } from "../services/walletApi";
+import {
+  buyCoinPackage,
+  getWalletBalance,
+  getShopItems,
+  type ShopItem,
+} from "../services/walletApi";
 import "../styles/ShopPage.css";
-
-const coinPackages = [
-  {
-    id: "starter",
-    coins: 100,
-    price: "£9.99",
-  },
-  {
-    id: "standard",
-    coins: 250,
-    price: "£19.99",
-  },
-  {
-    id: "plus",
-    coins: 500,
-    price: "£34.99",
-  },
-  {
-    id: "pro",
-    coins: 1000,
-    price: "£59.99",
-  },
-] as const;
 
 export default function ShopPage() {
   const { user, token } = useAuth();
   const { t, i18n } = useTranslation("shop");
 
   const [coinBalance, setCoinBalance] = useState(0);
+  const [shopItems, setShopItems] = useState<ShopItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [activePackageId, setActivePackageId] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [activeItemCode, setActiveItemCode] = useState("");
   const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
-    const fetchBalance = async () => {
+    const fetchShopData = async () => {
       if (!token) {
         setIsLoading(false);
         return;
       }
 
       try {
-        const response = await getWalletBalance(token);
-        setCoinBalance(response.data.coinBalance);
+        const [balanceResponse, itemsResponse] = await Promise.all([
+          getWalletBalance(token),
+          getShopItems(token),
+        ]);
+
+        console.log(itemsResponse.data);
+        setCoinBalance(balanceResponse.data.coinBalance);
+        setShopItems(itemsResponse.data);
+      } catch (error) {
+        setErrorMessage(
+          error instanceof Error ? error.message : t("states.loadError"),
+        );
       } finally {
         setIsLoading(false);
       }
     };
 
-    void fetchBalance();
-  }, [token]);
+    void fetchShopData();
+  }, [token, t]);
 
-  const handleBuy = async (packageId: string) => {
+  const handleBuy = async (itemCode: string) => {
     if (!token) return;
 
-    setActivePackageId(packageId);
+    setActiveItemCode(itemCode);
 
     try {
-      const response = await buyCoinPackage(token, packageId);
+      const response = await buyCoinPackage(token, itemCode);
       setCoinBalance(response.data.coinBalance);
       setToastMessage(t("toast.buySuccess"));
       window.setTimeout(() => setToastMessage(""), 2200);
     } finally {
-      setActivePackageId("");
+      setActiveItemCode("");
     }
   };
 
@@ -109,34 +103,83 @@ export default function ShopPage() {
               </div>
             </article>
 
-            <div className="shop-pack-grid">
-              {coinPackages.map((pack) => (
-                <article className="shop-pack-card" key={pack.id}>
-                  <span className="shop-pack-card__badge">
-                    {t(`packages.${pack.id}.badge`)}
-                  </span>
-                  <h3>{t(`packages.${pack.id}.name`)}</h3>
-                  <strong className="shop-pack-card__coins">
-                    {t("packages.coinsValue", { count: pack.coins })}
-                  </strong>
-                  <p className="shop-pack-card__price">{pack.price}</p>
-                  <p className="shop-pack-card__description">
-                    {t(`packages.${pack.id}.description`)}
-                  </p>
+            {isLoading ? (
+              <div className="shop-info-card">
+                <p>{t("states.loading")}</p>
+              </div>
+            ) : null}
 
-                  <button
-                    className="btn btn--primary btn--large"
-                    onClick={() => handleBuy(pack.id)}
-                    disabled={activePackageId === pack.id}
-                  >
-                    {activePackageId === pack.id
-                      ? t("actions.buying")
-                      : t("actions.buyCoins")}
-                  </button>
-                </article>
-              ))}
-            </div>
+            {!isLoading && errorMessage ? (
+              <div className="shop-info-card">
+                <p className="work-plan-error">{errorMessage}</p>
+              </div>
+            ) : null}
 
+            {!isLoading && !errorMessage ? (
+              <div className="shop-pack-grid">
+                {shopItems.map((item) => (
+                  <article className="shop-pack-card" key={item.itemCode}>
+                    <span className="shop-pack-card__badge">
+                      {item.subDescription}
+                    </span>
+                    {/* {item.priceInfo.isSale && (
+                      <span className="shop-pack-card__sale-badge">SALE</span>
+                    )} */}
+                    <h3>{item.itemName}</h3>
+                    <strong className="shop-pack-card__coins">
+                      {t("packages.coinsValue", { count: item.coins })}
+                    </strong>
+                    <p className="shop-pack-card__price">
+                      {item.priceInfo.isSale ? (
+                        <span className="shop-price--sale">
+                          <span className="shop-price__original">
+                            {item.priceInfo.countryCode} {item.priceInfo.price}
+                          </span>
+                          <span className="shop-price__arrow">→</span>
+                          <span className="shop-price__discount">
+                            {item.priceInfo.countryCode}{" "}
+                            {item.priceInfo.salePrice}
+                            {/* <span className="shop-price__percent">
+                              {Math.round(
+                                (1 -
+                                  Number(
+                                    item.priceInfo.salePrice.replace("£", ""),
+                                  ) /
+                                    Number(
+                                      item.priceInfo.price.replace("£", ""),
+                                    )) *
+                                  100,
+                              )}
+                              % OFF
+                            </span> */}
+                          </span>
+                        </span>
+                      ) : (
+                        <span className="shop-price__normal">
+                          {item.priceInfo.countryCode} {item.priceInfo.price}
+                        </span>
+                      )}
+                    </p>
+                    <p className="shop-pack-card__description">
+                      {item.mainDescription}
+                    </p>
+
+                    <button
+                      className="btn btn--primary btn--large"
+                      onClick={() => handleBuy(item.itemCode)}
+                      disabled={activeItemCode === item.itemCode}
+                    >
+                      {activeItemCode === item.itemCode
+                        ? t("actions.buying")
+                        : t("actions.buyCoins")}
+                    </button>
+                  </article>
+                ))}
+              </div>
+            ) : null}
+          </div>
+
+          <aside className="shop-side">
             <article className="shop-info-card">
               <div className="shop-info-card__header">
                 <h3>{t("howItWorks.title")}</h3>
@@ -161,44 +204,6 @@ export default function ShopPage() {
                 <div className="shop-flow__step">
                   <strong>{t("howItWorks.step4.title")}</strong>
                   <p>{t("howItWorks.step4.description")}</p>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <aside className="shop-side">
-            <article className="shop-side-card">
-              <h3>{t("history.title")}</h3>
-              <p className="shop-side-card__description">
-                {t("history.description")}
-              </p>
-
-              <div className="shop-history-list">
-                <div className="shop-history-item">
-                  <strong>{t("history.item1.coins")}</strong>
-                  <span>{t("history.item1.meta")}</span>
-                </div>
-                <div className="shop-history-item">
-                  <strong>{t("history.item2.coins")}</strong>
-                  <span>{t("history.item2.meta")}</span>
-                </div>
-              </div>
-            </article>
-
-            <article className="shop-side-card">
-              <h3>{t("usageGuide.title")}</h3>
-              <div className="shop-usage-list">
-                <div className="shop-usage-item">
-                  <strong>{t("usageGuide.item1.title")}</strong>
-                  <span>{t("usageGuide.item1.description")}</span>
-                </div>
-                <div className="shop-usage-item">
-                  <strong>{t("usageGuide.item2.title")}</strong>
-                  <span>{t("usageGuide.item2.description")}</span>
-                </div>
-                <div className="shop-usage-item">
-                  <strong>{t("usageGuide.item3.title")}</strong>
-                  <span>{t("usageGuide.item3.description")}</span>
                 </div>
               </div>
             </article>

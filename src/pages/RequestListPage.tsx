@@ -4,11 +4,7 @@ import { useTranslation } from "react-i18next";
 import MainLayout from "../layouts/MainLayout";
 import PageHero from "../components/common/PageHero";
 import { useAuth } from "../context/AuthContext";
-import {
-  getRequests,
-  getMyRequests,
-  type RequestItem,
-} from "../services/requestApi";
+import { getRequests, type RequestItem } from "../services/requestApi";
 import "../styles/RequestListPage.css";
 
 export default function RequestListPage() {
@@ -16,11 +12,8 @@ export default function RequestListPage() {
   const { t, i18n } = useTranslation("requestList");
 
   const [allRequests, setAllRequests] = useState<RequestItem[]>([]);
-  const [myRequests, setMyRequests] = useState<RequestItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const [showOnlyMine, setShowOnlyMine] = useState(false);
 
   useEffect(() => {
     const fetchRequests = async () => {
@@ -32,9 +25,6 @@ export default function RequestListPage() {
       try {
         const response = await getRequests(token);
         setAllRequests(response.data);
-
-        const myResponse = await getMyRequests(token);
-        setMyRequests(myResponse.data);
       } catch (error) {
         setErrorMessage(
           error instanceof Error ? error.message : t("states.loadError"),
@@ -47,8 +37,6 @@ export default function RequestListPage() {
     void fetchRequests();
   }, [token, t]);
 
-  const sourceRequests = showOnlyMine ? myRequests : allRequests;
-
   return (
     <MainLayout>
       <PageHero
@@ -59,20 +47,6 @@ export default function RequestListPage() {
 
       <section className="section section--compact">
         <div className="request-list-toolbar">
-          <>
-            <label className="plans-switch">
-              <input
-                type="checkbox"
-                checked={showOnlyMine}
-                onChange={(e) => setShowOnlyMine(e.target.checked)}
-              />
-              <span className="plans-switch__slider" />
-              <span className="plans-switch__label">
-                {t("actions.onlyMyRequests")}
-              </span>
-            </label>
-          </>
-
           <div />
           <Link to="/requests/new" className="btn btn--primary">
             {t("actions.newRequest")}
@@ -91,15 +65,15 @@ export default function RequestListPage() {
           </div>
         ) : null}
 
-        {!isLoading && !errorMessage && sourceRequests.length === 0 ? (
+        {!isLoading && !errorMessage && allRequests.length === 0 ? (
           <div className="request-list-state-card">
             <p>{t("states.empty")}</p>
           </div>
         ) : null}
 
-        {!isLoading && !errorMessage && sourceRequests.length > 0 ? (
+        {!isLoading && !errorMessage && allRequests.length > 0 ? (
           <div className="request-list-grid">
-            {sourceRequests.map((request) => (
+            {allRequests.map((request) => (
               <Link
                 to={`/requests/${request.id}`}
                 className="request-list-card"

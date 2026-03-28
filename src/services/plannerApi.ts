@@ -1,5 +1,18 @@
 import { apiRequest } from "./api";
 
+export type PlannerReviewSummary = {
+  id: string;
+  reviewCount: number;
+  rating: number;
+  planQuality: number;
+  communication: number;
+  timeliness: number;
+  personalisation: number;
+  practicality: number;
+  detailLevel: number;
+  strengths: string;
+};
+
 export type PlannerListItem = {
   id: string;
   name: string;
@@ -8,9 +21,10 @@ export type PlannerListItem = {
   rating: string;
   reviews: string;
   completedPlans: number;
+  plannerReviewSummary: PlannerReviewSummary;
 };
 
-export type PlannerProfilePlan = {
+export type PlannerPlan = {
   id: string;
   title: string;
   destination: string;
@@ -20,28 +34,32 @@ export type PlannerProfilePlan = {
   tags: string[];
 };
 
-export type PlannerProfileReview = {
+export type PlannerReview = {
   id: string;
-  author: string;
-  rating: number;
+  overallRating: number;
+  planQuality: number;
+  communication: number;
+  timeliness: number;
+  personalisation: number;
+  practicality: number;
+  detailLevel: number;
   content: string;
   createdAt: string;
+  traveller?: {
+    id: string;
+    name: string;
+  };
 };
 
 export type PlannerProfile = {
   id: string;
   name: string;
-  specialty: string;
   description: string;
-  rating: string;
-  reviews: string;
   completedPlans: number;
-  responseRate: string;
-  location: string;
-  intro: string;
-  strengths: string[];
-  plannerPlans: PlannerProfilePlan[];
-  plannerReviews: PlannerProfileReview[];
+  strengths: string;
+  plannerReviewSummary: PlannerReviewSummary;
+  plannerPlans: PlannerPlan[];
+  plannerReviews: PlannerReview[];
 };
 
 type PlannerListResponse = {

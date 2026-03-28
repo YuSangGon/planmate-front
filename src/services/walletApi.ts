@@ -1,5 +1,21 @@
 import { apiRequest } from "./api";
 
+export type Price = {
+  price: string;
+  countryCode: string;
+  isSale: boolean;
+  salePrice: string;
+};
+
+export type ShopItem = {
+  itemCode: string;
+  itemName: string;
+  coins: number;
+  mainDescription: string;
+  subDescription: string;
+  priceInfo: Price;
+};
+
 export async function getWalletBalance(token: string) {
   return apiRequest<{
     success: true;
@@ -14,7 +30,7 @@ export async function getWalletBalance(token: string) {
   });
 }
 
-export async function buyCoinPackage(token: string, packageId: string) {
+export async function buyCoinPackage(token: string, itemCode: string) {
   return apiRequest<{
     success: true;
     data: {
@@ -24,6 +40,16 @@ export async function buyCoinPackage(token: string, packageId: string) {
   }>("/wallet/purchase", {
     method: "POST",
     token,
-    body: { packageId },
+    body: { itemCode },
+  });
+}
+
+export async function getShopItems(token: string) {
+  return apiRequest<{
+    success: boolean;
+    data: ShopItem[];
+  }>(`/wallet/itemList`, {
+    method: "GET",
+    token,
   });
 }

@@ -16,6 +16,7 @@ export default function PlannerListPage() {
     const fetchPlanners = async () => {
       try {
         const response = await getPlannerList();
+        console.log(response.data);
         setPlanners(response.data);
       } catch (error) {
         setErrorMessage(
@@ -71,18 +72,28 @@ export default function PlannerListPage() {
         {!isLoading && !errorMessage && planners.length > 0 ? (
           <div className="grid grid--3">
             {planners.map((planner) => (
-              <article
-                className="planner-card planner-card--detailed"
+              <Link
+                to={`/planners/${planner.id}`}
+                className="planner-card planner-card--detailed planner-card--clickable"
                 key={planner.id}
               >
                 <div className="planner-card__avatar">{planner.name[0]}</div>
+
                 <h3>{planner.name}</h3>
-                <p className="planner-card__specialty">{planner.specialty}</p>
+
+                <p className="planner-card__specialty">
+                  {planner.plannerReviewSummary?.strengths || "no strengths"}
+                </p>
+
                 <p>{planner.description}</p>
+
                 <div className="planner-card__meta">
-                  <span>⭐ {planner.rating}</span>
-                  <span>{planner.reviews}</span>
+                  <span>⭐ {planner.plannerReviewSummary?.rating ?? 0}</span>
+                  <span>
+                    ( {planner.plannerReviewSummary?.reviewCount ?? 0} )
+                  </span>
                 </div>
+
                 <div className="planner-card__meta">
                   <span>
                     {t("card.completedPlans", {
@@ -90,13 +101,7 @@ export default function PlannerListPage() {
                     })}
                   </span>
                 </div>
-                <Link
-                  to={`/planners/${planner.id}`}
-                  className="btn btn--secondary planner-card__button"
-                >
-                  {t("actions.viewProfile")}
-                </Link>
-              </article>
+              </Link>
             ))}
           </div>
         ) : null}

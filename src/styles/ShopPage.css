@@ -221,3 +221,32 @@
   background: linear-gradient(135deg, #157347, #198754);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
 }
+
+.shop-price--sale {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shop-price__original {
+  color: #98a2b3;
+  text-decoration: line-through;
+  font-size: 0.95rem;
+}
+
+.shop-price__arrow {
+  color: #667085;
+  font-weight: 600;
+}
+
+.shop-price__discount {
+  color: #d92d20; /* 살짝 빨간색 강조 */
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.shop-price__normal {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-primary-strong);
+}

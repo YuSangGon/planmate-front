@@ -75,28 +75,6 @@ export default function Header() {
             {t("requests")}
           </NavLink>
 
-          {/* {isLoggedIn && isPlanner && (
-            <NavLink
-              to="/browse-requests"
-              className={({ isActive }) =>
-                isActive ? "nav__link nav__link--active" : "nav__link"
-              }
-            >
-              {t("browse")}
-            </NavLink>
-          )} */}
-
-          {isLoggedIn && (
-            <NavLink
-              to="/planner-proposals?tab=sent"
-              className={({ isActive }) =>
-                isActive ? "nav__link nav__link--active" : "nav__link"
-              }
-            >
-              Recieved {t("requests")}
-            </NavLink>
-          )}
-
           <NavLink
             to="/plans"
             className={({ isActive }) =>
@@ -114,19 +92,6 @@ export default function Header() {
           >
             {t("planners")}
           </NavLink>
-
-          {/* {isLoggedIn && (
-            <>
-              <NavLink
-                to={isPlanner ? "/planner-dashboard" : "/profile"}
-                className={({ isActive }) =>
-                  isActive ? "nav__link nav__link--active" : "nav__link"
-                }
-              >
-                {isPlanner ? t("dashboard") : t("myPage")}
-              </NavLink>
-            </>
-          )} */}
 
           {isLoggedIn && (
             <NavLink
@@ -205,6 +170,14 @@ export default function Header() {
                     onClick={() => setIsOpen(false)}
                   >
                     Profile
+                  </Link>
+
+                  <Link
+                    to="/dashboard"
+                    className="header__dropdown-item"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Dashboard
                   </Link>
 
                   <button
