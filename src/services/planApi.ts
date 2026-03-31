@@ -14,6 +14,10 @@ export type PlanItem = {
     id: string;
     name: string;
   };
+  planReviewSummary?: {
+    reviewCount: number;
+    rating: number;
+  };
 };
 
 export type PlanDetail = {

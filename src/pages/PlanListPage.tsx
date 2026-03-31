@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import MainLayout from "../layouts/MainLayout";
 import PageHero from "../components/common/PageHero";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { getPlans, type PlanItem } from "../services/planApi";
 import CreatePlanModal from "../components/plan/CreatePlanModal";
@@ -15,6 +15,7 @@ export default function PlanListPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPlans = async () => {
@@ -32,6 +33,10 @@ export default function PlanListPage() {
 
     void fetchPlans();
   }, [token, t]);
+
+  const goToDetailPage = (planId: string) => {
+    navigate(`/plans/${planId}`);
+  };
 
   return (
     <MainLayout>
@@ -79,7 +84,12 @@ export default function PlanListPage() {
         {!isLoading && !errorMessage && publicPlans.length > 0 ? (
           <div className="grid grid--3">
             {publicPlans.map((plan) => (
-              <article className="plan-card" key={plan.id}>
+              <article
+                className="plan-card"
+                key={plan.id}
+                onClick={() => goToDetailPage(plan.id)}
+                style={{ cursor: "pointer" }}
+              >
                 <div className="plan-card__image">
                   <span className="plan-card__tag">
                     {plan.tags[0] || plan.destination}
@@ -94,9 +104,15 @@ export default function PlanListPage() {
                     <span className="plan-card__price">
                       {t("card.priceFrom", { price: plan.price })}
                     </span>
-                    <Link to={`/plans/${plan.id}`} className="text-link">
+                    <span className="plan-card__price">
+                      ⭐{" "}
+                      {!plan.planReviewSummary
+                        ? "0 ( 0 )"
+                        : `${plan.planReviewSummary.rating} ( ${plan.planReviewSummary.reviewCount} )`}
+                    </span>
+                    {/* <Link to={`/plans/${plan.id}`} className="text-link">
                       {t("actions.viewPlan")}
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               </article>
