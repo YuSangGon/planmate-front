@@ -82,16 +82,22 @@ export type WorkPlanPreviewContent = {
   preparation: {
     visaInfo: string;
     transportToAirport: string;
-  } | null;
-  recommendedHotel: {
+  };
+  hotels: {
     name: string;
     location: string;
     priceRange: string;
     summary: string;
     pros: string[];
     cons: string[];
-  } | null;
-  randomSamples: WorkPlanPreviewSample[];
+  };
+  days: WorkPlanDay[];
+  extras: {
+    localTransport: string;
+    reservations: string;
+    emergencyInfo: string;
+    finalNotes: string;
+  };
 };
 
 export type WorkPlanPreview = {
@@ -104,6 +110,16 @@ export type WorkPlanPreview = {
     bio?: string | null;
   } | null;
   previewContent: WorkPlanPreviewContent;
+};
+
+export type PlanPreview = {
+  id: string;
+  previewContent: WorkPlanPreviewContent;
+};
+
+export type Plan = {
+  id: string;
+  content: WorkPlanPreviewContent;
 };
 
 export type PlanInfo = {
@@ -208,6 +224,25 @@ export async function getTravellerPreviewPlan(
 ) {
   return apiRequest<{ success: true; data: WorkPlanPreview }>(
     `/work-plan/${requestId}/preview-plan`,
+    {
+      method: "GET",
+      token,
+    },
+  );
+}
+
+export async function getPublicPlanPrieview(planId: string) {
+  return apiRequest<{ success: true; data: PlanPreview }>(
+    `/work-plan/preview-plan/${planId}`,
+    {
+      method: "GET",
+    },
+  );
+}
+
+export async function getPublicPlan(planId: string, token: string) {
+  return apiRequest<{ success: true; data: Plan }>(
+    `/work-plan/detail/${planId}`,
     {
       method: "GET",
       token,

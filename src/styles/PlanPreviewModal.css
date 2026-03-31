@@ -1,0 +1,441 @@
+.preview-section--compact {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.preview-plan-card,
+.preview-plan-state-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+  padding: 24px;
+}
+
+.preview-plan-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.preview-plan-meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: var(--color-primary);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.preview-plan-section + .preview-plan-section {
+  margin-top: 20px;
+}
+
+.preview-plan-section h3 {
+  margin: 0 0 10px;
+  color: var(--color-primary);
+  font-size: 0.98rem;
+}
+
+.preview-plan-section p {
+  margin: 0;
+  color: var(--color-text-soft);
+  line-height: 1.75;
+}
+
+.preview-plan-days {
+  display: grid;
+  gap: 18px;
+}
+
+.preview-plan-day-card {
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.preview-plan-day-card h4 {
+  margin: 0 0 14px;
+  color: var(--color-primary-strong);
+}
+
+.preview-plan-items {
+  display: grid;
+  gap: 12px;
+}
+
+.preview-plan-item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.preview-plan-item__time {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.preview-plan-item__content strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-primary-strong);
+}
+
+.preview-plan-item__content p {
+  margin: 0;
+  color: var(--color-text-soft);
+  line-height: 1.65;
+}
+
+.preview-plan-actions {
+  margin-top: 24px;
+}
+
+.preview-plan-approved-note {
+  margin-top: 24px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #ecfdf3;
+  color: #027a48;
+}
+
+.preview-plan-error {
+  margin-top: 18px;
+  color: #b42318;
+}
+
+.preview-plan-toast {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #157347, #198754);
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .preview-plan-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+.work-plan-hotel-list,
+.work-plan-days,
+.work-plan-items {
+  display: grid;
+  gap: 18px;
+}
+
+.work-plan-hotel-card,
+.work-plan-day-card,
+.work-plan-item-card {
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.work-plan-hotel-card__top,
+.work-plan-day-card__top,
+.work-plan-item-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.work-plan-hotel-card__top h4,
+.work-plan-day-card__top h4 {
+  margin: 0 0 4px;
+}
+
+.work-plan-hotel-card__top p,
+.work-plan-day-card__top p {
+  margin: 0;
+  color: var(--color-text-soft);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 28px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.modal-close {
+  position: sticky;
+  top: 12px;
+  margin-left: auto;
+  display: block;
+  z-index: 10;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  font-size: 16px;
+
+  box-shadow: var(--shadow-soft);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-container .preview-plan-card {
+  padding: 22px;
+  border-radius: 24px;
+}
+
+.modal-container .preview-plan-section + .preview-plan-section {
+  margin-top: 18px;
+}
+
+.modal-container .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.modal-container .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-container .form-field--full {
+  grid-column: 1 / -1;
+}
+
+.modal-container .form-field label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.modal-container .form-field > input,
+.modal-container .form-field > textarea,
+.modal-container .form-field > select {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  font: inherit;
+  color: var(--color-text);
+  outline: none;
+}
+
+.modal-container textarea,
+.modal-container input {
+  width: 100%;
+  resize: none;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.preview-lock {
+  position: relative;
+}
+
+.preview-lock.is-locked textarea,
+.preview-lock.is-locked input,
+.preview-lock.is-locked .selected-tag {
+  filter: blur(5px);
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.preview-lock-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  font-weight: 600;
+  /* backdrop-filter: blur(4px); */
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.selected-tags .preview-lock-overlay {
+  background: transparent;
+  border: none;
+}
+
+@media (max-width: 640px) {
+  .modal-container {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 20px;
+  }
+
+  .modal-overlay {
+    padding: 0;
+  }
+}
+
+.work-plan-days-slider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.work-plan-day-single {
+  flex: 1;
+}
+
+.day-nav {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.day-nav:hover {
+  background: #f5f5f5;
+}
+
+.schedule-row {
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.schedule-row:hover {
+  background: #fafafa;
+}
+
+.schedule-row__summary {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.schedule-row__summary .time {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.schedule-row__summary .place {
+  font-weight: 500;
+}
+
+.schedule-row__summary .title {
+  color: var(--color-text-soft);
+}
+
+.schedule-row__details {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.work-plan-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* 버튼 공통 */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: white;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+}
+
+/* 왼쪽 */
+.carousel-btn.left {
+  left: -20px;
+}
+
+/* 오른쪽 */
+.carousel-btn.right {
+  right: -20px;
+}
+
+/* hover 느낌 */
+.carousel-btn:hover {
+  background: #f8fafc;
+}
+
+/* disabled */
+.carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.work-plan-days-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 중앙 정렬 */
+  gap: 12px;
+}
+
+.work-plan-hotel-single {
+  flex: 1 1 0; /* 부모 flex에서 최대 폭 차지 */
+  max-width: 900px; /* 필요하면 카드 최대 폭 */
+}

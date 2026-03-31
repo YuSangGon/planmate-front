@@ -29,7 +29,6 @@ export default function PlanPreviewPage() {
 
       try {
         const response = await getTravellerPreviewPlan(token, requestId);
-        console.log(response.data);
         setPlan(response.data);
       } catch (error) {
         setErrorMessage(

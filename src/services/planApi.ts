@@ -26,6 +26,7 @@ export type PlanDetail = {
   visibility: "public" | "private";
   tags: string[];
   createdAt?: string;
+  salePrice: number;
   planner: {
     id: string;
     name: string;
@@ -62,10 +63,14 @@ export async function getMyPlans(token: string) {
   });
 }
 
-export async function getPlanDetail(planId: string) {
-  return apiRequest<{ success: true; data: PlanDetail }>(`/plans/${planId}`, {
-    method: "GET",
-  });
+export async function getPlanDetail(token: string, planId: string) {
+  return apiRequest<{ success: true; isGotPlan: boolean; data: PlanDetail }>(
+    `/plans/${planId}`,
+    {
+      method: "GET",
+      token,
+    },
+  );
 }
 
 export async function createPlan(token: string, payload: CreatePlanPayload) {
@@ -73,6 +78,21 @@ export async function createPlan(token: string, payload: CreatePlanPayload) {
     method: "POST",
     token,
     body: payload,
+  });
+}
+
+export async function purchasePlan(
+  token: string,
+  planId: string,
+  salePrice: number,
+) {
+  return apiRequest<{ success: true; data: unknown }>("/plans/purchase", {
+    method: "POST",
+    token,
+    body: {
+      planId: planId,
+      salePrice: salePrice,
+    },
   });
 }
 

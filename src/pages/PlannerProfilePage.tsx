@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import MainLayout from "../layouts/MainLayout";
 import PageHero from "../components/common/PageHero";
@@ -20,6 +20,7 @@ export default function PlannerProfilePage() {
   const [toastMessage, setToastMessage] = useState("");
 
   const [reviewPage, setReviewPage] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPlanner = async () => {
@@ -69,6 +70,10 @@ export default function PlannerProfilePage() {
       setReviewPage(totalReviewPages);
     }
   }, [reviewPage, totalReviewPages]);
+
+  const goToPlanDetailPage = (planId: string) => {
+    navigate("/plans/" + planId);
+  };
 
   if (isLoading) {
     return (
@@ -267,7 +272,12 @@ export default function PlannerProfilePage() {
               <div className="planner-plan-list">
                 {planner.plannerPlans.length > 0 ? (
                   planner.plannerPlans.map((plan) => (
-                    <div key={plan.id} className="planner-plan-card">
+                    <div
+                      key={plan.id}
+                      className="planner-plan-card"
+                      onClick={() => goToPlanDetailPage(plan.id)}
+                      style={{ cursor: "pointer" }}
+                    >
                       <div className="planner-plan-card__top">
                         <div>
                           <h4>{plan.title}</h4>

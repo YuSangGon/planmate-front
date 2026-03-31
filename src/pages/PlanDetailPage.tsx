@@ -10,8 +10,11 @@ import {
   getPlanDetail,
   updatePlan,
   type PlanDetail,
+  purchasePlan,
 } from "../services/planApi";
 import "../styles/PlanDetailPage.css";
+import WorkPlanPreviewModal from "../components/preview/WorkPlanPreviewModal";
+import WorkPlanModal from "../components/preview/WorkPlanModal";
 
 export default function PlanDetailPage() {
   const { planId } = useParams();
@@ -25,6 +28,9 @@ export default function PlanDetailPage() {
   const [toastMessage, setToastMessage] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPurchasing, setIsPurchasing] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPlanOpen, setIsPlanOpen] = useState(false);
 
   const [title, setTitle] = useState("");
   const [destination, setDestination] = useState("");
@@ -33,6 +39,8 @@ export default function PlanDetailPage() {
   const [duration, setDuration] = useState("");
   const [visibility, setVisibility] = useState<"public" | "private">("public");
   const [tags, setTags] = useState<string[]>([]);
+  const [isPurchased, setIsPurchased] = useState(false);
+  const [salePrice, setSalePrice] = useState(0);
 
   useEffect(() => {
     const fetchPlan = async () => {
@@ -42,9 +50,11 @@ export default function PlanDetailPage() {
       }
 
       try {
-        const response = await getPlanDetail(planId);
+        const response = await getPlanDetail(token, planId);
         const item = response.data;
+        const isGotPlan = response.isGotPlan;
 
+        setIsPurchased(isGotPlan);
         setPlan(item);
         setTitle(item.title);
         setDestination(item.destination);
@@ -53,6 +63,7 @@ export default function PlanDetailPage() {
         setDuration(item.duration);
         setVisibility(item.visibility);
         setTags(item.tags);
+        setSalePrice(item.salePrice);
       } catch (error) {
         setErrorMessage(
           error instanceof Error ? error.message : t("states.loadError"),
@@ -65,10 +76,42 @@ export default function PlanDetailPage() {
     void fetchPlan();
   }, [planId, t]);
 
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const scrollY = window.scrollY;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    if (!isPlanOpen) return;
+    const scrollY = window.scrollY;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [isPlanOpen]);
+
   const isOwner = useMemo(() => {
-    return (
-      !!plan && !!user && user.role === "planner" && plan.planner.id === user.id
-    );
+    return !!plan && !!user && plan.planner.id === user.id;
   }, [plan, user]);
 
   const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -128,6 +171,33 @@ export default function PlanDetailPage() {
       );
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handlePurchase = async () => {
+    if (!token) {
+      const loginConfirmed = window.confirm(
+        "로그인 후 구매가능합니다. 로그인하시겠습니까?",
+      );
+      if (!loginConfirmed) return;
+      navigate("/login");
+    }
+
+    if (!token || !planId) return;
+    const confirmed = window.confirm("구매하시겠습니까?");
+    if (!confirmed) return;
+
+    try {
+      setIsPurchasing(true);
+      await purchasePlan(token, planId, salePrice);
+      setIsPurchased(true);
+      setToastMessage("Completed purchasing.");
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : t("errors.deleteFailed"),
+      );
+    } finally {
+      setIsPurchasing(false);
     }
   };
 
@@ -240,6 +310,49 @@ export default function PlanDetailPage() {
                     </button>
                   </div>
                 ) : null}
+                {!isOwner && !isPurchased ? (
+                  <div className="plan-purchase-actions">
+                    <div className="purchase-bar">
+                      <div className="price-section">
+                        <span className="price-label">총 가격</span>
+                        <span className="price-value">
+                          {salePrice?.toLocaleString()} coins
+                        </span>
+                      </div>
+
+                      <div className="purchase-btn-wrap">
+                        <button
+                          className="btn btn--primary"
+                          onClick={() => setIsModalOpen(true)}
+                        >
+                          preview
+                        </button>
+                        <button
+                          className="btn btn--purchase"
+                          onClick={handlePurchase}
+                        >
+                          {isPurchasing ? "구매중..." : "구매하기"}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
+                {isOwner || isPurchased ? (
+                  <div className="plan-purchase-actions">
+                    <div className="purchase-bar">
+                      <div className="price-section"></div>
+
+                      <div className="purchase-btn-wrap">
+                        <button
+                          className="btn btn--primary"
+                          onClick={() => setIsPlanOpen(true)}
+                        >
+                          상세 Plan
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
               </>
             ) : (
               <form className="create-plan-form" onSubmit={handleUpdate}>
@@ -339,6 +452,12 @@ export default function PlanDetailPage() {
           </article>
         </div>
       </section>
+      {isModalOpen ? (
+        <WorkPlanPreviewModal onClose={() => setIsModalOpen(false)} />
+      ) : null}
+      {isPlanOpen ? (
+        <WorkPlanModal onClose={() => setIsPlanOpen(false)} />
+      ) : null}
     </MainLayout>
   );
 }

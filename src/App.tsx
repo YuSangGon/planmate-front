@@ -25,7 +25,14 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/plans" element={<PlanListPage />} />
-      <Route path="/plans/:planId" element={<PlanDetailPage />} />
+      <Route
+        path="/plans/:planId"
+        element={
+          <ProtectedRoute>
+            <PlanDetailPage />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/plans/create/:planId"
         element={
@@ -38,9 +45,9 @@ function App() {
       <Route
         path="/requests"
         element={
-          <ProtectedRoute>
-            <RequestListPage />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <RequestListPage />
+          // </ProtectedRoute>
         }
       />
 
@@ -91,9 +98,9 @@ function App() {
       <Route
         path="/planners"
         element={
-          <ProtectedRoute>
-            <PlannerListPage />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <PlannerListPage />
+          // </ProtectedRoute>
         }
       />
       <Route path="/login" element={<LoginPage />} />
