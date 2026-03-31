@@ -11,10 +11,13 @@ import {
   updatePlan,
   type PlanDetail,
   purchasePlan,
+  type ReviewType,
 } from "../services/planApi";
 import "../styles/PlanDetailPage.css";
 import WorkPlanPreviewModal from "../components/preview/WorkPlanPreviewModal";
 import WorkPlanModal from "../components/preview/WorkPlanModal";
+import PlanReviewForm from "../components/review/PlanReviewForm";
+import { createPlanReview } from "../services/reviewApi";
 
 export default function PlanDetailPage() {
   const { planId } = useParams();
@@ -23,6 +26,7 @@ export default function PlanDetailPage() {
   const { t } = useTranslation("planDetail");
 
   const [plan, setPlan] = useState<PlanDetail | null>(null);
+  const [myReview, setMyReview] = useState<ReviewType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [toastMessage, setToastMessage] = useState("");
@@ -41,6 +45,7 @@ export default function PlanDetailPage() {
   const [tags, setTags] = useState<string[]>([]);
   const [isPurchased, setIsPurchased] = useState(false);
   const [salePrice, setSalePrice] = useState(0);
+  const [dataRefresh, setDataRefresh] = useState(false);
 
   useEffect(() => {
     const fetchPlan = async () => {
@@ -53,7 +58,9 @@ export default function PlanDetailPage() {
         const response = await getPlanDetail(token, planId);
         const item = response.data;
         const isGotPlan = response.isGotPlan;
+        const myItem = response.myReview;
 
+        setMyReview(myItem);
         setIsPurchased(isGotPlan);
         setPlan(item);
         setTitle(item.title);
@@ -74,7 +81,7 @@ export default function PlanDetailPage() {
     };
 
     void fetchPlan();
-  }, [planId, t]);
+  }, [planId, t, dataRefresh]);
 
   useEffect(() => {
     if (!isModalOpen) return;
@@ -210,6 +217,19 @@ export default function PlanDetailPage() {
     try {
       await deletePlan(token, planId);
       navigate("/plans");
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : t("errors.deleteFailed"),
+      );
+    }
+  };
+
+  const onSubmitReview = async (payload: ReviewType) => {
+    if (!token || !planId) return;
+
+    try {
+      await createPlanReview(token, payload, planId);
+      setDataRefresh(!dataRefresh);
     } catch (error) {
       setErrorMessage(
         error instanceof Error ? error.message : t("errors.deleteFailed"),
@@ -450,6 +470,62 @@ export default function PlanDetailPage() {
               </form>
             )}
           </article>
+
+          <article className="plan-detail-card">
+            <div className="plan-overall-review">
+              <div className="overall-score-wrapper">
+                <div className="overall-score">
+                  {plan.planReviewSummary?.rating.toFixed(1) ||
+                    Number(0).toFixed(1)}
+                </div>
+                <div className="overall-label">Overall</div>
+              </div>
+
+              <div className="overall-detail-score">
+                {[
+                  {
+                    label: "Quality",
+                    value: plan.planReviewSummary?.planQuality || 0,
+                  },
+                  {
+                    label: "Practicality",
+                    value: plan.planReviewSummary?.practicality || 0,
+                  },
+                  {
+                    label: "Detail Level",
+                    value: plan.planReviewSummary?.detailLevel || 0,
+                  },
+                ].map((item) => {
+                  const percent = (item.value / 5) * 100;
+                  return (
+                    <div key={item.label} className="overall-review-item">
+                      <div className="item-label">{item.label}</div>
+                      <div className="item-bar-wrapper">
+                        <div
+                          className="item-bar-fill"
+                          style={{ width: `${percent}%` }}
+                        />
+                      </div>
+                      <div className="item-rating">{item.value.toFixed(1)}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </article>
+
+          {!isOwner && isPurchased && !!user && (
+            <PlanReviewForm
+              initialValues={myReview}
+              onSubmit={onSubmitReview}
+            />
+          )}
+
+          {plan.planReviews
+            ?.filter((review) => review.user.id !== user?.id)
+            .map((review) => {
+              return <PlanReviewForm initialValues={review} />;
+            })}
         </div>
       </section>
       {isModalOpen ? (

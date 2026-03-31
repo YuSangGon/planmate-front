@@ -35,7 +35,6 @@ export default function ShopPage() {
           getShopItems(token),
         ]);
 
-        console.log(itemsResponse.data);
         setCoinBalance(balanceResponse.data.coinBalance);
         setShopItems(itemsResponse.data);
       } catch (error) {

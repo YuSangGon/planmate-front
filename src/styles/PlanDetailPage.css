@@ -1,6 +1,7 @@
 .plan-detail-layout {
   display: grid;
   grid-template-columns: 1fr;
+  gap: 20px;
 }
 
 .plan-detail-card,
@@ -159,4 +160,78 @@
 
 .btn--purchase:hover {
   opacity: 0.9;
+}
+
+.plan-overall-review {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 20px 0;
+}
+
+.overall-score-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.overall-score {
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffb800; /* 별색 느낌 */
+}
+
+.overall-label {
+  font-size: 14px;
+  margin-top: 4px;
+  color: #555;
+}
+
+.overall-detail-score {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.overall-review-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.item-label {
+  width: 100px;
+  font-size: 14px;
+  color: #333;
+}
+
+.item-bar-wrapper {
+  flex: 1;
+  height: 12px;
+  background-color: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.item-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffb800, #ffc931);
+  border-radius: 6px 0 0 6px;
+  transition: width 0.5s ease-in-out;
+}
+
+.item-rating {
+  width: 40px;
+  text-align: right;
+  font-size: 14px;
+  color: #333;
 }

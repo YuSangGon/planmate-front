@@ -16,7 +16,6 @@ export default function PlannerListPage() {
     const fetchPlanners = async () => {
       try {
         const response = await getPlannerList();
-        console.log(response.data);
         setPlanners(response.data);
       } catch (error) {
         setErrorMessage(

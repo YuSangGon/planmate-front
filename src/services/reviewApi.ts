@@ -1,4 +1,5 @@
 import { apiRequest } from "./api";
+import type { ReviewType } from "./planApi";
 
 export type PlannerReviewPayload = {
   requestId: string;
@@ -7,6 +8,14 @@ export type PlannerReviewPayload = {
   communication: number;
   timeliness: number;
   personalisation: number;
+  practicality: number;
+  detailLevel: number;
+  content: string;
+};
+
+export type PlanReviewPayload = {
+  overallRating: number;
+  planQuality: number;
   practicality: number;
   detailLevel: number;
   content: string;
@@ -30,6 +39,18 @@ export async function createPlannerReview(
   payload: PlannerReviewPayload,
 ) {
   return apiRequest(`/review/planner`, {
+    method: "POST",
+    token,
+    body: payload,
+  });
+}
+
+export async function createPlanReview(
+  token: string,
+  payload: ReviewType,
+  planId: string,
+) {
+  return apiRequest(`/review/plan/${planId}`, {
     method: "POST",
     token,
     body: payload,

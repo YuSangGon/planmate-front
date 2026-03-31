@@ -733,7 +733,7 @@
 
 .planner-review-card__header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 14px;
@@ -748,6 +748,15 @@
   margin: 0;
   color: var(--color-text-soft);
   line-height: 1.6;
+}
+
+.planner-review-card__title {
+  min-width: 84px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .planner-review-card__overall {

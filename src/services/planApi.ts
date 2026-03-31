@@ -38,6 +38,32 @@ export type PlanDetail = {
     destination: string;
     status: string;
   } | null;
+  planReviewSummary?: {
+    reviewCount: number;
+    rating: number;
+    planQuality: number;
+    practicality: number;
+    detailLevel: number;
+    updatedAt: string;
+  } | null;
+
+  planReviews?: ReviewType[];
+};
+
+export type ReviewType = {
+  id: string;
+  user: {
+    id: string;
+    name: string;
+  };
+  overallRating: number;
+  planQuality: number;
+  practicality: number;
+  detailLevel: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  status: "draft" | "submitted";
 };
 
 export type CreatePlanPayload = {
@@ -64,13 +90,15 @@ export async function getMyPlans(token: string) {
 }
 
 export async function getPlanDetail(token: string, planId: string) {
-  return apiRequest<{ success: true; isGotPlan: boolean; data: PlanDetail }>(
-    `/plans/${planId}`,
-    {
-      method: "GET",
-      token,
-    },
-  );
+  return apiRequest<{
+    success: true;
+    isGotPlan: boolean;
+    data: PlanDetail;
+    myReview: ReviewType;
+  }>(`/plans/${planId}`, {
+    method: "GET",
+    token,
+  });
 }
 
 export async function createPlan(token: string, payload: CreatePlanPayload) {
