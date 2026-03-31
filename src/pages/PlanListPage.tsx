@@ -4,29 +4,23 @@ import MainLayout from "../layouts/MainLayout";
 import PageHero from "../components/common/PageHero";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { getMyPlans, getPlans, type PlanItem } from "../services/planApi";
+import { getPlans, type PlanItem } from "../services/planApi";
+import CreatePlanModal from "../components/plan/CreatePlanModal";
 
 export default function PlanListPage() {
-  const { user, token } = useAuth();
+  const { token } = useAuth();
   const { t } = useTranslation("planList");
-  const isPlanner = user?.role === "planner";
 
   const [publicPlans, setPublicPlans] = useState<PlanItem[]>([]);
-  const [myPlans, setMyPlans] = useState<PlanItem[]>([]);
-  const [showOnlyMine, setShowOnlyMine] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchPlans = async () => {
       try {
         const publicResponse = await getPlans();
         setPublicPlans(publicResponse.data);
-
-        if (isPlanner && token) {
-          const myResponse = await getMyPlans(token);
-          setMyPlans(myResponse.data);
-        }
       } catch (error) {
         setErrorMessage(
           error instanceof Error ? error.message : t("states.loadError"),
@@ -37,9 +31,7 @@ export default function PlanListPage() {
     };
 
     void fetchPlans();
-  }, [isPlanner, token, t]);
-
-  const sourcePlans = showOnlyMine && isPlanner ? myPlans : publicPlans;
+  }, [token, t]);
 
   return (
     <MainLayout>
@@ -51,25 +43,17 @@ export default function PlanListPage() {
 
       <section className="section section--compact">
         <div className="plans-toolbar">
-          {isPlanner ? (
-            <>
-              <label className="plans-switch">
-                <input
-                  type="checkbox"
-                  checked={showOnlyMine}
-                  onChange={(e) => setShowOnlyMine(e.target.checked)}
-                />
-                <span className="plans-switch__slider" />
-                <span className="plans-switch__label">
-                  {t("actions.onlyMyPlans")}
-                </span>
-              </label>
+          <div />
 
-              <Link to="/plans/create" className="btn btn--primary">
-                {t("actions.createPlan")}
-              </Link>
-            </>
-          ) : null}
+          {/* <Link to="/plans/create" className="btn btn--primary">
+            {t("actions.createPlan")}
+          </Link> */}
+          <button
+            className="btn btn--primary"
+            onClick={() => setIsModalOpen(true)}
+          >
+            {t("actions.createPlan")}
+          </button>
         </div>
 
         {isLoading ? (
@@ -86,15 +70,15 @@ export default function PlanListPage() {
           </div>
         ) : null}
 
-        {!isLoading && !errorMessage && sourcePlans.length === 0 ? (
+        {!isLoading && !errorMessage && publicPlans.length === 0 ? (
           <div className="request-form-card">
             <p className="content-description">{t("states.empty")}</p>
           </div>
         ) : null}
 
-        {!isLoading && !errorMessage && sourcePlans.length > 0 ? (
+        {!isLoading && !errorMessage && publicPlans.length > 0 ? (
           <div className="grid grid--3">
-            {sourcePlans.map((plan) => (
+            {publicPlans.map((plan) => (
               <article className="plan-card" key={plan.id}>
                 <div className="plan-card__image">
                   <span className="plan-card__tag">
@@ -120,6 +104,14 @@ export default function PlanListPage() {
           </div>
         ) : null}
       </section>
+
+      {isModalOpen && (
+        <CreatePlanModal
+          onClose={() => setIsModalOpen(false)}
+          t={t}
+          token={token}
+        />
+      )}
     </MainLayout>
   );
 }

@@ -5,6 +5,9 @@ import {
   getPlannerWorkPlan,
   submitPlannerWorkPlan,
   updatePlannerWorkPlan,
+  editWorkPlan,
+  completeWorkPlan,
+  type PlanInfo,
 } from "../services/workPlanApi";
 import {
   createEmptyContent,
@@ -19,16 +22,19 @@ import { useToast } from "../context/ToastContext";
 type UsePlannerWorkPlanEditorParams = {
   token: string | null;
   requestId?: string;
+  planId?: string;
 };
 
 export function usePlannerWorkPlanEditor({
   token,
   requestId,
+  planId,
 }: UsePlannerWorkPlanEditorParams) {
   const navigate = useNavigate();
   const { showToast } = useToast();
 
   const [content, setContent] = useState<WorkPlanContent>(createEmptyContent());
+  const [planInfo, setPlanInfo] = useState<PlanInfo>();
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -47,7 +53,7 @@ export function usePlannerWorkPlanEditor({
 
   useEffect(() => {
     const fetchPlan = async () => {
-      if (!token || !requestId) {
+      if (!token || !requestId || requestId === "planCreate") {
         setIsLoading(false);
         return;
       }
@@ -340,15 +346,22 @@ export function usePlannerWorkPlanEditor({
 
   const handleSave = async () => {
     if (!token || !requestId) return;
+    if (requestId === "planCreate" && !planId) return;
 
     setIsSaving(true);
     setErrorMessage("");
 
     try {
-      console.log(content);
-      await updatePlannerWorkPlan(token, requestId, {
-        content,
-      });
+      if (requestId === "planCreate") {
+        await editWorkPlan(token, planId, {
+          planInfo,
+          content,
+        });
+      } else {
+        await updatePlannerWorkPlan(token, requestId, {
+          content,
+        });
+      }
 
       showToast("Draft saved.", "success");
     } catch (error) {
@@ -362,19 +375,29 @@ export function usePlannerWorkPlanEditor({
 
   const handleSubmit = async () => {
     if (!token || !requestId) return;
+    if (requestId === "planCreate" && !planId) return;
 
     setIsSubmitting(true);
     setErrorMessage("");
 
     try {
-      await updatePlannerWorkPlan(token, requestId, {
-        content,
-      });
+      if (requestId === "planCreate") {
+        await editWorkPlan(token, planId, {
+          planInfo,
+          content,
+        });
+        await completeWorkPlan(token, planId);
 
-      await submitPlannerWorkPlan(token, requestId);
-
-      showToast("Plan submitted successfully.", "success");
-      navigate(`/requests/${requestId}`);
+        showToast("Plan submitted successfully.", "success");
+        // navigate(`/plans/${planId}`);
+      } else {
+        await updatePlannerWorkPlan(token, requestId, {
+          content,
+        });
+        await submitPlannerWorkPlan(token, requestId);
+        showToast("Plan submitted successfully.", "success");
+        navigate(`/requests/${requestId}`);
+      }
     } catch (error) {
       setErrorMessage(
         error instanceof Error ? error.message : "Failed to submit plan",
@@ -408,6 +431,8 @@ export function usePlannerWorkPlanEditor({
 
   return {
     content,
+    setContent,
+    setPlanInfo,
     isLoading,
     isSaving,
     isSubmitting,

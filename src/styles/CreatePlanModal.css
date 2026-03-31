@@ -1,0 +1,48 @@
+/* CreatePlanModal.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 1000;
+}
+
+.modal-container {
+  width: 90%;
+  max-width: 720px;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+
+  position: relative;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.modal-container::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  color: #b42318;
+}

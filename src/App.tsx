@@ -27,7 +27,7 @@ function App() {
       <Route path="/plans" element={<PlanListPage />} />
       <Route path="/plans/:planId" element={<PlanDetailPage />} />
       <Route
-        path="/plans/create"
+        path="/plans/create/:planId"
         element={
           <ProtectedRoute>
             <CreatePlanPage />

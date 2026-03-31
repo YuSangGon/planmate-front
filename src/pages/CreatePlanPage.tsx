@@ -1,17 +1,24 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import MainLayout from "../layouts/MainLayout";
 import PageHero from "../components/common/PageHero";
 import TagInputField from "../components/common/TagInputField";
 import { useAuth } from "../context/AuthContext";
-import { createPlan } from "../services/planApi";
 import "../styles/CreatePlanPage.css";
+import { usePlannerWorkPlanEditor } from "../hooks/usePlannerWorkPlanEditor";
+import WorkPlanPreparationSection from "../components/workPlan/workPlanPreparationSection";
+import WorkPlanHotelsSection from "../components/workPlan/WorkPlanHotelsSection";
+import WorkPlanDaysSection from "../components/workPlan/workPlanDaysSection";
+import WorkPlanExtrasSection from "../components/workPlan/WorkPlanExtrasSection";
+import WorkPlanAdvancedEditModal from "../components/workPlan/WorkPlanAdvancedEditModal";
+import "../styles/PlannerWorkPlanPage.css";
+import { getWorkPlanInfo, type PlanInfo } from "../services/workPlanApi";
+import { useParams } from "react-router-dom";
 
 export default function CreatePlanPage() {
-  const navigate = useNavigate();
-  const { token, user } = useAuth();
+  const { token } = useAuth();
   const { t } = useTranslation("createPlan");
+  const { planId } = useParams();
 
   const [title, setTitle] = useState("");
   const [destination, setDestination] = useState("");
@@ -21,66 +28,66 @@ export default function CreatePlanPage() {
   const [visibility, setVisibility] = useState<"public" | "private">("public");
   const [tags, setTags] = useState<string[]>([]);
 
+  const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const [toastMessage, setToastMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  useEffect(() => {
+    const fetchPlan = async () => {
+      if (!token || !planId) {
+        setIsLoading(false);
+        return;
+      }
 
-    if (!token) {
-      setErrorMessage(t("errors.loginRequired"));
-      return;
-    }
+      try {
+        const response = await getWorkPlanInfo(token, planId);
+        const plan = response.data;
+        setTitle(plan.title);
+        setDestination(plan.destination);
+        setDuration(plan.duration);
+        setPrice(plan.price.toString());
+        setTags(plan.tags);
+        setVisibility(plan.visibility);
+        setSummary(plan.summary);
+      } catch (error) {
+        setErrorMessage(
+          error instanceof Error ? error.message : "Failed to load work plan",
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchPlan();
+  }, []);
 
-    if (user?.role !== "planner") {
-      setErrorMessage(t("errors.onlyPlanners"));
-      return;
-    }
+  const editor = usePlannerWorkPlanEditor({
+    token,
+    requestId: "planCreate",
+    planId: planId,
+  });
 
-    if (
-      !title.trim() ||
-      !destination.trim() ||
-      !summary.trim() ||
-      !price.trim() ||
-      !duration.trim()
-    ) {
-      setErrorMessage(t("errors.requiredFields"));
-      return;
-    }
+  useEffect(() => {
+    editor.setPlanInfo({
+      title: title,
+      destination: destination,
+      summary: summary,
+      price: Number(price),
+      duration: duration,
+      visibility: visibility,
+      tags: tags,
+    } as PlanInfo);
+  }, [title, destination, summary, price, duration, visibility, tags]);
 
-    if (Number(price) < 0) {
-      setErrorMessage(t("errors.negativePrice"));
-      return;
-    }
-
-    setIsSubmitting(true);
-    setErrorMessage("");
-
-    try {
-      await createPlan(token, {
-        title: title.trim(),
-        destination: destination.trim(),
-        summary: summary.trim(),
-        price: Number(price),
-        duration: duration.trim(),
-        visibility,
-        tags,
-      });
-
-      setToastMessage(t("states.created"));
-
-      window.setTimeout(() => {
-        navigate("/plans");
-      }, 1000);
-    } catch (error) {
-      setErrorMessage(
-        error instanceof Error ? error.message : t("errors.createFailed"),
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  if (editor.isLoading) {
+    return (
+      <MainLayout>
+        <section className="section">
+          <div className="work-plan-state-card">
+            <p>Loading work plan...</p>
+          </div>
+        </section>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout>
@@ -96,7 +103,7 @@ export default function CreatePlanPage() {
             <h2 className="content-title">{t("content.title")}</h2>
             <p className="content-description">{t("content.description")}</p>
 
-            <form className="create-plan-form" onSubmit={handleSubmit}>
+            <form className="create-plan-form">
               <div className="form-grid">
                 <div className="form-field form-field--full">
                   <label htmlFor="plan-title">{t("form.title")}</label>
@@ -179,70 +186,94 @@ export default function CreatePlanPage() {
                   onChange={setTags}
                 />
               </div>
+            </form>
+          </article>
+        </div>
 
-              {errorMessage ? (
-                <p className="create-plan-error">{errorMessage}</p>
-              ) : null}
+        <div className="work-plan-card" style={{ marginTop: "20px" }}>
+          <WorkPlanPreparationSection
+            preparation={editor.content.preparation}
+            onChange={editor.updatePreparationField}
+          />
 
-              {toastMessage ? (
-                <div className="create-plan-toast">{toastMessage}</div>
-              ) : null}
+          <WorkPlanHotelsSection
+            hotels={editor.content.hotels}
+            onAddHotel={editor.addHotelOption}
+            onRemoveHotel={editor.removeHotelOption}
+            onSetRecommended={editor.setRecommendedHotel}
+            onUpdateHotelField={editor.updateHotelField}
+            onUpdateHotelPros={editor.updateHotelPros}
+            onUpdateHotelCons={editor.updateHotelCons}
+          />
 
-              <div className="create-plan-actions">
+          <WorkPlanDaysSection
+            days={editor.content.days}
+            getQuickAddDraft={editor.getQuickAddDraft}
+            onUpdateQuickAddDraft={editor.updateQuickAddDraft}
+            onQuickAddSchedule={editor.handleQuickAddSchedule}
+            onOpenAdvancedEditor={editor.openAdvancedEditor}
+            onAddDay={editor.addDay}
+            onRemoveDay={editor.removeDay}
+            onUpdateDayField={editor.updateDayField}
+            onRemoveScheduleRow={editor.removeScheduleRow}
+          />
+
+          <WorkPlanExtrasSection
+            extras={editor.content.extras}
+            onChange={editor.updateExtrasField}
+          />
+
+          {editor.errorMessage ? (
+            <p className="work-plan-error">{editor.errorMessage}</p>
+          ) : null}
+
+          <div className="work-plan-actions-row work-plan-actions-row--final">
+            {!editor.isEdit ? (
+              <>
                 <button
-                  type="submit"
-                  className="btn btn--primary btn--large"
-                  disabled={isSubmitting}
+                  type="button"
+                  className="btn btn--secondary btn--large"
+                  onClick={editor.handleSave}
+                  disabled={editor.isSaving}
                 >
-                  {isSubmitting ? t("actions.creating") : t("actions.create")}
+                  {editor.isSaving ? "Saving..." : "Save draft"}
                 </button>
 
                 <button
                   type="button"
-                  className="btn btn--secondary btn--large"
-                  onClick={() => navigate("/plans")}
+                  className="btn btn--primary btn--large"
+                  onClick={editor.handleSubmit}
+                  disabled={editor.isSubmitting}
                 >
-                  {t("actions.cancel")}
+                  {editor.isSubmitting
+                    ? "Submitting..."
+                    : "Submit to traveller"}
                 </button>
-              </div>
-            </form>
-          </article>
-
-          <aside className="create-plan-side-card">
-            <span className="section__eyebrow">{t("preview.eyebrow")}</span>
-            <h3>{t("preview.title")}</h3>
-
-            <div className="create-plan-preview">
-              <strong>{title || t("preview.fallbackTitle")}</strong>
-              <p>{destination || t("preview.fallbackDestination")}</p>
-
-              <div className="create-plan-preview__meta">
-                <span>{duration || t("preview.fallbackDuration")}</span>
-                <span>
-                  {price
-                    ? t("preview.priceValue", { price })
-                    : t("preview.fallbackPrice")}
-                </span>
-                <span>{t(`visibility.${visibility}`)}</span>
-              </div>
-
-              <p className="create-plan-preview__summary">
-                {summary || t("preview.fallbackSummary")}
-              </p>
-
-              {tags.length > 0 ? (
-                <div className="create-plan-preview__tags">
-                  {tags.map((tag) => (
-                    <span key={tag} className="create-plan-preview__tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              ) : null}
-            </div>
-          </aside>
+              </>
+            ) : null}
+            {/*
+                      (<button
+                        type="button"
+                        className="btn btn--primary btn--large"
+                        onClick={editor.handleSubmit}
+                        disabled={editor.isSubmitting}
+                      >
+                        {editor.isSubmitting ? "Editing..." : "Edit plan"}
+                      </button>) 
+                      */}
+          </div>
         </div>
       </section>
+
+      <WorkPlanAdvancedEditModal
+        isOpen={
+          editor.editingDayIndex !== null && editor.editingItemIndex !== null
+        }
+        draft={editor.advancedDraft}
+        onClose={editor.closeAdvancedEditor}
+        onChange={editor.updateAdvancedDraft}
+        onSave={editor.saveAdvancedEdit}
+      />
     </MainLayout>
   );
 }

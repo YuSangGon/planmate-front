@@ -54,6 +54,7 @@ export type WorkPlanContent = {
 export type WorkPlan = {
   id: string;
   requestId: string;
+  plannerId: string;
   status: "draft" | "submitted" | "approved";
   content: WorkPlanContent | null;
   planner?: {
@@ -105,12 +106,40 @@ export type WorkPlanPreview = {
   previewContent: WorkPlanPreviewContent;
 };
 
+export type PlanInfo = {
+  title: string;
+  destination: string;
+  summary: string;
+  price: number;
+  duration: string;
+  visibility: "public" | "private";
+  tags: string[];
+};
+
 export async function getPlannerWorkPlan(token: string, requestId: string) {
   return apiRequest<{ success: true; data: WorkPlan }>(
     `/work-plan/${requestId}`,
     {
       method: "GET",
       token,
+    },
+  );
+}
+
+export async function editWorkPlan(
+  token: string,
+  planId: string,
+  payload: {
+    planInfo: PlanInfo;
+    content: WorkPlanContent;
+  },
+) {
+  return apiRequest<{ success: true; data: WorkPlan }>(
+    `/work-plan/edit/${planId}`,
+    {
+      method: "PATCH",
+      token,
+      body: payload,
     },
   );
 }
@@ -132,9 +161,40 @@ export async function updatePlannerWorkPlan(
   );
 }
 
+export async function createWorkPlan(token: string, data: PlanInfo) {
+  return apiRequest<{ success: true; data: { id: string } }>(
+    `/work-plan/create`,
+    {
+      method: "POST",
+      token,
+      body: data,
+    },
+  );
+}
+
+export async function getWorkPlanInfo(token: string, planId: string) {
+  return apiRequest<{ success: true; data: PlanInfo }>(
+    `/work-plan/create/${planId}`,
+    {
+      method: "GET",
+      token,
+    },
+  );
+}
+
 export async function submitPlannerWorkPlan(token: string, requestId: string) {
   return apiRequest<{ success: true; data: WorkPlan }>(
     `/work-plan/${requestId}/submit`,
+    {
+      method: "POST",
+      token,
+    },
+  );
+}
+
+export async function completeWorkPlan(token: string, planId: string) {
+  return apiRequest<{ success: true; data: WorkPlan }>(
+    `/work-plan/complete/${planId}`,
     {
       method: "POST",
       token,
