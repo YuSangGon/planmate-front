@@ -85,10 +85,9 @@ type AcceptProposalResponse = {
   };
 };
 
-export async function getRequests(token: string) {
+export async function getRequests() {
   return apiRequest<{ success: true; data: RequestItem[] }>("/requests", {
     method: "GET",
-    token,
   });
 }
 

@@ -5,6 +5,7 @@ import MainLayout from "../layouts/MainLayout";
 import PageHero from "../components/common/PageHero";
 import TagInputField from "../components/common/TagInputField";
 import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
 import {
   deletePlan,
   getPlanDetail,
@@ -24,12 +25,12 @@ export default function PlanDetailPage() {
   const navigate = useNavigate();
   const { token, user } = useAuth();
   const { t } = useTranslation("planDetail");
+  const { showToast } = useToast();
 
   const [plan, setPlan] = useState<PlanDetail | null>(null);
   const [myReview, setMyReview] = useState<ReviewType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const [toastMessage, setToastMessage] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPurchasing, setIsPurchasing] = useState(false);
@@ -169,9 +170,8 @@ export default function PlanDetailPage() {
           : prev,
       );
 
-      setToastMessage(t("states.updated"));
+      showToast(t("states.updated"), "info");
       setIsEditing(false);
-      window.setTimeout(() => setToastMessage(""), 1800);
     } catch (error) {
       setErrorMessage(
         error instanceof Error ? error.message : t("errors.updateFailed"),
@@ -198,7 +198,7 @@ export default function PlanDetailPage() {
       setIsPurchasing(true);
       await purchasePlan(token, planId, salePrice);
       setIsPurchased(true);
-      setToastMessage("Completed purchasing.");
+      showToast("Completed purchasing.", "success");
     } catch (error) {
       setErrorMessage(
         error instanceof Error ? error.message : t("errors.deleteFailed"),
@@ -443,10 +443,6 @@ export default function PlanDetailPage() {
 
                 {errorMessage ? (
                   <p className="create-plan-error">{errorMessage}</p>
-                ) : null}
-
-                {toastMessage ? (
-                  <div className="create-plan-toast">{toastMessage}</div>
                 ) : null}
 
                 <div className="plan-detail-actions">

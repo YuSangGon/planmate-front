@@ -17,13 +17,13 @@ export default function RequestListPage() {
 
   useEffect(() => {
     const fetchRequests = async () => {
-      if (!token) {
-        setIsLoading(false);
-        return;
-      }
+      // if (!token) {
+      //   setIsLoading(false);
+      //   return;
+      // }
 
       try {
-        const response = await getRequests(token);
+        const response = await getRequests();
         setAllRequests(response.data);
       } catch (error) {
         setErrorMessage(

@@ -24,7 +24,7 @@ type AuthContextType = {
     name: string;
     email: string;
     password: string;
-    role: UserRole;
+    // role: UserRole;
   }) => Promise<void>;
   logout: () => void;
 };
@@ -79,7 +79,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     name: string;
     email: string;
     password: string;
-    role: UserRole;
   }) => {
     const response = await signupApi(input);
 

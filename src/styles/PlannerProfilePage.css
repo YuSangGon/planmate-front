@@ -273,8 +273,14 @@
 
 .planner-card__meta {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 8px 12px;
+}
+
+.planner-card__meta span {
+  display: flex;
+  align-items: center;
 }
 
 .planner-card__button {

@@ -45,7 +45,8 @@
 }
 
 .dashboard-sidebar__item:hover {
-  background: #f8fafc;
+  /* background: #f8fafc; */
+  opacity: 0.9;
   transform: translateY(-1px);
 }
 

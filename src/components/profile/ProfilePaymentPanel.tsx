@@ -12,7 +12,21 @@ export default function ProfilePaymentPanel() {
 
       <div className="profile-payment-grid">
         <article className="profile-card-block">
+          <div>Coming soon...</div>
+        </article>
+        {/* <article className="profile-card-block">
           <h3>{t("payment.cards.title")}</h3>
+
+          <div className="profile-placeholder-stack">
+            <div className="profile-placeholder-row">
+              <strong>{t("payment.cards.card1")}</strong>
+              <span>{t("payment.common.mock")}</span>
+            </div>
+            <div className="profile-placeholder-row">
+              <strong>{t("payment.cards.card2")}</strong>
+              <span>{t("payment.common.mock")}</span>
+            </div>
+          </div>
 
           <div className="profile-placeholder-stack">
             <div className="profile-placeholder-row">
@@ -28,9 +42,9 @@ export default function ProfilePaymentPanel() {
           <button className="btn btn--secondary">
             {t("payment.cards.add")}
           </button>
-        </article>
+        </article> */}
 
-        <article className="profile-card-block">
+        {/* <article className="profile-card-block">
           <h3>{t("payment.billing.title")}</h3>
 
           <div className="profile-placeholder-stack">
@@ -47,7 +61,7 @@ export default function ProfilePaymentPanel() {
               <span>{t("payment.billing.item3.desc")}</span>
             </div>
           </div>
-        </article>
+        </article> */}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import PageHero from "../components/common/PageHero";
 import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
 import {
   approveTravellerPreviewPlan,
   getTravellerPreviewPlan,
@@ -15,12 +16,12 @@ export default function TravellerPlanPreviewPage() {
   const { requestId } = useParams();
   const { token } = useAuth();
   const { t } = useTranslation("travellerPlanPreview");
+  const { showToast } = useToast();
 
   const [plan, setPlan] = useState<WorkPlanPreview | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isApproving, setIsApproving] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     const fetchPlan = async () => {
@@ -53,7 +54,7 @@ export default function TravellerPlanPreviewPage() {
     try {
       const response = await approveTravellerPreviewPlan(token, requestId);
       setPlan({ ...plan, status: response.data.status });
-      setToastMessage(t("states.approveSuccess"));
+      showToast(t("states.approveSuccess"), "success");
     } catch (error) {
       setErrorMessage(
         error instanceof Error ? error.message : t("states.approveError"),
@@ -132,9 +133,6 @@ export default function TravellerPlanPreviewPage() {
 
           {errorMessage ? (
             <p className="preview-plan-error">{errorMessage}</p>
-          ) : null}
-          {toastMessage ? (
-            <div className="preview-plan-toast">{toastMessage}</div>
           ) : null}
 
           {plan.status === "submitted" ? (

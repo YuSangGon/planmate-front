@@ -88,6 +88,12 @@ export async function getPlannerList() {
   });
 }
 
+export async function getPlannersTop3() {
+  return apiRequest<PlannerListResponse>("/planners/top3", {
+    method: "GET",
+  });
+}
+
 export async function getPlannerDetail(plannerId: string) {
   return apiRequest<PlannerDetailResponse>(`/planners/${plannerId}`, {
     method: "GET",

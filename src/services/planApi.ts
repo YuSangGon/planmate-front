@@ -86,6 +86,12 @@ export async function getPlans() {
   });
 }
 
+export async function getPlansTop3() {
+  return apiRequest<{ success: true; data: PlanItem[] }>("/plans/top3", {
+    method: "GET",
+  });
+}
+
 export async function getMyPlans(token: string) {
   return apiRequest<{ success: true; data: PlanItem[] }>("/plans/me", {
     method: "GET",

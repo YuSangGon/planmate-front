@@ -26,8 +26,8 @@ export default function LoginPage() {
     try {
       await login({ email, password });
       navigate(from || "/profile", { replace: true });
-    } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Login failed");
+    } catch {
+      setErrorMessage("Login failed. Check your ID and Password please");
     } finally {
       setIsSubmitting(false);
     }
@@ -104,7 +104,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <div className="auth-divider">
+        {/* <div className="auth-divider">
           <span>{t("continueWith")}</span>
         </div>
 
@@ -115,7 +115,7 @@ export default function LoginPage() {
           <button className="auth-social-btn" type="button">
             Apple
           </button>
-        </div>
+        </div> */}
 
         <p className="auth-footer-text">
           {t("noAccount")}{" "}

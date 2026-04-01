@@ -5,7 +5,7 @@ import BenefitsSection from "../components/home/BenefitsSection";
 import HowItWorksSection from "../components/home/HowItWorksSection";
 import FeaturedPlansSection from "../components/home/FeaturedPlansSection";
 import TopPlannersSection from "../components/home/TopPlannersSection";
-import PromoBannerSection from "../components/home/PromoBannerSection";
+// import PromoBannerSection from "../components/home/PromoBannerSection";
 import CTASection from "../components/home/CTASection";
 
 export default function HomePage() {
@@ -17,7 +17,7 @@ export default function HomePage() {
       <HowItWorksSection />
       <FeaturedPlansSection />
       <TopPlannersSection />
-      <PromoBannerSection />
+      {/* <PromoBannerSection /> */}
       <CTASection />
     </MainLayout>
   );

@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export default function CTASection() {
+  const navigate = useNavigate();
+
+  const goToRequestCreate = () => {
+    navigate(`/requests/new`);
+  };
+
   return (
     <section className="cta-section">
       <div className="cta-section__content">
@@ -13,12 +21,15 @@ export default function CTASection() {
       </div>
 
       <div className="cta-section__actions">
-        <button className="btn btn--primary-light btn--large">
+        <button
+          className="btn btn--primary-light btn--large"
+          onClick={() => goToRequestCreate()}
+        >
           Create request
         </button>
-        <button className="btn btn--outline-light btn--large">
+        {/* <button className="btn btn--outline-light btn--large">
           See examples
-        </button>
+        </button> */}
       </div>
     </section>
   );

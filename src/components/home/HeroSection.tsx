@@ -1,7 +1,13 @@
 import { useAppTranslation } from "../../hooks/useAppTranslation";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
   const { t } = useAppTranslation("home");
+  const navigate = useNavigate();
+
+  const goToRequest = () => {
+    navigate("/requests");
+  };
 
   return (
     <section className="hero">
@@ -26,12 +32,15 @@ export default function HeroSection() {
         <p className="hero__description">{t("heroDescription")}</p>
 
         <div className="hero__actions">
-          <button className="btn btn--primary btn--large">
+          <button
+            className="btn btn--primary btn--large"
+            onClick={() => goToRequest()}
+          >
             {t("heroPrimary")}
           </button>
-          <button className="btn btn--secondary btn--large">
+          {/* <button className="btn btn--secondary btn--large">
             {t("heroSecondary")}
-          </button>
+          </button> */}
         </div>
 
         <div className="hero__meta">

@@ -29,10 +29,23 @@ export async function signup(payload: {
   name: string;
   email: string;
   password: string;
-  role: UserRole;
 }) {
   return apiRequest<AuthResponse>("/auth/signup", {
     method: "POST",
+    body: payload,
+  });
+}
+
+export async function changePasswordApi(
+  token,
+  payload: {
+    originalPassword: string;
+    newPassword: string;
+  },
+) {
+  return apiRequest<AuthResponse>("/auth/change-password", {
+    method: "POST",
+    token,
     body: payload,
   });
 }

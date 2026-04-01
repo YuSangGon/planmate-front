@@ -9,16 +9,17 @@ import {
   type WorkPlanPreview,
 } from "../services/workPlanApi";
 import "../styles/TravellerPlanPreviewPage.css";
+import { useToast } from "../../context/ToastContext";
 
 export default function PlanPreviewPage() {
   const { requestId } = useParams();
   const { token } = useAuth();
+  const { showToast } = useToast();
 
   const [plan, setPlan] = useState<WorkPlanPreview | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isApproving, setIsApproving] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     const fetchPlan = async () => {
@@ -60,8 +61,9 @@ export default function PlanPreviewPage() {
             }
           : prev,
       );
-      setToastMessage(
+      showToast(
         "Plan approved. The request is now completed and coins were transferred to the planner.",
+        "success",
       );
     } catch (error) {
       setErrorMessage(
@@ -219,10 +221,6 @@ export default function PlanPreviewPage() {
 
           {errorMessage ? (
             <p className="preview-plan-error">{errorMessage}</p>
-          ) : null}
-
-          {toastMessage ? (
-            <div className="preview-plan-toast">{toastMessage}</div>
           ) : null}
 
           {plan.status === "submitted" ? (

@@ -38,7 +38,7 @@ export default function SignupPage() {
     setIsSubmitting(true);
 
     try {
-      await signup({ name, email, password, role });
+      await signup({ name, email, password });
       navigate("/profile", { replace: true });
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Signup failed");
@@ -97,7 +97,7 @@ export default function SignupPage() {
             />
           </div>
 
-          <div className="form-field">
+          {/* <div className="form-field">
             <label htmlFor="account-type">{t("joinAs")}</label>
             <select
               id="account-type"
@@ -108,7 +108,7 @@ export default function SignupPage() {
               <option value="traveller">{t("travellerOption")}</option>
               <option value="planner">{t("plannerOption")}</option>
             </select>
-          </div>
+          </div> */}
 
           {errorMessage ? (
             <p className="auth-error-message">{errorMessage}</p>
@@ -123,7 +123,7 @@ export default function SignupPage() {
           </button>
         </form>
 
-        <div className="auth-divider">
+        {/* <div className="auth-divider">
           <span>{t("continueWith")}</span>
         </div>
 
@@ -134,7 +134,7 @@ export default function SignupPage() {
           <button className="auth-social-btn" type="button">
             Apple
           </button>
-        </div>
+        </div> */}
 
         <p className="auth-footer-text">
           {t("haveAccount")}{" "}

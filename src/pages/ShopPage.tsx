@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import MainLayout from "../layouts/MainLayout";
 import PageHero from "../components/common/PageHero";
 import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
 import {
   buyCoinPackage,
   getWalletBalance,
@@ -20,7 +21,7 @@ export default function ShopPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [activeItemCode, setActiveItemCode] = useState("");
-  const [toastMessage, setToastMessage] = useState("");
+  const { showToast } = useToast();
 
   useEffect(() => {
     const fetchShopData = async () => {
@@ -57,8 +58,7 @@ export default function ShopPage() {
     try {
       const response = await buyCoinPackage(token, itemCode);
       setCoinBalance(response.data.coinBalance);
-      setToastMessage(t("toast.buySuccess"));
-      window.setTimeout(() => setToastMessage(""), 2200);
+      showToast(t("toast.buySuccess"), "success");
     } finally {
       setActiveItemCode("");
     }
@@ -208,8 +208,6 @@ export default function ShopPage() {
             </article>
           </aside>
         </div>
-
-        {toastMessage ? <div className="shop-toast">{toastMessage}</div> : null}
       </section>
     </MainLayout>
   );

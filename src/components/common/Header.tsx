@@ -3,10 +3,12 @@ import { useAuth } from "../../context/AuthContext";
 import { useAppTranslation } from "../../hooks/useAppTranslation";
 import { useState, useRef, useEffect } from "react";
 import { Globe } from "lucide-react";
+import { useToast } from "../../context/ToastContext";
 
 export default function Header() {
   const { isLoggedIn, user, logout } = useAuth();
   const { t, i18n } = useAppTranslation("common");
+  const { showToast } = useToast();
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -44,6 +46,14 @@ export default function Header() {
   }, []);
 
   const handleChangeLanguage = (lng: "en" | "ko") => {
+    if (lng === "ko") {
+      showToast(
+        "Korean is not available yet. It will be available soon!",
+        "error",
+      );
+      return;
+    }
+
     i18n.changeLanguage(lng);
   };
 
