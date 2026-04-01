@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import type {
   RequestItem,
   RequestProposalItem,
 } from "../../services/requestApi";
 import type { PlannerReviewPayload } from "../../services/reviewApi";
 import RequestPlannerReviewSection from "./RequestPlannerReviewSection";
+import WorkPlanPreviewModal from "./WorkPlanPreviewModal";
+import WorkPlanModal from "./WorkPlanModal";
 
 type Props = {
   requestItem: RequestItem;
@@ -29,6 +31,43 @@ export default function RequestAcceptedProposalCard({
   onSubmitReview,
   onCancelReview,
 }: Props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPlanOpen, setIsPlanOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const scrollY = window.scrollY;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    if (!isPlanOpen) return;
+    const scrollY = window.scrollY;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [isPlanOpen]);
+
   return (
     <div className="request-detail-highlight-card">
       <div className="request-detail-highlight-card__top">
@@ -63,25 +102,35 @@ export default function RequestAcceptedProposalCard({
         closed automatically.
       </div>
 
-      {requestItem.status === "submitted" ||
-      requestItem.status === "completed" ? (
+      {requestItem.status === "submitted" ? (
         <div className="request-detail-highlight-actions">
-          <Link
-            to={`/requests/${requestItem.id}/preview-plan`}
-            className="btn btn--primary"
+          <button
+            type="button"
+            className="btn btn--secondary"
+            onClick={() => setIsModalOpen(true)}
           >
             Preview submitted plan
-          </Link>
+          </button>
 
-          {requestItem.status !== "completed" ? (
-            <button
-              type="button"
-              className="btn btn--secondary"
-              onClick={onComplete}
-            >
-              Complete
-            </button>
-          ) : null}
+          <button
+            type="button"
+            className="btn btn--primary"
+            onClick={onComplete}
+          >
+            Complete
+          </button>
+        </div>
+      ) : null}
+
+      {requestItem.status === "completed" ? (
+        <div className="request-detail-highlight-actions">
+          <button
+            type="button"
+            className="btn btn--primary"
+            onClick={() => setIsPlanOpen(true)}
+          >
+            View plan
+          </button>
         </div>
       ) : null}
 
@@ -95,6 +144,13 @@ export default function RequestAcceptedProposalCard({
         onSubmitReview={onSubmitReview}
         onCancelReview={onCancelReview}
       />
+
+      {isModalOpen ? (
+        <WorkPlanPreviewModal onClose={() => setIsModalOpen(false)} />
+      ) : null}
+      {isPlanOpen ? (
+        <WorkPlanModal onClose={() => setIsPlanOpen(false)} />
+      ) : null}
     </div>
   );
 }

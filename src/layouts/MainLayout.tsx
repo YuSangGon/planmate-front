@@ -28,7 +28,6 @@ export default function MainLayout({ children }: MainLayoutProps) {
       disconnectSocket();
       return;
     }
-    console.log(isLoggedIn);
 
     const socket = connectSocket(token);
 

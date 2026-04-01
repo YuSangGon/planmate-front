@@ -325,9 +325,9 @@ export default function PlanDetailPage() {
                     >
                       {t("actions.edit")}
                     </button>
-                    <button className="btn btn--ghost" onClick={handleDelete}>
+                    {/* <button className="btn btn--ghost" onClick={handleDelete}>
                       {t("actions.delete")}
-                    </button>
+                    </button> */}
                   </div>
                 ) : null}
                 {!isOwner && !isPurchased ? (

@@ -41,14 +41,14 @@ export default function RequestProposalList({
           </div>
 
           <div className="request-proposal-card__summary-grid">
-            <div className="request-proposal-stat">
+            {/* <div className="request-proposal-stat">
               <span>Proposed price</span>
               <strong>
                 {proposal.proposedPrice != null
                   ? proposal.proposedPrice
                   : "Not specified"}
               </strong>
-            </div>
+            </div> */}
 
             <div className="request-proposal-stat">
               <span>Estimated time</span>

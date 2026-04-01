@@ -26,6 +26,19 @@ export type RequestItem = {
   createdAt: string;
   updatedAt: string;
   plannerReview: PlannerReviewPayload;
+  myProposal: ProposalItem;
+};
+
+export type ProposalItem = {
+  id: string;
+  message: string;
+  proposedPrice?: number | null;
+  estimatedDays?: number | null;
+  status: "pending" | "accepted" | "rejected" | "withdrawn";
+  createdAt: string;
+  plannerId: string;
+  requestId: string;
+  updatedAt: string;
 };
 
 export type RequestProposalItem = {

@@ -1,11 +1,11 @@
 type Props = {
   isOpen: boolean;
   message: string;
-  price: string;
+  // price: string;
   days: string;
   isSubmitting: boolean;
   onChangeMessage: (value: string) => void;
-  onChangePrice: (value: string) => void;
+  // onChangePrice: (value: string) => void;
   onChangeDays: (value: string) => void;
   onClose: () => void;
   onSubmit: () => void;
@@ -14,11 +14,11 @@ type Props = {
 export default function RequestApplyModal({
   isOpen,
   message,
-  price,
+  // price,
   days,
   isSubmitting,
   onChangeMessage,
-  onChangePrice,
+  // onChangePrice,
   onChangeDays,
   onClose,
   onSubmit,
@@ -58,7 +58,7 @@ export default function RequestApplyModal({
             />
           </div>
 
-          <div className="form-field">
+          {/* <div className="form-field">
             <label htmlFor="apply-price">Proposed price</label>
             <input
               id="apply-price"
@@ -68,7 +68,7 @@ export default function RequestApplyModal({
               onChange={(e) => onChangePrice(e.target.value)}
               placeholder="e.g. 25"
             />
-          </div>
+          </div> */}
 
           <div className="form-field">
             <label htmlFor="apply-days">Estimated Days</label>

@@ -25,6 +25,7 @@ import RequestSummaryCard from "../components/request/RequestSummaryCard";
 import RequestProposalWorkspace from "../components/request/RequestProposalWorkspace";
 import RequestApplyModal from "../components/request/RequestApplyModal";
 import "../styles/RequestDetailPage.css";
+import MyRequestProposal from "../components/request/MyRequestProposal";
 
 type ProposalFilter = "all" | "pending" | "accepted" | "rejected";
 
@@ -63,6 +64,8 @@ export default function RequestDetailPage() {
   const [applyPrice, setApplyPrice] = useState("");
   const [applyDays, setApplyDays] = useState("");
   const [isSubmittingApply, setIsSubmittingApply] = useState(false);
+  const [alreadyProposed, setAlreadyProposed] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,6 +82,11 @@ export default function RequestDetailPage() {
             getPlannerReviewForRequest(token, requestId),
           ]);
 
+        console.log(requestDetail.data);
+
+        setAlreadyProposed(
+          requestDetail.data?.myProposal?.plannerId === user?.id,
+        );
         setRequestItem(requestDetail.data);
         setPlannerReviewItem(reviewDetail.data);
         setCanViewProposals(proposalsResponse.data.canView);
@@ -93,7 +101,7 @@ export default function RequestDetailPage() {
     };
 
     void fetchData();
-  }, [token, requestId, t]);
+  }, [token, requestId, t, refresh]);
 
   useEffect(() => {
     const completedAt = (
@@ -245,14 +253,15 @@ export default function RequestDetailPage() {
     try {
       await createProposal(token, requestId, {
         message: applyMessage.trim(),
-        proposedPrice: applyPrice ? Number(applyPrice) : undefined,
+        // proposedPrice: applyPrice ? Number(applyPrice) : undefined,
         estimatedDays: applyDays ? Number(applyDays) : undefined,
       });
 
       setShowApplyModal(false);
       setApplyMessage("");
-      setApplyPrice("");
+      // setApplyPrice("");
       setApplyDays("");
+      setRefresh(!refresh);
       showToast("Proposal sent successfully.", "success");
     } catch (error) {
       setErrorMessage(
@@ -303,6 +312,7 @@ export default function RequestDetailPage() {
           canViewProposals={canViewProposals}
           onClickApply={() => setShowApplyModal(true)}
           isMatchedPlanner={requestItem.plannerId === user?.id}
+          alreadyProposed={alreadyProposed}
         />
 
         {canViewProposals ? (
@@ -332,14 +342,18 @@ export default function RequestDetailPage() {
           />
         ) : null}
 
+        {!canViewProposals && alreadyProposed ? (
+          <MyRequestProposal proposal={requestItem.myProposal} />
+        ) : null}
+
         <RequestApplyModal
           isOpen={showApplyModal}
           message={applyMessage}
-          price={applyPrice}
+          // price={applyPrice}
           days={applyDays}
           isSubmitting={isSubmittingApply}
           onChangeMessage={setApplyMessage}
-          onChangePrice={setApplyPrice}
+          // onChangePrice={setApplyPrice}
           onChangeDays={setApplyDays}
           onClose={() => setShowApplyModal(false)}
           onSubmit={handleSubmitApply}

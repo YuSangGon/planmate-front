@@ -70,9 +70,9 @@ export default function DashboardOverviewSection() {
 
       <div className="dashboard-summary-grid">
         <article className="dashboard-summary-card">
-          <span className="dashboard-summary-card__label">Active requests</span>
+          <span className="dashboard-summary-card__label">Requests</span>
           <strong className="dashboard-summary-card__value">
-            {stats?.requestsCount ?? 0}
+            {stats?.activeRequestsCount ?? 0}
           </strong>
         </article>
 
@@ -81,7 +81,7 @@ export default function DashboardOverviewSection() {
             Received proposals
           </span>
           <strong className="dashboard-summary-card__value">
-            {stats?.proposalsCount ?? 0}
+            {stats?.receivedProposalsCount ?? 0}
           </strong>
         </article>
 

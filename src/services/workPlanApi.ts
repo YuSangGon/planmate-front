@@ -240,9 +240,29 @@ export async function getPublicPlanPrieview(planId: string) {
   );
 }
 
+export async function getPrivatePlanPrieview(requestId: string, token: string) {
+  return apiRequest<{ success: true; data: PlanPreview }>(
+    `/work-plan/preview-request-plan/${requestId}`,
+    {
+      method: "GET",
+      token,
+    },
+  );
+}
+
 export async function getPublicPlan(planId: string, token: string) {
   return apiRequest<{ success: true; data: Plan }>(
     `/work-plan/detail/${planId}`,
+    {
+      method: "GET",
+      token,
+    },
+  );
+}
+
+export async function getPrivatePlan(requestId: string, token: string) {
+  return apiRequest<{ success: true; data: Plan }>(
+    `/work-plan/request-detail/${requestId}`,
     {
       method: "GET",
       token,

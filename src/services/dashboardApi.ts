@@ -1,8 +1,8 @@
 import { apiRequest } from "./api";
 
 export type DashboardStats = {
-  requestsCount: number;
-  proposalsCount: number;
+  activeRequestsCount: number;
+  receivedProposalsCount: number;
   myPlansCount: number;
   completedPlansCount: number;
 };
@@ -26,6 +26,12 @@ export type DashboardRequestItem = {
   duration: string;
   budget: string;
   createdAt: string;
+  traveller: {
+    id: string;
+  } | null;
+  planner: {
+    id: string;
+  } | null;
 };
 
 export type DashboardProposalItem = {
@@ -38,6 +44,9 @@ export type DashboardProposalItem = {
   estimatedDays?: number | null;
   status: string;
   createdAt: string;
+  planner: {
+    id: string;
+  };
 };
 
 export type DashboardPlanReviewItem = {
@@ -59,6 +68,7 @@ export type DashboardPlanItem = {
   price: string;
   visibility: string;
   summary: string;
+  planType: "personal" | "request";
   reviews: DashboardPlanReviewItem[];
 };
 

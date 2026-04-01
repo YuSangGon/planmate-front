@@ -63,7 +63,7 @@ function App() {
       <Route
         path="/requests/:requestId/work-plan"
         element={
-          <ProtectedRoute allowedRoles={["planner"]}>
+          <ProtectedRoute>
             <PlannerWorkPlanPage />
           </ProtectedRoute>
         }

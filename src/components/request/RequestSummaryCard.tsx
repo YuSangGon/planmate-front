@@ -9,6 +9,7 @@ type Props = {
   canViewProposals: boolean;
   onClickApply: () => void;
   isMatchedPlanner?: boolean;
+  alreadyProposed: boolean;
 };
 
 export default function RequestSummaryCard({
@@ -18,6 +19,7 @@ export default function RequestSummaryCard({
   canViewProposals,
   onClickApply,
   isMatchedPlanner = false,
+  alreadyProposed,
 }: Props) {
   const { t, i18n } = useTranslation("requestDetail");
 
@@ -98,7 +100,9 @@ export default function RequestSummaryCard({
         {showFullDetails ? t("summary.showLess") : t("summary.showFull")}
       </button>
 
-      {!canViewProposals && requestItem.status === "open" ? (
+      {!canViewProposals &&
+      requestItem.status === "open" &&
+      !alreadyProposed ? (
         <div className="request-apply-bar">
           <button
             type="button"

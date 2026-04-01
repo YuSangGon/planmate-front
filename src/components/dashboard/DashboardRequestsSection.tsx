@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import {
   getDashboardRequests,
@@ -7,9 +7,16 @@ import {
 } from "../../services/dashboardApi";
 
 export default function DashboardRequestsSection() {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
+  const navigate = useNavigate();
 
-  const [items, setItems] = useState<DashboardRequestItem[]>([]);
+  // const [items, setItems] = useState<DashboardRequestItem[]>([]);
+  const [itemsForPlanner, setItemsForPlanner] = useState<
+    DashboardRequestItem[]
+  >([]);
+  const [itemsForTraveller, setItemsForTraveller] = useState<
+    DashboardRequestItem[]
+  >([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -22,7 +29,13 @@ export default function DashboardRequestsSection() {
 
       try {
         const response = await getDashboardRequests(token);
-        setItems(response.data);
+        // setItems(response.data);
+        setItemsForPlanner(
+          response.data.filter((item) => item.planner?.id === user?.id),
+        );
+        setItemsForTraveller(
+          response.data.filter((item) => item.traveller?.id === user?.id),
+        );
       } catch (error) {
         setErrorMessage(
           error instanceof Error
@@ -36,6 +49,35 @@ export default function DashboardRequestsSection() {
 
     void fetchItems();
   }, [token]);
+
+  const goToRequestDetail = (requestId: string) => {
+    navigate(`/requests/${requestId}`);
+  };
+
+  function DashboardItem({ item }: { item: DashboardRequestItem }) {
+    return (
+      <div
+        className="dashboard-list-item"
+        onClick={() => goToRequestDetail(item.id)}
+        style={{ cursor: "pointer" }}
+      >
+        <div className="dashboard-list-item__top">
+          <strong>{item.destination}</strong>
+          <span
+            className={`request-status-badge request-status-badge--${item.status}`}
+          >
+            {item.status}
+          </span>
+        </div>
+
+        <div className="dashboard-list-item__meta">
+          <span>{item.duration}</span>
+          <span>{item.budget}</span>
+          <span>{new Date(item.createdAt).toLocaleDateString()}</span>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -64,33 +106,29 @@ export default function DashboardRequestsSection() {
         <p>Continue current requests and move them to the next step.</p>
       </div>
 
-      {items.length > 0 ? (
-        <div className="dashboard-list">
-          {items.map((item) => (
-            <div key={item.id} className="dashboard-list-item">
-              <div className="dashboard-list-item__top">
-                <div>
-                  <strong>{item.destination}</strong>
-                  <span>{item.status}</span>
-                </div>
-
-                <Link
-                  to={`/requests/${item.id}`}
-                  className="btn btn--secondary"
-                >
-                  Open detail
-                </Link>
-              </div>
-
-              <div className="dashboard-list-item__meta">
-                <span>{item.duration}</span>
-                <span>{item.budget}</span>
-                <span>{new Date(item.createdAt).toLocaleDateString()}</span>
-              </div>
-            </div>
-          ))}
+      {itemsForPlanner.length > 0 && (
+        <div className="dashboard-section">
+          <h3 className="dashboard-section__title">As a planner</h3>
+          <div className="dashboard-list">
+            {itemsForPlanner.map((item) => (
+              <DashboardItem key={item.id} item={item} />
+            ))}
+          </div>
         </div>
-      ) : (
+      )}
+
+      {itemsForTraveller.length > 0 && (
+        <div className="dashboard-section">
+          <h3 className="dashboard-section__title">My requests</h3>
+          <div className="dashboard-list">
+            {itemsForTraveller.map((item) => (
+              <DashboardItem key={item.id} item={item} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {itemsForPlanner.length === 0 && itemsForTraveller.length === 0 && (
         <p className="dashboard-empty-text">No active requests right now.</p>
       )}
     </div>

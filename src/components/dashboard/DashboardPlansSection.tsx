@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import {
   getDashboardPlans,
@@ -8,8 +8,9 @@ import {
 
 export default function DashboardPlansSection() {
   const { token } = useAuth();
+  const navigate = useNavigate();
 
-  const [items, setItems] = useState<DashboardPlanItem[]>([]);
+  const [planItems, setPlanItems] = useState<DashboardPlanItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -22,7 +23,7 @@ export default function DashboardPlansSection() {
 
       try {
         const response = await getDashboardPlans(token);
-        setItems(response.data);
+        setPlanItems(response.data);
       } catch (error) {
         setErrorMessage(
           error instanceof Error ? error.message : "Failed to load plans.",
@@ -34,6 +35,10 @@ export default function DashboardPlansSection() {
 
     void fetchItems();
   }, [token]);
+
+  const goToDetail = (planId: string) => {
+    navigate(`/plans/${planId}`);
+  };
 
   if (isLoading) {
     return (
@@ -59,24 +64,26 @@ export default function DashboardPlansSection() {
     <div className="dashboard-panel">
       <div className="dashboard-panel__header">
         <h2>My plans</h2>
-        <p>
-          Review the plans you created and check the reviews attached to them.
-        </p>
       </div>
 
-      {items.length > 0 ? (
+      {planItems.length > 0 ? (
         <div className="dashboard-list">
-          {items.map((plan) => (
-            <div key={plan.id} className="dashboard-list-item">
+          {planItems.map((plan) => (
+            <div
+              key={plan.id}
+              className="dashboard-list-item"
+              onClick={() => goToDetail(plan.id)}
+              style={{ cursor: "pointer" }}
+            >
               <div className="dashboard-list-item__top">
                 <div>
                   <strong>{plan.title}</strong>
                   <span>{plan.destination}</span>
                 </div>
 
-                <Link to={`/plans/${plan.id}`} className="btn btn--secondary">
+                {/* <Link to={`/plans/${plan.id}`} className="btn btn--secondary">
                   Open plan
-                </Link>
+                </Link> */}
               </div>
 
               <p>{plan.summary}</p>
