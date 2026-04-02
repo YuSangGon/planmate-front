@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import { useAuth } from "../context/AuthContext";
@@ -18,7 +18,7 @@ type MainLayoutProps = {
 // } | null;
 
 export default function MainLayout({ children }: MainLayoutProps) {
-  const { isLoggedIn, token } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [isChatOpen, setIsChatOpen] = useState(false);
   // const [notificationToast, setNotificationToast] =
   //   useState<NotificationToast>(null);

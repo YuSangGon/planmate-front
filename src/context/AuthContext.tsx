@@ -11,7 +11,6 @@ import {
   login as loginApi,
   signup as signupApi,
   type AuthUser,
-  type UserRole,
 } from "../services/authApi";
 
 type AuthContextType = {

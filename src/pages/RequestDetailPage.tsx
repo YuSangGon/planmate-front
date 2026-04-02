@@ -61,7 +61,7 @@ export default function RequestDetailPage() {
 
   const [showApplyModal, setShowApplyModal] = useState(false);
   const [applyMessage, setApplyMessage] = useState("");
-  const [applyPrice, setApplyPrice] = useState("");
+  // const [applyPrice, setApplyPrice] = useState("");
   const [applyDays, setApplyDays] = useState("");
   const [isSubmittingApply, setIsSubmittingApply] = useState(false);
   const [alreadyProposed, setAlreadyProposed] = useState(false);

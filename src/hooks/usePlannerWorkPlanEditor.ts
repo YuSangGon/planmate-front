@@ -16,7 +16,7 @@ import {
   createEmptyScheduleItem,
   normalizeWorkPlanContent,
   sortScheduleItems,
-} from "../components/workPlan/workPlanHelpers";
+} from "../components/workPlan/WorkPlanHelpers";
 import { useToast } from "../context/ToastContext";
 
 type UsePlannerWorkPlanEditorParams = {
@@ -353,7 +353,7 @@ export function usePlannerWorkPlanEditor({
 
     try {
       if (requestId === "planCreate") {
-        await editWorkPlan(token, planId, {
+        await editWorkPlan(token, planId as string, {
           planInfo,
           content,
         });
@@ -382,11 +382,11 @@ export function usePlannerWorkPlanEditor({
 
     try {
       if (requestId === "planCreate") {
-        await editWorkPlan(token, planId, {
+        await editWorkPlan(token, planId as string, {
           planInfo,
           content,
         });
-        await completeWorkPlan(token, planId);
+        await completeWorkPlan(token, planId as string);
 
         showToast("Plan submitted successfully.", "success");
         // navigate(`/plans/${planId}`);

@@ -153,7 +153,7 @@ export async function editWorkPlan(
   token: string,
   planId: string,
   payload: {
-    planInfo: PlanInfo;
+    planInfo: PlanInfo | undefined;
     content: WorkPlanContent;
   },
 ) {

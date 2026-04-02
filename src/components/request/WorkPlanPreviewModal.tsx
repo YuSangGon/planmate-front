@@ -10,6 +10,7 @@ import {
   getPrivatePlanPrieview,
   type PlanPreview,
 } from "../../services/workPlanApi";
+import { useToast } from "../../context/ToastContext";
 
 type Props = {
   onClose: () => void;
@@ -17,10 +18,10 @@ type Props = {
 
 export default function WorkPlanPreviewModal({ onClose }: Props) {
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
   const { requestId } = useParams();
   const [plan, setPlan] = useState<PlanPreview>();
   const { token } = useAuth();
+  const { showToast } = useToast();
 
   useEffect(() => {
     const fetchPlan = async () => {
@@ -32,10 +33,11 @@ export default function WorkPlanPreviewModal({ onClose }: Props) {
         );
         setPlan(response.data);
       } catch (error) {
-        setErrorMessage(
+        showToast(
           error instanceof Error
             ? error.message
             : "Failed to load preview plan",
+          "error",
         );
       } finally {
         setIsLoading(false);
@@ -74,12 +76,14 @@ export default function WorkPlanPreviewModal({ onClose }: Props) {
 
               <article className="preview-plan-card">
                 <WorkPlanHotelsPreviewSection
-                  hotels={plan?.previewContent.hotels}
+                  hotels={plan?.previewContent.hotels ?? []}
                 />
               </article>
 
               <article className="preview-plan-card">
-                <WorkPlanDaysPreviewSection days={plan?.previewContent.days} />
+                <WorkPlanDaysPreviewSection
+                  days={plan?.previewContent.days ?? []}
+                />
               </article>
 
               <article className="preview-plan-card">

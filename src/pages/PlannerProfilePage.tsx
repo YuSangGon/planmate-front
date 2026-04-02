@@ -6,14 +6,12 @@ import PageHero from "../components/common/PageHero";
 import { getPlannerDetail, type PlannerProfile } from "../services/plannerApi";
 import ReviewStarsDisplay from "../components/review/ReviewStarsDisplay";
 import "../styles/PlannerProfilePage.css";
-import { useToast } from "../context/ToastContext";
 
 const REVIEWS_PER_PAGE = 10;
 
 export default function PlannerProfilePage() {
   const { plannerId } = useParams();
   const { t, i18n } = useTranslation("plannerProfile");
-  const { showToast } = useToast();
 
   const [planner, setPlanner] = useState<PlannerProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);

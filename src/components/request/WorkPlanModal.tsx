@@ -7,6 +7,7 @@ import WorkPlanExtrasPreviewSection from "../preview/WorkPlanExtrasPreviewSectio
 import WorkPlanDaysPreviewSection from "../preview/WorkPlanDaysPreviewSection";
 import { getPrivatePlan, type Plan } from "../../services/workPlanApi";
 import { useAuth } from "../../context/AuthContext";
+import { useToast } from "../../context/ToastContext";
 
 type Props = {
   onClose: () => void;
@@ -14,7 +15,7 @@ type Props = {
 
 export default function WorkPlanModal({ onClose }: Props) {
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
+  const { showToast } = useToast();
   const { requestId } = useParams();
   const [plan, setPlan] = useState<Plan>();
   const { token } = useAuth();
@@ -29,10 +30,11 @@ export default function WorkPlanModal({ onClose }: Props) {
         );
         setPlan(response.data);
       } catch (error) {
-        setErrorMessage(
+        showToast(
           error instanceof Error
             ? error.message
             : "Failed to load preview plan",
+          "error",
         );
       } finally {
         setIsLoading(false);
@@ -70,11 +72,13 @@ export default function WorkPlanModal({ onClose }: Props) {
               </article>
 
               <article className="preview-plan-card">
-                <WorkPlanHotelsPreviewSection hotels={plan?.content.hotels} />
+                <WorkPlanHotelsPreviewSection
+                  hotels={plan?.content.hotels ?? []}
+                />
               </article>
 
               <article className="preview-plan-card">
-                <WorkPlanDaysPreviewSection days={plan?.content.days} />
+                <WorkPlanDaysPreviewSection days={plan?.content.days ?? []} />
               </article>
 
               <article className="preview-plan-card">

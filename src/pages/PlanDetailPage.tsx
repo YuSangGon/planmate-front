@@ -7,7 +7,7 @@ import TagInputField from "../components/common/TagInputField";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import {
-  deletePlan,
+  // deletePlan,
   getPlanDetail,
   updatePlan,
   type PlanDetail,
@@ -56,7 +56,7 @@ export default function PlanDetailPage() {
       }
 
       try {
-        const response = await getPlanDetail(token, planId);
+        const response = await getPlanDetail(token as string, planId);
         const item = response.data;
         const isGotPlan = response.isGotPlan;
         const myItem = response.myReview;
@@ -208,21 +208,21 @@ export default function PlanDetailPage() {
     }
   };
 
-  const handleDelete = async () => {
-    if (!token || !planId) return;
+  // const handleDelete = async () => {
+  //   if (!token || !planId) return;
 
-    const confirmed = window.confirm(t("dialogs.deleteConfirm"));
-    if (!confirmed) return;
+  //   const confirmed = window.confirm(t("dialogs.deleteConfirm"));
+  //   if (!confirmed) return;
 
-    try {
-      await deletePlan(token, planId);
-      navigate("/plans");
-    } catch (error) {
-      setErrorMessage(
-        error instanceof Error ? error.message : t("errors.deleteFailed"),
-      );
-    }
-  };
+  //   try {
+  //     await deletePlan(token, planId);
+  //     navigate("/plans");
+  //   } catch (error) {
+  //     setErrorMessage(
+  //       error instanceof Error ? error.message : t("errors.deleteFailed"),
+  //     );
+  //   }
+  // };
 
   const onSubmitReview = async (payload: ReviewType) => {
     if (!token || !planId) return;

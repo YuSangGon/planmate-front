@@ -6,14 +6,15 @@ import TagInputField from "../components/common/TagInputField";
 import { useAuth } from "../context/AuthContext";
 import "../styles/CreatePlanPage.css";
 import { usePlannerWorkPlanEditor } from "../hooks/usePlannerWorkPlanEditor";
-import WorkPlanPreparationSection from "../components/workPlan/workPlanPreparationSection";
+import WorkPlanPreparationSection from "../components/workPlan/WorkPlanPreparationSection";
 import WorkPlanHotelsSection from "../components/workPlan/WorkPlanHotelsSection";
-import WorkPlanDaysSection from "../components/workPlan/workPlanDaysSection";
+import WorkPlanDaysSection from "../components/workPlan/WorkPlanDaysSection";
 import WorkPlanExtrasSection from "../components/workPlan/WorkPlanExtrasSection";
 import WorkPlanAdvancedEditModal from "../components/workPlan/WorkPlanAdvancedEditModal";
 import "../styles/PlannerWorkPlanPage.css";
 import { getWorkPlanInfo, type PlanInfo } from "../services/workPlanApi";
 import { useParams } from "react-router-dom";
+import { useToast } from "../context/ToastContext";
 
 export default function CreatePlanPage() {
   const { token } = useAuth();
@@ -29,7 +30,7 @@ export default function CreatePlanPage() {
   const [tags, setTags] = useState<string[]>([]);
 
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
+  const { showToast } = useToast();
 
   useEffect(() => {
     const fetchPlan = async () => {
@@ -49,8 +50,9 @@ export default function CreatePlanPage() {
         setVisibility(plan.visibility);
         setSummary(plan.summary);
       } catch (error) {
-        setErrorMessage(
+        showToast(
           error instanceof Error ? error.message : "Failed to load work plan",
+          "error",
         );
       } finally {
         setIsLoading(false);
@@ -103,90 +105,92 @@ export default function CreatePlanPage() {
             <h2 className="content-title">{t("content.title")}</h2>
             <p className="content-description">{t("content.description")}</p>
 
-            <form className="create-plan-form">
-              <div className="form-grid">
-                <div className="form-field form-field--full">
-                  <label htmlFor="plan-title">{t("form.title")}</label>
-                  <input
-                    id="plan-title"
-                    type="text"
-                    placeholder={t("form.titlePlaceholder")}
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+            {!isLoading ? (
+              <form className="create-plan-form">
+                <div className="form-grid">
+                  <div className="form-field form-field--full">
+                    <label htmlFor="plan-title">{t("form.title")}</label>
+                    <input
+                      id="plan-title"
+                      type="text"
+                      placeholder={t("form.titlePlaceholder")}
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="plan-destination">
+                      {t("form.destination")}
+                    </label>
+                    <input
+                      id="plan-destination"
+                      type="text"
+                      placeholder={t("form.destinationPlaceholder")}
+                      value={destination}
+                      onChange={(e) => setDestination(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="plan-duration">{t("form.duration")}</label>
+                    <input
+                      id="plan-duration"
+                      type="text"
+                      placeholder={t("form.durationPlaceholder")}
+                      value={duration}
+                      onChange={(e) => setDuration(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="plan-price">{t("form.price")}</label>
+                    <input
+                      id="plan-price"
+                      type="number"
+                      min="0"
+                      placeholder={t("form.pricePlaceholder")}
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="plan-visibility">
+                      {t("form.visibility")}
+                    </label>
+                    <select
+                      id="plan-visibility"
+                      value={visibility}
+                      onChange={(e) =>
+                        setVisibility(e.target.value as "public" | "private")
+                      }
+                    >
+                      <option value="public">{t("visibility.public")}</option>
+                      <option value="private">{t("visibility.private")}</option>
+                    </select>
+                  </div>
+
+                  <div className="form-field form-field--full">
+                    <label htmlFor="plan-summary">{t("form.summary")}</label>
+                    <textarea
+                      id="plan-summary"
+                      rows={7}
+                      placeholder={t("form.summaryPlaceholder")}
+                      value={summary}
+                      onChange={(e) => setSummary(e.target.value)}
+                    />
+                  </div>
+
+                  <TagInputField
+                    label={t("form.tags")}
+                    placeholder={t("form.tagsPlaceholder")}
+                    value={tags}
+                    onChange={setTags}
                   />
                 </div>
-
-                <div className="form-field">
-                  <label htmlFor="plan-destination">
-                    {t("form.destination")}
-                  </label>
-                  <input
-                    id="plan-destination"
-                    type="text"
-                    placeholder={t("form.destinationPlaceholder")}
-                    value={destination}
-                    onChange={(e) => setDestination(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="plan-duration">{t("form.duration")}</label>
-                  <input
-                    id="plan-duration"
-                    type="text"
-                    placeholder={t("form.durationPlaceholder")}
-                    value={duration}
-                    onChange={(e) => setDuration(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="plan-price">{t("form.price")}</label>
-                  <input
-                    id="plan-price"
-                    type="number"
-                    min="0"
-                    placeholder={t("form.pricePlaceholder")}
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="plan-visibility">
-                    {t("form.visibility")}
-                  </label>
-                  <select
-                    id="plan-visibility"
-                    value={visibility}
-                    onChange={(e) =>
-                      setVisibility(e.target.value as "public" | "private")
-                    }
-                  >
-                    <option value="public">{t("visibility.public")}</option>
-                    <option value="private">{t("visibility.private")}</option>
-                  </select>
-                </div>
-
-                <div className="form-field form-field--full">
-                  <label htmlFor="plan-summary">{t("form.summary")}</label>
-                  <textarea
-                    id="plan-summary"
-                    rows={7}
-                    placeholder={t("form.summaryPlaceholder")}
-                    value={summary}
-                    onChange={(e) => setSummary(e.target.value)}
-                  />
-                </div>
-
-                <TagInputField
-                  label={t("form.tags")}
-                  placeholder={t("form.tagsPlaceholder")}
-                  value={tags}
-                  onChange={setTags}
-                />
-              </div>
-            </form>
+              </form>
+            ) : null}
           </article>
         </div>
 
