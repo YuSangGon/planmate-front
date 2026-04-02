@@ -3,7 +3,7 @@ import { useState } from "react";
 import AuthLayout from "../layouts/AuthLayout";
 import { useAuth } from "../context/AuthContext";
 import { useAppTranslation } from "../hooks/useAppTranslation";
-import type { UserRole } from "../services/authApi";
+// import type { UserRole } from "../services/authApi";
 
 export default function SignupPage() {
   const { signup } = useAuth();
@@ -13,7 +13,7 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<UserRole>("traveller");
+  // const [role, setRole] = useState<UserRole>("traveller");
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 

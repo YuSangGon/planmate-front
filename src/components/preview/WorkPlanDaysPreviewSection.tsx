@@ -1,10 +1,17 @@
-import type { WorkPlanContent } from "../../services/workPlanApi";
+import type { WorkPlanScheduleItem } from "../../services/workPlanApi";
 import { useState } from "react";
 import { ScheduleItem } from "./ScheduleItem";
 import PreviewTextarea from "./PreviewTextarea";
 
+type PreviewDays = {
+  title: string;
+  dateLabel: string;
+  summary: string;
+  items: WorkPlanScheduleItem[];
+}[];
+
 type Props = {
-  days: WorkPlanContent["days"];
+  days: PreviewDays;
 };
 
 export default function WorkPlanDaysPreviewSection({ days }: Props) {

@@ -17,6 +17,7 @@ export function ScheduleItem({ item, index }: Props) {
     <div
       className={`schedule-row preview-lock is-locked"`}
       onClick={() => setOpen((prev) => !prev)}
+      id={"schedult-row" + index}
     >
       <div className="schedule-row__summary">
         <span className="start time">

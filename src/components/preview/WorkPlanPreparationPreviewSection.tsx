@@ -1,13 +1,28 @@
-import type { WorkPlanContent } from "../../services/workPlanApi";
+// import type { WorkPlanContent } from "../../services/workPlanApi";
 import PreviewTextarea from "./PreviewTextarea";
 
+type PreviewPreparation =
+  | {
+      visaInfo: string;
+      documents: string;
+      transportToAirport: string;
+      simWifi: string;
+      moneyTips: string;
+      packingTips: string;
+      otherTips: string;
+    }
+  | undefined;
+
 type Props = {
-  preparation: WorkPlanContent["preparation"];
+  preparation: PreviewPreparation;
 };
 
 export default function WorkPlanPreparationPreviewSection({
   preparation,
 }: Props) {
+  if (!preparation) {
+    return <p>No preparation info available.</p>;
+  }
   return (
     <section className="work-plan-section">
       <div className="work-plan-section__header">

@@ -61,6 +61,7 @@ export default function TopPlannersSection() {
             </article>
           ))}
       </div>
+      {!isLoading && errorMessage && <div className="gird">{errorMessage}</div>}
     </section>
   );
 }

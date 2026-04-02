@@ -81,16 +81,23 @@ export type WorkPlanPreviewSample = {
 export type WorkPlanPreviewContent = {
   preparation: {
     visaInfo: string;
+    documents: string;
     transportToAirport: string;
+    simWifi: string;
+    moneyTips: string;
+    packingTips: string;
+    otherTips: string;
   };
   hotels: {
     name: string;
     location: string;
     priceRange: string;
     summary: string;
+    bookingLink: string;
     pros: string[];
     cons: string[];
-  };
+    recommended: boolean;
+  }[];
   days: WorkPlanDay[];
   extras: {
     localTransport: string;

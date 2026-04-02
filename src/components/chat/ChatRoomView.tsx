@@ -160,11 +160,11 @@ export default function ChatRoomView({
     }
   };
 
-  const handleScroll = () => {
-    if (isNearBottom()) {
-      setShowNewMessageNotice(false);
-    }
-  };
+  // const handleScroll = () => {
+  //   if (isNearBottom()) {
+  //     setShowNewMessageNotice(false);
+  //   }
+  // };
 
   if (!chat) {
     return (

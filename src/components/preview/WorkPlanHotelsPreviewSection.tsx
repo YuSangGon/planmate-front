@@ -1,11 +1,22 @@
 import { useState } from "react";
-import type { WorkPlanContent } from "../../services/workPlanApi";
+// import type { WorkPlanContent, WorkPlanHotelOption } from "../../services/workPlanApi";
 import PreviewInput from "./PreviewInput";
 import PreviewTextarea from "./PreviewTextarea";
 import PreviewTagInputField from "./PreviewTagInputField";
 
+type PreviewHotels = {
+  name: string;
+  location: string;
+  priceRange: string;
+  bookingLink: string;
+  summary: string;
+  pros: string[];
+  cons: string[];
+  recommended: boolean;
+}[];
+
 type Props = {
-  hotels: WorkPlanContent["hotels"];
+  hotels: PreviewHotels;
 };
 
 export default function WorkPlanHotelsPreviewSection({ hotels }: Props) {

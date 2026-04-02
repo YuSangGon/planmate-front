@@ -43,14 +43,20 @@ export type ChatRoomItem = {
 };
 
 export async function getMyChatRooms(token: string) {
-  return apiRequest<ChatRoomItem[]>(`/chat/chatRooms`, {
+  return apiRequest<{
+    success: true;
+    data: ChatRoomItem[];
+  }>(`/chat/chatRooms`, {
     method: "GET",
     token,
   });
 }
 
 export async function getRequestMessages(token: string, requestId: string) {
-  return apiRequest<RequestChatResponse>(`/chat/${requestId}/messages`, {
+  return apiRequest<{
+    success: true;
+    data: RequestChatResponse;
+  }>(`/chat/${requestId}/messages`, {
     method: "GET",
     token,
   });

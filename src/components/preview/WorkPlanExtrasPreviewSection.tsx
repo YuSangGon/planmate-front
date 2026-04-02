@@ -1,11 +1,23 @@
-import type { WorkPlanContent } from "../../services/workPlanApi";
+// import type { WorkPlanContent } from "../../services/workPlanApi";
 import PreviewTextarea from "./PreviewTextarea";
 
+type PreviewExtras =
+  | {
+      localTransport: string;
+      reservations: string;
+      emergencyInfo: string;
+      finalNotes: string;
+    }
+  | undefined;
+
 type Props = {
-  extras: WorkPlanContent["extras"];
+  extras: PreviewExtras;
 };
 
 export default function WorkPlanExtrasPreviewSection({ extras }: Props) {
+  if (!extras) {
+    return <p>No extras info available.</p>;
+  }
   return (
     <section className="work-plan-section">
       <div className="work-plan-section__header">

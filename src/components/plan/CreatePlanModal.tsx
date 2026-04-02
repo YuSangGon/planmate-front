@@ -1,6 +1,6 @@
 // src/components/plan/CreatePlanModal.tsx
 import TagInputField from "../common/TagInputField";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../../styles/CreatePlanModal.css";
 import { createWorkPlan, type PlanInfo } from "../../services/workPlanApi";

@@ -59,6 +59,7 @@ export default function FeaturedPlansSection() {
             </article>
           ))}
       </div>
+      {!isLoading && errorMessage && <div className="gird">{errorMessage}</div>}
     </section>
   );
 }

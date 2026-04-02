@@ -17,7 +17,6 @@ import RequestListPage from "./pages/RequestListPage";
 import RequestDetailPage from "./pages/RequestDetailPage";
 import ShopPage from "./pages/ShopPage";
 import PlannerWorkPlanPage from "./pages/PlannerWorkPlanPage";
-import TravellerPlanPreviewPage from "./pages/TravellerPlanPreviewPage";
 import DashboardPage from "./pages/DashboardPage";
 
 function App() {
@@ -65,15 +64,6 @@ function App() {
         element={
           <ProtectedRoute>
             <PlannerWorkPlanPage />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/requests/:requestId/preview-plan"
-        element={
-          <ProtectedRoute>
-            <TravellerPlanPreviewPage />
           </ProtectedRoute>
         }
       />
