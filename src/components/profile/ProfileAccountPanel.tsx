@@ -50,7 +50,7 @@ export default function ProfileAccountPanel() {
         originalPassword: oriPassword,
         newPassword: newPassword,
       };
-      await changePasswordApi(token, payload);
+      await changePasswordApi(token as string, payload);
       setErrorMessage("");
       setIsChangingPassword(false);
       setNewPassword("");
