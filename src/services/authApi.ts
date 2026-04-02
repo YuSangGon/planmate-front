@@ -37,7 +37,7 @@ export async function signup(payload: {
 }
 
 export async function changePasswordApi(
-  token,
+  token: string,
   payload: {
     originalPassword: string;
     newPassword: string;
