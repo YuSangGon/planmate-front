@@ -54,10 +54,12 @@ VITE_API_BASE_URL=your_backend_url
 
 ## 📂 Project Structure
 
+```bash
 src/
-├── components/ # reusable UI components
-├── pages/ # page-level components
-├── services/ # API integration
-├── hooks/ # custom hooks
-├── layouts/ # layout components
-└── styles/ # styling (CSS)
+├── components/     # reusable UI components
+├── pages/          # page-level components
+├── services/       # API integration
+├── hooks/          # custom hooks
+├── layouts/        # layout components
+└── styles/         # styling (CSS)
+```
