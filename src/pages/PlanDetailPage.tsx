@@ -319,12 +319,12 @@ export default function PlanDetailPage() {
 
                 {isOwner ? (
                   <div className="plan-detail-actions">
-                    <button
+                    {/* <button
                       className="btn btn--secondary"
                       onClick={() => setIsEditing(true)}
                     >
                       {t("actions.edit")}
-                    </button>
+                    </button> */}
                     {/* <button className="btn btn--ghost" onClick={handleDelete}>
                       {t("actions.delete")}
                     </button> */}

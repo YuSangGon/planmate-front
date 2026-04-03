@@ -38,7 +38,7 @@ export default function PlannerListPage() {
       />
 
       <section className="section section--compact">
-        <div className="filter-bar">
+        {/* <div className="filter-bar">
           <button className="filter-chip filter-chip--active">
             {t("filters.allPlanners")}
           </button>
@@ -46,7 +46,7 @@ export default function PlannerListPage() {
           <button className="filter-chip">{t("filters.cityBreaks")}</button>
           <button className="filter-chip">{t("filters.foodRoutes")}</button>
           <button className="filter-chip">{t("filters.slowTravel")}</button>
-        </div>
+        </div> */}
 
         {isLoading ? (
           <div className="request-form-card">
